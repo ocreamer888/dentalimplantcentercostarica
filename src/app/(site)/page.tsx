@@ -11,7 +11,6 @@ export default function Home() {
     <HeroSection />
     <AllOnFour/>
     <AllOnSix />
-    <KeySection />
     <AcrossBorders />
     <EstimateForm/>
        
