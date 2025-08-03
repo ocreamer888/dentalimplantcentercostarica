@@ -32,17 +32,17 @@ const EstimateForm = () => {
   const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
 
   const treatments = [
-    'Implantes Dentales',
+    'Dental Implants',
     'All-on-4',
-    'Coronas y Carillas',
-    'Ortodoncia',
-    'Blanqueamiento Dental',
-    'Periodoncia',
-    'Endodoncia',
-    'Cirugía Oral',
-    'Diseño de Sonrisa',
-    'Consulta General',
-    'Otro'
+    'Crowns and Veneers',
+    'Orthodontics',
+    'Teeth Whitening',
+    'Periodontics',
+    'Endodontics (Root Canal)',
+    'Oral Surgery',
+    'Smile Design',
+    'General Consultation',
+    'Other'
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -57,7 +57,7 @@ const EstimateForm = () => {
     const files = Array.from(e.target.files ?? []);
     
     if (images.length + files.length > MAX_IMAGES) {
-      setError(`Máximo ${MAX_IMAGES} imágenes permitidas`);
+      setError(`Max ${MAX_IMAGES} permited images.`);
       return;
     }
 
@@ -66,12 +66,12 @@ const EstimateForm = () => {
 
     files.forEach(file => {
       if (!ALLOWED_TYPES.includes(file.type)) {
-        errors.push(`${file.name}: Formato no válido. Use JPG, PNG o WebP`);
+        errors.push(`${file.name}: Not valid format. Use JPG, PNG o WebP`);
         return;
       }
       
       if (file.size > MAX_FILE_SIZE) {
-        errors.push(`${file.name}: Archivo muy grande. Máximo 10MB`);
+        errors.push(`${file.name}: File is too large. Maximum 10MB`);
         return;
       }
       
@@ -121,7 +121,7 @@ const EstimateForm = () => {
 
     // Basic validation
     if (!formData.name || !formData.email || !formData.phone || !formData.treatment) {
-      setError('Por favor complete todos los campos requeridos.');
+      setError('Please complete the required fields.');
       setIsSubmitting(false);
       return;
     }
@@ -147,7 +147,7 @@ const EstimateForm = () => {
       }
     } catch (err) {
       console.error('Error submitting form:', err);
-      setError('Hubo un error al enviar su solicitud. Por favor intente nuevamente.');
+      setError('There was an error submitting your form. Please try again. 🙂');
     } finally {
       setIsSubmitting(false);
     }
@@ -395,9 +395,9 @@ const EstimateForm = () => {
                       Maximum {MAX_IMAGES} images, 10MB each.
                     </p>
                     
-                    <div className="flex w-full space-y-4">
+                    <div className="flex flex-col w-full items-center space-y-4">
                       {/* Upload Area */}
-                      <div className="flex w-full border-2 border-dashed border-gray-200 text-gray-900 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
+                      <div className="flex flex-col w-full items-center border-2 border-dashed border-gray-200 text-gray-900 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
                         <input
                           type="file"
                           multiple
@@ -483,7 +483,7 @@ const EstimateForm = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={4}
-                      className="w-full px-4 py-3 border border-gray-200 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-200 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Describe your current dental situation, symptoms, or any specific questions..."
                     />
                   </div>
