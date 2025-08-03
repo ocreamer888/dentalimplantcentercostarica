@@ -12,10 +12,10 @@ const BenefitBullet: React.FC<IBenefitBullet> = ({ title, description, icon }: I
                 {icon}
             </div>
             <div>
-                <h4 className="text-lg font-semibold">
+                <h4 className="text-xl font-semibold">
                     {title}
                 </h4>
-                <p className="text-base">
+                <p className="text-base text-xl">
                     {description}
                 </p>
             </div>

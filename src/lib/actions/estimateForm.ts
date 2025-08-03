@@ -33,7 +33,7 @@ export async function submitEstimate(formData: {
   .select()
 
     return { success: true, data }
-  } catch (error) {
+  } catch {
     return { success: false, message: 'Unexpected error occurred' }
   }
 }

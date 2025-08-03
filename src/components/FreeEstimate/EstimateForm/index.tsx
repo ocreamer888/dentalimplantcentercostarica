@@ -172,15 +172,15 @@ const EstimateForm = () => {
               <circle cx="12" cy="12" r="10" />
               <path d="M9 12l2 2l4-4" />
             </svg>
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">¡Solicitud Enviada!</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Message Sent!</h2>
             <p className="text-gray-600 mb-6">
-              Gracias por su interés en nuestros servicios dentales. Nuestro equipo se pondrá en contacto con usted dentro de las próximas 24 horas para proporcionarle su estimación gratuita.
+              Thank you for your interest in our dental services. Our team will contact you within the next 24 hours to provide you with your free estimate.
             </p>
             <button
               onClick={() => setSubmitted(false)}
               className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
             >
-              Enviar Otra Solicitud
+              Send Another Message
             </button>
           </div>
         </div>
@@ -189,10 +189,10 @@ const EstimateForm = () => {
   }
 
   return (
-    <div id="estimate-form" className="flex flex-col mx-4 rounded-3xl min-h-screen bg-gradient-to-br from-purple-50 to-white">
+    <div id="estimate-form" className="flex flex-col md:mx-4 rounded-3xl min-h-screen bg-gradient-to-br from-purple-50 to-white">
       
       
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto pt-12 md:py-12">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-purple-800 mb-4">Free Estimate</h2>
@@ -201,38 +201,38 @@ const EstimateForm = () => {
             </p>
           </div>
 
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col md:gap-8">
             {/* Contact Info */}
             <div className="flex flex-col">
-              <div className="flex flex-col items-center justify-center bg-white w-full rounded-2xl shadow-lg p-6">
-                <h3 className="text-xl font-semibold text-purple-900 mb-6">Información de Contacto</h3>
+              <div className="flex flex-col items-center justify-center bg-white w-full rounded-2xl p-6">
+                <h3 className="text-xl font-semibold text-purple-900 mb-6">Contact Information</h3>
                 
-                <div className="flex flex-col md:flex-row w-full justify-center items-center gap-8">
-                  <div className="flex items-start">
+                <div className="flex flex-col md:flex-row w-full justify-center items-center text-start gap-8">
+                  <div className="flex items-center md:items-start">
                     <span role="img" aria-label="Dirección" className="text-purple-6000 mt-1" style={{ fontSize: 20 }}>📍</span>
                     <div>
-                      <p className="font-medium text-gray-800">Dirección</p>
-                      <p className="text-gray-600">Curridabat, 200m Sur de Pops<br />San José, Costa Rica</p>
+                      <p className="font-medium text-gray-800">Address</p>
+                      <p className="text-gray-600">Curridabat, 200m South of Pops<br />San José, Costa Rica</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start space-x-3">
+                  <div className="flex items-center md:items-start space-x-3">
                     <span role="img" aria-label="Horarios" className="text-purple-600 mt-1" style={{ fontSize: 20 }}>⏰</span>
                     <div>
-                      <p className="font-medium text-gray-800">Horarios</p>
-                      <p className="text-gray-600">Lunes a Viernes: 8:30 - 17:30<br />Sábados y Domingos: Cerrado</p>
+                      <p className="font-medium text-gray-800">Hours</p>
+                      <p className="text-gray-600">Monday to Friday: 8:30 - 17:30<br />Saturday and Sunday: Closed</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start space-x-3">
+                  <div className="flex items-center md:items-start space-x-3">
                     <span role="img" aria-label="Teléfono" className="text-purple-600 mt-1" style={{ fontSize: 20 }}>📞</span>
                     <div>
-                      <p className="font-medium text-gray-800">Teléfono</p>
-                      <p className="text-gray-600">+506 2000-0000</p>
+                      <p className="font-medium text-gray-800">Phone</p>
+                      <p className="text-gray-600">+1 (702) 595-3955</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start space-x-3">
+                  <div className="flex items-center md:items-start space-x-3">
                     <span role="img" aria-label="Correo" className="text-purple-600 mt-1" style={{ fontSize: 20 }}>✉️</span>
                     <div>
                       <p className="font-medium text-gray-800">Email</p>
@@ -241,13 +241,13 @@ const EstimateForm = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row items-center justify-center md:justify-between w-full mt-8 p-4 px-28 bg-purple-50 rounded-lg">
-                  <h4 className="font-semibold md:text-4xl text-purple-800 mb-2">¿Por qué elegir OG Center?</h4>
+                <div className="flex flex-col md:flex-row items-center justify-center md:justify-between w-full mt-8 p-4 px-4 md:px-28 bg-purple-50 rounded-lg">
+                  <h4 className="font-semibold text-2xl md:text-4xl text-purple-800 mb-2">Why choose OG Center?</h4>
                   <ul className="text-lg text-purple-700 space-y-1">
-                    <li>• Tecnología digital de vanguardia</li>
-                    <li>• Especialistas certificados</li>
-                    <li>• Turismo dental internacional</li>
-                    <li>• Más de 20 años de experiencia</li>
+                    <li>• Digital technology of the latest generation</li>
+                    <li>• Certified specialists</li>
+                    <li>• International dental tourism</li>
+                    <li>• More than 20 years of experience</li>
                   </ul>
                 </div>
               </div>
@@ -267,7 +267,7 @@ const EstimateForm = () => {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Nombre Completo *
+                        Full Name *
                       </label>
                       <input
                         type="text"
@@ -275,14 +275,14 @@ const EstimateForm = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Su nombre completo"
+                        className="w-full px-4 py-3 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Your full name"
                       />
                     </div>
                     
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Email *
+                        Email
                       </label>
                       <input
                         type="email"
@@ -290,8 +290,8 @@ const EstimateForm = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="su.email@ejemplo.com"
+                        className="w-full px-4 py-3 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="your.email@example.com"
                       />
                     </div>
                   </div>
@@ -299,7 +299,7 @@ const EstimateForm = () => {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Teléfono *
+                        Phone
                       </label>
                       <input
                         type="tel"
@@ -307,38 +307,38 @@ const EstimateForm = () => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="+506 0000-0000"
+                        className="w-full px-4 py-3 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="+506 2000-0000"
                       />
                     </div>
                     
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        País de Origen
+                        Country of Origin
                       </label>
                       <input
                         type="text"
                         name="country"
                         value={formData.country}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Ej. Estados Unidos, Canadá"
+                        className="w-full px-4 py-3 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="USA, Canada"
                       />
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Tratamiento de Interés *
+                      Interest in Treatment
                     </label>
                     <select
                       name="treatment"
                       value={formData.treatment}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-200 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
-                      <option value="">Seleccione un tratamiento</option>
+                      <option value="">Select a treatment</option>
                       {treatments.map(treatment => (
                         <option key={treatment} value={treatment}>{treatment}</option>
                       ))}
@@ -347,48 +347,57 @@ const EstimateForm = () => {
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Fecha Preferida de Visita
+                      <label className="block text-sm font-medium text-gray-900 mb-2">
+                        Preferred Visit Date
                       </label>
                       <input
                         type="date"
                         name="visitDate"
                         value={formData.visitDate}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-200 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         min={new Date().toISOString().split('T')[0]}
                       />
                     </div>
                     
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Método Preferido de Contacto
+                        Preferred Contact Method
                       </label>
                       <select
                         name="preferredContact"
                         value={formData.preferredContact}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-200 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       >
                         <option value="email">Email</option>
-                        <option value="phone">Teléfono</option>
+                        <option value="phone">Phone</option>
                         <option value="whatsapp">WhatsApp</option>
                       </select>
                     </div>
                   </div>
 
-                  <div>
+                  <div className='flex flex-col items-start justify-center p-4'>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Imágenes Dentales (Opcional)
+                      Dental Images
                     </label>
+                    <div className='flex flex-row items-center justify-center w-full p-4 gap-4'>
+                      <Image src="/images/dentalimages/dentaltop.webp" alt="Dental image reference #1" width={80} height={80} className="rounded-lg md:w-1/6 md:h-1/6 object-cover" />
+                      <Image src="/images/dentalimages/dentalsmile.webp" alt="Dental image reference #2" width={80} height={80} className="rounded-lg md:w-1/6 md:h-1/6 object-cover" />
+                      <Image src="/images/dentalimages/frontdental.webp" alt="Dental image reference #3" width={80} height={80} className="rounded-lg md:w-1/6 md:h-1/6 object-cover" />
+                      <Image src="/images/dentalimages/dentalside2.webp" alt="Dental image reference #4" width={80} height={80} className="rounded-lg md:w-1/6 md:h-1/6 object-cover" />
+                      <Image src="/images/dentalimages/dentalside1.webp" alt="Dental image reference #5" width={80} height={80} className="rounded-lg md:w-1/6 md:h-1/6 object-cover" />
+
+
+                    </div>
                     <p className="text-sm text-gray-500 mb-4">
-                      Comparta fotos de su sonrisa actual, radiografías o cualquier documentación dental relevante. 
-                      Máximo {MAX_IMAGES} imágenes, 10MB cada una.
+                    Share photos of your current smile, X-rays, or any relevant dental documentation.
+                      Maximum {MAX_IMAGES} images, 10MB each.
                     </p>
                     
-                    <div className="space-y-4">
+                    <div className="flex w-full space-y-4">
                       {/* Upload Area */}
-                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
+                      <div className="flex w-full border-2 border-dashed border-gray-200 text-gray-900 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
                         <input
                           type="file"
                           multiple
@@ -409,11 +418,11 @@ const EstimateForm = () => {
                           </span>
                           <p className="text-gray-600">
                             {images.length >= MAX_IMAGES 
-                              ? `Máximo ${MAX_IMAGES} imágenes alcanzado`
-                              : 'Haga clic para seleccionar imágenes o arrastre aquí'
+                              ? `Maximum ${MAX_IMAGES} images reached`
+                              : 'Click to select images or drag here'
                             }
                           </p>
-                          <p className="text-xs text-gray-500 mt-1">JPG, PNG, WebP - Máximo 10MB cada una</p>
+                            <p className="text-xs text-gray-500 mt-1">JPG, PNG, WebP - Maximum 10MB each</p>
                         </label>
                       </div>
 
@@ -433,7 +442,7 @@ const EstimateForm = () => {
                                   type="button"
                                   onClick={() => removeImage(Number((image as { id: string | number }).id))}
                                   className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
-                                  aria-label="Eliminar imagen"
+                                  aria-label="Delete image"
                                 >
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -466,22 +475,22 @@ const EstimateForm = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Mensaje Adicional
+                    <label className="block text-sm font-medium text-gray-900 mb-2">
+                      Additional Message
                     </label>
                     <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={4}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Describa su situación dental actual, síntomas, o cualquier pregunta específica..."
+                      className="w-full px-4 py-3 border border-gray-200 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Describe your current dental situation, symptoms, or any specific questions..."
                     />
                   </div>
 
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <p className="text-sm text-gray-600">
-                      Al enviar este formulario, acepta que OG Center se ponga en contacto con usted para proporcionarle información sobre nuestros servicios dentales. Sus datos personales serán tratados de acuerdo con nuestra política de privacidad.
+                      By submitting this form, you agree that OG Center will contact you to provide information about our dental services. Your personal data will be handled in accordance with our privacy policy.
                     </p>
                   </div>
 
@@ -494,7 +503,7 @@ const EstimateForm = () => {
                     {isSubmitting ? (
                       <>
                         <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                        <span>Enviando...</span>
+                        <span>Sending...</span>
                       </>
                     ) : (
                       <>
@@ -513,7 +522,7 @@ const EstimateForm = () => {
                             d="M3 10l9-6 9 6M4 10v10a1 1 0 001 1h3m10-11v10a1 1 0 01-1 1h-3m-6 0h6"
                           />
                         </svg>
-                        <span>Solicitar Estimación Gratuita</span>
+                        <span>Request Free Estimate</span>
                       </>
                     )}
                   </button>

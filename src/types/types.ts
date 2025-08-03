@@ -10,6 +10,14 @@ export interface IBenefit {
     bullets: IBenefitBullet[]
 }
 
+export interface AllOn {
+    title: string;
+    subtitle: string;
+    description: string;
+    imageSrc: string;
+    bullets: IBenefitBullet[]
+}
+
 export interface IBenefitBullet {
     title: string;
     description: string;

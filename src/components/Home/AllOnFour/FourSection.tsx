@@ -6,10 +6,10 @@ import { motion, Variants } from "framer-motion"
 
 import BenefitBullet from "@/components/Home/BenefitsComponents/BenefitBullet";
 import SectionTitle from "@/components/SectionTitle";
-import { IBenefit } from "@/types/types";
+import { AllOn } from "@/types/types";
 
 interface Props {
-    benefit: IBenefit;
+    benefit: AllOn;
     imageAtRight?: boolean;
 }
 
@@ -48,12 +48,12 @@ export const childVariants = {
 };
 
 const FourSection: React.FC<Props> = ({ benefit, imageAtRight }: Props) => {
-    const { title, description, imageSrc, bullets } = benefit;
+    const { title, subtitle, description, imageSrc, bullets } = benefit;
 
     return (
         <section className="benefit-section justify-center items-center">
             <motion.div
-                className="flex flex-wrap bg-gradient-to-tl from-purple-800/60 via-purple-700/60 to-purple-900/60 backdrop-blur shadow-md w-[96vw] flex-col items-center justify-center md:justify-between rounded-3xl p-8 my-4 px-4 lg:py-32 md:px-32 lg:flex-row lg:flex-nowrap"
+                className="flex flex-wrap bg-gradient-to-tl from-purple-900/80 via-purple-800/80 to-purple-900/80 backdrop-blur shadow-md w-[96vw] flex-col items-center justify-center md:justify-between rounded-3xl p-8 my-4 px-4 lg:py-32 md:px-32 lg:flex-row lg:flex-nowrap"
                 variants={containerVariants}
                 initial="offscreen"
                 whileInView="onscreen"
@@ -72,8 +72,11 @@ const FourSection: React.FC<Props> = ({ benefit, imageAtRight }: Props) => {
                                     {title}
                                 </h3>
                             </SectionTitle>
+                            <h4 className="font-semibold lg:text-5xl"> 
+                                        {subtitle}
+                                    </h4>
 
-                            <p className="mt-1.5 mx-auto lg:ml-0 leading-normal text-foreground-accent">
+                            <p className="mt-4 mx-auto lg:ml-0 leading-normal text-lg">
                                 {description}
                             </p>
                         </motion.div>

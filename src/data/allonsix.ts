@@ -1,14 +1,15 @@
 import React from "react";
 import { FiBarChart2, FiTarget, FiTrendingUp } from "react-icons/fi";
-import { IBenefit } from "@/types/types"
+import { AllOn } from "@/types/types"
 
-export const allonsix: IBenefit[] = [
+export const allonsix: AllOn[] = [
     {
-        title: "All On Six Dental Implants",
-        description: "Save money on your dental care with our affordable and transparent pricing while maintaining the highest quality of care.",
+        title: "All On 6 Implants",
+        subtitle: "$25,000 All-Inclusive" ,
+        description: "Zirconia Upper and Lower, IV Sedation Hotel Extractions – Bone Grafts and Medications. Save money on your dental care with our affordable and transparent pricing while maintaining the highest quality of care.",
         bullets: [
             {
-                title: "Zirconia Implants",
+                title: "Zirconia Upper and Lower Implants",
                 description: "We use the highest quality zirconia implants to ensure the best possible results.",
                 icon: React.createElement(FiBarChart2, { size: 28 })
             },

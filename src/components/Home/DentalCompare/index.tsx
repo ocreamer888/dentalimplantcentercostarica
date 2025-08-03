@@ -1,5 +1,5 @@
 "use client";
-import ImageSlider  from "@/components/ImageSlider";
+import ImageSlider  from "@/components/Home/ImageSlider";
 
 const DentalCompare = () => {
   return (

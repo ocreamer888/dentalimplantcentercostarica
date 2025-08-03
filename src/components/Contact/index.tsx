@@ -1,0 +1,68 @@
+'use client'
+import { Metadata } from 'next';
+import ContactForm from './contactForm';
+import HeroContact from './HeroContact';
+
+export const metadata: Metadata = {
+  title: 'Contact Us - Implant Center Costa Rica',
+  description: 'Get in touch with our dental specialists for consultations and appointments.',
+};
+
+export default function ContactPage() {
+  return (
+    <>
+    <HeroContact />
+
+    <div className="min-h-screen">
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto">
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Contact Information */}
+            <div className="bg-white rounded-2xl shadow-lg p-8">
+              <h2 className="text-2xl font-semibold text-purple-900 mb-6">Contact Information</h2>
+              
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <span className="text-purple-600 mt-1 mr-3">📍</span>
+                  <div>
+                    <p className="font-medium text-gray-800">Address</p>
+                    <p className="text-gray-600">Curridabat, 200m Sur de Pops<br />San José, Costa Rica</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <span className="text-purple-600 mt-1 mr-3">⏰</span>
+                  <div>
+                    <p className="font-medium text-gray-800">Hours</p>
+                    <p className="text-gray-600">Monday - Friday: 8:30 AM - 5:30 PM<br />Saturday - Sunday: Closed</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <span className="text-purple-600 mt-1 mr-3">📞</span>
+                  <div>
+                    <p className="font-medium text-gray-800">Phone</p>
+                    <p className="text-gray-600">+506 2000-0000</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <span className="text-purple-600 mt-1 mr-3">✉️</span>
+                  <div>
+                    <p className="font-medium text-gray-800">Email</p>
+                    <p className="text-gray-600">info@ogcenter.cr</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <ContactForm />
+           
+          </div>
+        </div>
+      </div>
+    </div>
+    </>
+  );
+}

@@ -5,6 +5,16 @@ import Header from '@/components/Layout/Header'
 
 export default function Hero2() {
 
+  const scrollToForm = () => {
+    const formElement = document.getElementById('estimate-form');
+    if (formElement) {
+      formElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
 
   return (
     <div className="relative overflow-hidden h-[96vh] flex items-center m-4 rounded-3xl justify-left">
@@ -23,21 +33,19 @@ export default function Hero2() {
 
       <div className="relative isolate px-8 max-w-3xl lg:pl-20">
         <div className=" backdrop-blur-md p-8 rounded-3xl justify-left mx-auto max-w-3xl">
-          
           <div className="text-left py-8">
-            <h1 className="text-4xl md:text-6xl font-semibold text-center md:text-left tracking-tight text-white">
-            Get a Perfect Smile in Costa Rica and Save Thousands
+            <h1 className="text-5xl font-semibold text-balance text-pretty text-center md:text-left tracking-tight text-white">
+            Reimagine Your Smile. Reclaim Your Confidence.           
             </h1>
             <p className="pt-4 text-lg text-balance font-medium text-pretty text-center md:text-left text-white">
-            World-Class Dental Care from a US & German-Trained Specialist. See Your Transformation in as Little as One Visit.
-            </p>
+            Full-Arch Dental Implants from only <span className="text-yellow-400 text-2xl font-bold">$14,950</span> in Costa Rica – <span className="font-bold">The #1 Dental Tourism Destination</span>            </p>
             <div className="mt-8 flex items-center justify-center md:justify-start md:items-center gap-x-6">
-              <a
-                href="#"
-                className="rounded-full bg-yellow-500 text-black px-12 py-4 text-md font-semibold shadow-xs hover:bg-yellow-600"
+            <button
+                onClick={scrollToForm}
+                className="rounded-full bg-yellow-500 text-black px-12 py-4 text-md font-semibold shadow-xs hover:bg-yellow-600 transition-colors"
               >
                 Get My FREE Estimate
-              </a>
+              </button>
           
             </div>
             
