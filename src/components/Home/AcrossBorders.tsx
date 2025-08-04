@@ -8,7 +8,7 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 
 export const AcrossBorders = () => {
   return (
-    <AnimatedSection className="flex flex-col items-center justify-center shadow-xl rounded-3xl relative bg-gradient-to-br from-purple-600/50 via-purple-500/50 to-purple-600/50 z-20 py-8 my-8 h-full lg-px-28 backdrop-blur-2xl sm:rounded-3xl md:rounded-3xl sm:-mt-16 md:mt-16 md:mx-4 px-4 md:px-4 lg:px-12">
+    <AnimatedSection className="flex flex-col items-center justify-center rounded-3xl relative z-20 py-8 my-8 h-full lg-px-28 backdrop-blur-2xl sm:rounded-3xl md:rounded-3xl sm:-mt-16 md:mt-16 md:mx-4 px-4 md:px-4 lg:px-12">
       <div className='flex flex-col-1 w-full mb-12 mt-12 items-center md:items-start justify-center md:justify-start '>
       <div className='w-full items-center justify-center text-center md:text-start md:items-start md:justify-start'>
       <h1 className='text-5xl md:text-7xl items-center justify-center md:items-start md:justify-start font-semibold text-purple-100'>Why Choose OG Dental?</h1>
@@ -27,7 +27,7 @@ export const AcrossBorders = () => {
         </div>
         
         {/* Features section: full width below */}
-        <div className="md:col-span-2 flex flex-wrap justify-center items-stretch w-full max-w-full">
+        <div className="md:col-span-2 flex flex-wrap justify-between items-between w-full max-w-full">
         <div className="flex flex-col w-full justify-center items-start text-left my-4 p-4 bg-gray-800/20 backdrop-blur-xl rounded-3xl">
         <h1 className='text-2xl text-white font-bold text-balance text-pretty'>• Board-Certified Specialists & State-of-the-Art Facility</h1>
           </div>

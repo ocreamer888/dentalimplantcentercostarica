@@ -53,7 +53,7 @@ const FourSection: React.FC<Props> = ({ benefit, imageAtRight }: Props) => {
     return (
         <section className="benefit-section justify-center items-center">
             <motion.div
-                className="flex flex-wrap bg-gradient-to-tl from-purple-900/80 via-purple-800/80 to-purple-900/80 backdrop-blur shadow-md w-[96vw] flex-col items-center justify-center md:justify-between rounded-3xl p-8 my-4 px-4 lg:py-32 md:px-32 lg:flex-row lg:flex-nowrap"
+                className="flex flex-wrap bg-gradient-to-tl from-purple-900/80 via-purple-800/80 to-purple-900/80 backdrop-blur shadow-md w-[96vw] flex-col items-center justify-center md:justify-between rounded-3xl p-8 my-4 px-4 lg:py-20 md:px-20 lg:flex-row lg:flex-nowrap"
                 variants={containerVariants}
                 initial="offscreen"
                 whileInView="onscreen"
@@ -68,11 +68,11 @@ const FourSection: React.FC<Props> = ({ benefit, imageAtRight }: Props) => {
                             variants={childVariants as Variants}
                         >
                             <SectionTitle>
-                                <h3 className="lg:max-w-2xl">
+                                <h3 className="text-5xl lg:max-w-2xl">
                                     {title}
                                 </h3>
                             </SectionTitle>
-                            <h4 className="font-semibold lg:text-5xl"> 
+                            <h4 className="font-semibold p-4 text-4xl lg:text-5xl"> 
                                         {subtitle}
                                     </h4>
 
@@ -89,7 +89,7 @@ const FourSection: React.FC<Props> = ({ benefit, imageAtRight }: Props) => {
                     </div>
                 </div>
 
-                <div className={clsx("mt-5 lg:mt-0", { "lg:order-2": imageAtRight, "lg:order-1": !imageAtRight })}>
+                <div className={clsx("mt-16 lg:mt-0", { "lg:order-2": imageAtRight, "lg:order-1": !imageAtRight })}>
                     <div className={clsx("w-fit flex", { "justify-end": imageAtRight, "justify-start": !imageAtRight })}>
                         <Image src={imageSrc} alt="title" width="384" height="762" quality={100} className="lg:mr-16" />
                     </div>

@@ -155,7 +155,7 @@ const EstimateForm = () => {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+      <div className="flex flex-col items-center justify-center min-h-screen">
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl p-8 text-center">
             <svg

@@ -24,6 +24,6 @@ export const allonfour: AllOn[] = [
                 icon: React.createElement(FiTrendingUp, { size: 28 })
             }
         ],
-        imageSrc: "/images/allonsix1.webp"
+        imageSrc: "/images/dentalimages/dentalimplant5.webp"
     }
 ]

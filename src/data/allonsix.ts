@@ -24,6 +24,6 @@ export const allonsix: AllOn[] = [
                 icon: React.createElement(FiTrendingUp, { size: 28 })
             }
         ],
-        imageSrc: "/images/allonsix1.webp"
+        imageSrc: "/images/dentalimages/dentalimplant4.webp"
     }
 ]
