@@ -38,7 +38,7 @@ export default function ExperimentalGrid() {
                    
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-3xl"></div>
                     <div className="relative z-10 rounded-3xl p-4 w-full h-full flex flex-col justify-end">
-                        <h2 className="font-semibold text-6xl lg:pr-8">
+                        <h2 className="font-semibold text-4xl lg:text-6xl lg:pr-8">
                         Financing Available
                         </h2>
                         <p className="pr-12">
