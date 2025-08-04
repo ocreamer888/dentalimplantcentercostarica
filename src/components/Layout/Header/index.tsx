@@ -23,7 +23,7 @@ export default function Header() {
             <Link href="/" className="flex items-center">
               <Icon icon="mdi:tooth" className="h-8 w-8 text-purple-200" />
               <span className="ml-2 text-xl font-bold text-white">
-                Implant Center Costa Rica
+                Dental Implant Center Costa Rica
               </span>
             </Link>
           </div>
