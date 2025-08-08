@@ -14,7 +14,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50">
+    <header className="absolute top-2 left-0 right-0 z-50">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -29,7 +29,7 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden shadow-md bg-white/20 backdrop-blur-md rounded-full px-4 md:flex space-x-8">
+          <nav className="hidden shadow-md bg-gray-800/40 backdrop-blur-md rounded-full px-4 md:flex space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -46,9 +46,9 @@ export default function Header() {
             {/* Contact Button */}
             <Link
               href="/contact"
-              className="hidden sm:inline-flex items-center px-4 py-2 text-sm font-medium rounded-full text-white bg-purple-700 hover:bg-purple-600 transition-colors"
+              className="hidden sm:inline-flex items-center px-8 py-2 text-sm font-medium rounded-full text-white bg-purple-700 hover:bg-purple-600 transition-colors"
             >
-              Book Consultation
+              Contact Us
             </Link>
 
             {/* Mobile menu button */}

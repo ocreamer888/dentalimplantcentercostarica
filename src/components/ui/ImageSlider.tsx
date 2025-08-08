@@ -1,16 +1,27 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-const BeforeImage = "/images/featured/feat2.jpg";
-const AfterImage = "/images/featured/feat1.jpg";
-const SwiperImage = "/images/icons/icon-star.svg";
 
-const ImageSlider = () => {
+interface ImageSliderProps {
+  beforeImage: string;
+  afterImage: string;
+  swiperImage?: string; // Optional, with default
+  className?: string; // Optional styling
+}
+
+const ImageSlider = ({ 
+  beforeImage, 
+  afterImage, 
+  swiperImage = "/images/icons/icon-star.svg",
+  className = ""
+}: ImageSliderProps) => {
   const CompareSlider = ({
     beforeImage,
     afterImage,
+    swiperImage,
   }: {
     beforeImage: string;
     afterImage: string;
+    swiperImage: string;
   }) => {
     const [sliderPosition, setSliderPosition] = useState(50); // Initial slider position at 50%
     const sliderRef = useRef<HTMLDivElement>(null);
@@ -81,25 +92,25 @@ const ImageSlider = () => {
 
     return (
       <div
-        className="relative w-full aspect-[4/3] sm:aspect-[16/9] cursor-col-resize select-none"
+        className={`relative w-full aspect-[4/3] sm:aspect-[16/9] cursor-col-resize select-none ${className}`}
         ref={sliderRef}
         onMouseMove={handleHoverMove}
         // No onTouchMove here, handled by drag
       >
-        {/* Before Image */}
+        {/* Before Image - Full size */}
         <Image
           src={beforeImage}
           alt="Before Image"
           fill
-          className="absolute top-0 left-0 w-full h-full object-cover"
+          className="absolute top-0 left-0 w-full h-full rounded-3xl object-cover"
           sizes="(max-width: 768px) 100vw, 50vw"
           priority
         />
 
-        {/* After Image */}
+        {/* After Image - Full size but clipped */}
         <div
-          className="absolute top-0 left-0 h-full overflow-hidden pointer-events-none"
-          style={{ width: `${sliderPosition}%` }}
+          className="absolute top-0 left-0 h-full w-full overflow-hidden rounded-3xl pointer-events-none"
+          style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
         >
           <Image
             src={afterImage}
@@ -119,7 +130,7 @@ const ImageSlider = () => {
 
         {/* Swiper Image */}
         <Image
-          src={SwiperImage}
+          src={swiperImage}
           alt="Drag handle"
           width={32}
           height={32}
@@ -139,32 +150,12 @@ const ImageSlider = () => {
   };
 
   return (
-    <div className="py-10 sm:py-16">
-      <div className="flex flex-col items-center gap-10 sm:gap-16">
-        <div className="w-full px-2 sm:px-6 mx-auto flex flex-col gap-8">
-          <div className="flex flex-col lg:flex-row justify-between bg-purple-100 rounded-2xl overflow-hidden relative">
-            <div className="flex flex-col px-4 py-6 sm:px-10 sm:py-16 justify-center">
-              <div className="flex flex-col gap-10">
-                <div className="flex flex-col gap-2 justify-center max-w-xl">
-                  <h1 className="text-4xl md:text-6xl font-semibold text-gray-900">
-                    Before and After
-                  </h1>
-                  <p className="text-base text-lg text-gray-500">
-                    Your dreamed smile is just a few steps away!
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* Compare Slider */}
-            <div className="relative w-full lg:w-1/2">
-              <CompareSlider
-                beforeImage={BeforeImage}
-                afterImage={AfterImage}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="relative w-full">
+      <CompareSlider
+        beforeImage={beforeImage}
+        afterImage={afterImage}
+        swiperImage={swiperImage}
+      />
     </div>
   );
 };

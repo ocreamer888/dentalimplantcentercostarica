@@ -4,7 +4,7 @@ import { AllOn } from "@/types/types"
 
 export const allonsix: AllOn[] = [
     {
-        title: "All On 6 Implants",
+        title: "All-On-6 Implants",
         subtitle: "$25,000 All-Inclusive" ,
         description: "Zirconia Upper and Lower, IV Sedation Hotel Extractions – Bone Grafts and Medications. Save money on your dental care with our affordable and transparent pricing while maintaining the highest quality of care.",
         bullets: [

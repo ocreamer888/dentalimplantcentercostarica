@@ -4,7 +4,7 @@ import { AllOn } from "@/types/types"
 
 export const allonfour: AllOn[] = [
     {
-        title: "All On 4 Implants",
+        title: "All-On-4 Zirconia",
         subtitle: "$19,950 All-Inclusive" ,
         description: "Zirconia Upper and Lower, IV Sedation Hotel Extractions – Bone Grafts and Medications. Save money on your dental care with our affordable and transparent pricing while maintaining the highest quality of care.",
         bullets: [

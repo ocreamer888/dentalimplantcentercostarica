@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import Header from '@/components/Layout/Header'
+import Header from '@/components/Layout/Header/Header'
 
 export default function Hero() {
   const scrollToForm = () => {

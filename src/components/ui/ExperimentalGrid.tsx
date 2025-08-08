@@ -4,12 +4,12 @@ import Image from "next/image";
 
 export default function ExperimentalGrid() {
     return (
-    <div className="flex flex-col w-full justify-center items-stretch h-screen my-40 md:mt-20 md:mb-8">
+    <div className="flex flex-col w-full justify-center items-stretch h-screen bg-gradient-to-t from-black/60 via-black/40 to-transparent py-12">
         
         {/* Title and Description */}
         <div className="flex flex-col items-center justify-center text-center">
-            <h1 className="text-6xl font-bold text-gray-800">Why Choosing Us?</h1>
-            <p className="text-xl text-gray-600 max-w-2xl m-4">
+            <h1 className="text-6xl font-bold text-white">Why Choosing Us?</h1>
+            <p className="text-xl text-white max-w-2xl m-4">
             Unlock your perfect smile in Costa Rica! OG Dental delivers world-class All-On-4 implants at a fraction of the cost. Get elite care, advanced tech & the stunning results you deserve.
             </p>
         </div>
@@ -26,11 +26,11 @@ export default function ExperimentalGrid() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-tr from-black/80 to-transparent rounded-3xl"></div>
                     <div className="relative z-10 rounded-3xl p-4 w-full h-full flex flex-col justify-end">
-                        <h2 className="font-semibold text-3xl md:text-4xl ">
-                            Zirconia Dental Implants
+                        <h2 className="font-semibold text-3xl md:text-7xl ">
+                           Save up to 70%
                         </h2>
-                        <p className="lg:pr-98">
-                        Save thousands on your full smile restoration. Experience premium care with one transparent, affordable price.
+                        <p className="text-xl lg:pr-98">
+                        <span className="font-semibold">On Zirconia Dental ImplantsSave thousands on your full smile restoration.</span> Experience premium care with one transparent, affordable price.
                         </p>
                     </div>
                 </div>
@@ -38,11 +38,11 @@ export default function ExperimentalGrid() {
                    
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-3xl"></div>
                     <div className="relative z-10 rounded-3xl p-4 w-full h-full flex flex-col justify-end">
-                        <h2 className="font-semibold text-4xl lg:text-6xl lg:pr-8">
+                        <h2 className="font-semibold text-4xl lg:text-4xl lg:pr-8">
                         Financing Available
                         </h2>
-                        <p className="pr-12">
-                       <span className="font-semibold">Why pay $50,000 for a smile?</span> Get the same elite, lifetime-guaranteed results for a fraction of the cost. It&apos;s not just a better price—it&apos;s the intelligent choice.
+                        <p className="pr-12 text-lg">
+                       <span className="font-semibold text-2xl">Why pay +$50,000 for a smile?</span> Get the same elite, lifetime-guaranteed results for a fraction of the cost. It&apos;s not just a better price—it&apos;s the intelligent choice.
                         </p>
                     </div>
                 </div>
@@ -62,7 +62,7 @@ export default function ExperimentalGrid() {
                         <h2 className="font-semibold text-4xl">
                         Unbeatable All-Inclusive Pricing
                         </h2>
-                        <p className="text-lg">
+                        <p className="text-xl font-semibold">
                         Flights + 4-star hotels + procedures + 24/7 concierge service
                         </p>
                     </div>
@@ -72,14 +72,14 @@ export default function ExperimentalGrid() {
                         src="/images/hero/DentalPassport4.webp" 
                         alt="Dental image reference #1" 
                         fill
-                        className="object-cover rounded-3xl -z-10"
+                        className="object-cover rounded-3xl"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent rounded-3xl"></div>
                     <div className="relative z-10 rounded-3xl p-4 w-full h-full flex flex-col justify-end">
-                        <h2 className="font-semibold text-4xl">
+                        <h2 className="font-semibold text-5xl">
                         Certified Specialists
                         </h2>
-                        <p className="lg:pr-98">
+                        <p className="text-xl lg:pr-98">
                         Achieve a durable, brilliant smile with our full Zirconia restoration. Rebuild your smile and confidence. 
                         </p>
                     </div>
