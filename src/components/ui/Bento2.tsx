@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const testimonials = [
   {
@@ -22,14 +21,7 @@ const testimonials = [
 ];
 
 export default function Bento2() {
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, []);
+  // Removed unused current state and useEffect since they're not being used
 
   return (
     <section className="relative flex flex-col lg:flex-row h-full w-full p-4 rounded-3xl flex-1 overflow-hidden gap-4 my-8 h-full w-full justify-center items-center backdrop-blur-2xl">

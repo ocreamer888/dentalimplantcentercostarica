@@ -1,6 +1,5 @@
  "use client";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
  interface Testimonial {
@@ -19,7 +18,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
   }
   
   export default function Bento({ 
-    className = "" 
+    backgroundColor,
+    textColor
   }: BentoProps) {
     const [currentTestimonial, setCurrentTestimonial] = useState(0);
   
@@ -78,76 +78,80 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [testimonials.length]);
  
- {/* Testimonials Section */}
- <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
- <div className="relative">
-   {/* Testimonial Slider */}
-   <div className="relative overflow-hidden">
-     <div 
-       className="flex transition-transform duration-500 ease-in-out"
-       style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
-     >
-       {testimonials.map((testimonial, index) => (
-         <div key={testimonial.id} className="w-full flex-shrink-0">
-           <div className="flex flex-col items-center text-center space-y-6">
-             <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
-               <span className="text-white font-bold text-xl">
-                 {testimonial.name.charAt(0)}
-               </span>
+ return (
+   <div>
+     {/* Testimonials Section */}
+     <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+     <div className="relative">
+       {/* Testimonial Slider */}
+       <div className="relative overflow-hidden">
+         <div 
+           className="flex transition-transform duration-500 ease-in-out"
+           style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
+         >
+           {testimonials.map((testimonial) => (
+             <div key={testimonial.id} className="w-full flex-shrink-0">
+               <div className="flex flex-col items-center text-center space-y-6">
+                 <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
+                   <span className="text-white font-bold text-xl">
+                     {testimonial.name.charAt(0)}
+                   </span>
+                 </div>
+                 <blockquote className="text-xl max-w-2xl leading-relaxed">
+                   <strong>&ldquo;{testimonial.quote.split('"')[1]}</strong>
+                   {testimonial.quote.split('"')[2]}
+                   <strong>{testimonial.quote.split('"')[3]}&rdquo;</strong>
+                 </blockquote>
+                 <div className="text-center">
+                   <h4 className="font-semibold text-lg">{testimonial.name}, {testimonial.age}</h4>
+                   <p className="text-sm opacity-80">{testimonial.product}</p>
+                 </div>
+               </div>
              </div>
-             <blockquote className="text-xl max-w-2xl leading-relaxed">
-               <strong>"{testimonial.quote.split('"')[1]}</strong>
-               {testimonial.quote.split('"')[2]}
-               <strong>{testimonial.quote.split('"')[3]}</strong>
-             </blockquote>
-             <div className="text-center">
-               <h4 className="font-semibold text-lg">{testimonial.name}, {testimonial.age}</h4>
-               <p className="text-sm opacity-80">{testimonial.product}</p>
-             </div>
-           </div>
+           ))}
          </div>
+       </div>
+
+       {/* Navigation Buttons */}
+       <button
+         onClick={prevTestimonial}
+         disabled={currentTestimonial === 0}
+         className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+       >
+         <ChevronLeft className="w-6 h-6" />
+       </button>
+       <button
+         onClick={nextTestimonial}
+         className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
+       >
+         <ChevronRight className="w-6 h-6" />
+       </button>
+     </div>
+
+     {/* Slide Indicators */}
+     <div className="flex justify-center mt-8 space-x-2">
+       {testimonials.map((_, index) => (
+         <button
+           key={index}
+           onClick={() => setCurrentTestimonial(index)}
+           className={`w-3 h-3 rounded-full transition-all ${
+             index === currentTestimonial 
+               ? 'bg-white' 
+               : 'bg-white/30 hover:bg-white/50'
+           }`}
+         />
        ))}
      </div>
+
+     {/* CTA Button */}
+     <div className="flex justify-center mt-8">
+       <button className="px-8 py-4 bg-white text-gray-900 font-semibold rounded-full hover:bg-gray-100 transition-colors">
+         Get results
+       </button>
+     </div>
+     </div>
    </div>
-
-   {/* Navigation Buttons */}
-   <button
-     onClick={prevTestimonial}
-     disabled={currentTestimonial === 0}
-     className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-   >
-     <ChevronLeft className="w-6 h-6" />
-   </button>
-   <button
-     onClick={nextTestimonial}
-     className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
-   >
-     <ChevronRight className="w-6 h-6" />
-   </button>
- </div>
-
- {/* Slide Indicators */}
- <div className="flex justify-center mt-8 space-x-2">
-   {testimonials.map((_, index) => (
-     <button
-       key={index}
-       onClick={() => setCurrentTestimonial(index)}
-       className={`w-3 h-3 rounded-full transition-all ${
-         index === currentTestimonial 
-           ? 'bg-white' 
-           : 'bg-white/30 hover:bg-white/50'
-       }`}
-     />
-   ))}
- </div>
-
- {/* CTA Button */}
- <div className="flex justify-center mt-8">
-   <button className="px-8 py-4 bg-white text-gray-900 font-semibold rounded-full hover:bg-gray-100 transition-colors">
-     Get results
-   </button>
- </div>
-</div>
-  }
+ );
+}
