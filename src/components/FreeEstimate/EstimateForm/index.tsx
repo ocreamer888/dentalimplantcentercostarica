@@ -430,18 +430,18 @@ const EstimateForm = () => {
                       onClick={() => fileInputRef.current?.click()}
                       className={[
                         "w-full cursor-pointer rounded-xl border-2 border-dashed p-6 transition",
-                        "bg-white",
-                        isDragging ? "border-purple-500 bg-purple-50 ring-2 ring-purple-200" : "border-gray-300 hover:border-purple-400"
+                        "bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-600",
+                        isDragging ? "border-purple-500 ring-2 ring-purple-200" : "border-gray-300 hover:border-purple-400"
                       ].join(" ")}
                     >
                       <div className="flex flex-col items-center justify-center gap-2 text-center">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                         </svg>
-                        <div className="text-medium">
-                          <span className="text-xl text-gray-900">Drag and drop</span> images here, or <span className="text-xl text-gray-900 underline">browse</span>
+                        <div className="text-base text-gray-900">
+                          <span className="text-xl text-gray-900">Drag and drop</span> images here, or <span className="text-xl text-blue-700 underline">browse</span>
                         </div>
-                        <p className="text-medium text-gray-800">
+                        <p className="text-sm text-gray-700">
                           Up to {MAX_IMAGES} images, max 10MB each (JPG, PNG, WebP).
                         </p>
                       </div>
