@@ -1,0 +1,26 @@
+/* Load this asynchronously */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Non-critical styles */
+@custom-variant dark (&:is(.dark *));
+
+/* Your existing CSS variables and styles */
+@theme inline {
+  /* ... your existing theme variables ... */
+}
+
+/* Dark mode styles */
+.dark {
+  /* ... your existing dark mode styles ... */
+}
+
+/* Component-specific styles that aren't needed for initial render */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

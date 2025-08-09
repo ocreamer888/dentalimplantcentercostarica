@@ -2,29 +2,66 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
-    serverActions: {
-      bodySizeLimit: '10mb'
-    },
-    // Add React Compiler configuration
-    reactCompiler: true
+    serverActions: { bodySizeLimit: "10mb" },
+    reactCompiler: true,
+    optimizeCss: true,
+    // Enable CSS optimization
+    optimizePackageImports: ['@iconify/react', 'framer-motion'],
   },
-  // Modern browser support - only target browsers that support ES2020+
   compiler: {
-    // Remove console.logs in production
-    removeConsole: process.env.NODE_ENV === 'production',
+    removeConsole: process.env.NODE_ENV === "production",
   },
-  // Optimize for modern browsers
-  swcMinify: true,
-  // Configure browser targets for modern browsers only
+  // Optimize CSS loading
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
-      // Target modern browsers only
-      config.target = ['web', 'es2020'];
+      // Split CSS into smaller chunks
+      config.optimization.splitChunks.cacheGroups.styles = {
+        name: 'styles',
+        test: /\.(css|scss)$/,
+        chunks: 'all',
+        enforce: true,
+      };
     }
     return config;
   },
-  // Enable font optimization
-  optimizeFonts: true,
+  // Enable compression
+  compress: true,
+  // Optimize images
+  images: {
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 31536000, // 1 year
+  },
+  // Headers for performance
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+        ],
+      },
+      {
+        source: '/css/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
