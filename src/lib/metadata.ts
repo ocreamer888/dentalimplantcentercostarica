@@ -62,10 +62,10 @@ const DEFAULTS = {
   defaultDescription:
     siteDetails?.metadata?.description ||
     'Get premium dental implants in Costa Rica at up to 70% savings. All-inclusive packages with verified dentists, luxury accommodations, and comprehensive care.',
-  logoPath:
+    logoPath:
     (typeof siteDetails?.siteLogo === 'string' && siteDetails.siteLogo.replace(/^https?:\/\/[^/]+/, '')) ||
     '/images/DentalImplantSocials.png',
-  gaId: (siteDetails as any)?.googleAnalyticsId || '',
+  gaId: siteDetails?.googleAnalyticsId || '',
   locale: siteDetails?.locale || 'en-US',
   ogLocale: (siteDetails?.locale || 'en-US').replace('-', '_'),
 } as const;
