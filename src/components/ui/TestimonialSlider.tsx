@@ -1,70 +1,70 @@
- "use client";
+"use client";
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
- interface Testimonial {
-    id: number;
-    quote: string;
-    name: string;
-    age: number;
-    product: string;
-    avatar: string;
-  }
+interface Testimonial {
+  id: number;
+  quote: string;
+  name: string;
+  age: number;
+  product: string;
+  avatar: string;
+}
+
+interface TestimonialSliderProps {
+  backgroundColor?: string;
+  textColor?: string;
+  className?: string;
+}
+
+export default function TestimonialSlider({ 
+  backgroundColor,
+  textColor
+}: TestimonialSliderProps) {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
   
-  interface BentoProps {
-    backgroundColor?: string;
-    textColor?: string;
-    className?: string;
-  }
-  
-  export default function Bento({ 
-    backgroundColor,
-    textColor
-  }: BentoProps) {
-    const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  
-    const testimonials: Testimonial[] = [
-      {
-        id: 1,
-        quote: "When my treatment arrived, let's just say: my wife and I haven't had that much fun in a long time. Now, we schedule weekly date nights and get to enjoy one another again. I couldn't be happier with the results.",
-        name: "Patrick",
-        age: 49,
-        product: "Sildenafil Chews",
-        avatar: "/avatars/patrick.jpg"
-      },
-      {
-        id: 2,
-        quote: "My manhood wouldn't work like it used to. The combo in my treatment makes me get hard and last for hours. It gave me the confidence in the bedroom and my lady enjoys it as well.",
-        name: "Richard",
-        age: 43,
-        product: "Sex Rx + Climax Control",
-        avatar: "/avatars/richard.jpg"
-      },
-      {
-        id: 3,
-        quote: "The difference was noticeable from the first night! I was able to get it up faster, last longer, and was able to go multiple rounds with my partner.",
-        name: "Trevor",
-        age: 31,
-        product: "Hard Mints",
-        avatar: "/avatars/trevor.jpg"
-      },
-      {
-        id: 4,
-        quote: "Hims made it so easy to address my concerns. The process was discreet, which I really appreciated. The results have been amazing and my self-esteem got a massive boost.",
-        name: "Max",
-        age: 32,
-        product: "Generic for Viagra®",
-        avatar: "/avatars/max.jpg"
-      },
-      {
-        id: 5,
-        quote: "Suddenly, I couldn't get hard. The next day, I heard an ad for Hims. I quickly jumped on the opportunity. It was so easy. Everything was online. About one week after ordering, my shipment came in. Very fast. I can stay hard for hours. My wife loves it.",
-        name: "Jason",
-        age: 41,
-        product: "Sildenafil Chews",
-        avatar: "/avatars/jason.jpg"
-      }
-    ];
+  const testimonials: Testimonial[] = [
+    {
+      id: 1,
+      quote: "When my treatment arrived, let's just say: my wife and I haven't had that much fun in a long time. Now, we schedule weekly date nights and get to enjoy one another again. I couldn't be happier with the results.",
+      name: "Patrick",
+      age: 49,
+      product: "Sildenafil Chews",
+      avatar: "/avatars/patrick.jpg"
+    },
+    {
+      id: 2,
+      quote: "My manhood wouldn't work like it used to. The combo in my treatment makes me get hard and last for hours. It gave me the confidence in the bedroom and my lady enjoys it as well.",
+      name: "Richard",
+      age: 43,
+      product: "Sex Rx + Climax Control",
+      avatar: "/avatars/richard.jpg"
+    },
+    {
+      id: 3,
+      quote: "The difference was noticeable from the first night! I was able to get it up faster, last longer, and was able to go multiple rounds with my partner.",
+      name: "Trevor",
+      age: 31,
+      product: "Hard Mints",
+      avatar: "/avatars/trevor.jpg"
+    },
+    {
+      id: 4,
+      quote: "Hims made it so easy to address my concerns. The process was discreet, which I really appreciated. The results have been amazing and my self-esteem got a massive boost.",
+      name: "Max",
+      age: 32,
+      product: "Generic for Viagra®",
+      avatar: "/avatars/max.jpg"
+    },
+    {
+      id: 5,
+      quote: "Suddenly, I couldn't get hard. The next day, I heard an ad for Hims. I quickly jumped on the opportunity. It was so easy. Everything was online. About one week after ordering, my shipment came in. Very fast. I can stay hard for hours. My wife loves it.",
+      name: "Jason",
+      age: 41,
+      product: "Sildenafil Chews",
+      avatar: "/avatars/jason.jpg"
+    }
+  ];
  const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
   };

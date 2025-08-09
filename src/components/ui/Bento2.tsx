@@ -1,24 +1,7 @@
 "use client";
-import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-const testimonials = [
-  {
-    quote: "MedDeFi made my cross-border treatment seamless and affordable. Highly recommended!",
-    name: "Dr. Alice, 38",
-    avatar: "/avatars/av.svg",
-  },
-  {
-    quote: "Booking and payment were so easy. I felt safe every step of the way.",
-    name: "Dr. Ben, 45",
-    avatar: "/avatars/ek.svg",
-  },
-  {
-    quote: "The platform's transparency and speed are unmatched in healthcare.",
-    name: "Dr. Maria, 41",
-    avatar: "/avatars/mb.svg",
-  },
-];
+
 
 export default function Bento2() {
   // Removed unused current state and useEffect since they're not being used

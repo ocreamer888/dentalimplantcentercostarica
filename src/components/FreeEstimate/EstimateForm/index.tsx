@@ -189,14 +189,14 @@ const EstimateForm = () => {
   }
 
   return (
-    <div id="estimate-form" className="flex flex-col md:mx-4 rounded-3xl min-h-screen bg-gradient-to-br from-purple-50 to-white">
+    <div id="estimate-form" className="flex flex-col md:mx-4 rounded-3xl min-h-screen bg-white/20">
       
       
       <div className="container mx-auto pt-12 md:py-12">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-purple-800 mb-4">Free Estimate</h2>
-            <p className="text-xl text-balance text-purple-600 max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold text-purple-100 mb-4">Free Estimate</h2>
+            <p className="text-xl text-balance text-purple-100 max-w-3xl mx-auto">
             Get a personalized evaluation of our state-of-the-art dental treatments. Our team of specialists will provide you with a detailed and transparent treatment plan.
             </p>
           </div>
@@ -204,7 +204,7 @@ const EstimateForm = () => {
           <div className="flex flex-col md:gap-8">
             {/* Contact Info */}
             <div className="flex flex-col">
-              <div className="flex flex-col items-center justify-center bg-white w-full rounded-2xl p-6">
+              <div className="flex flex-col items-center justify-center bg-white/80 w-full rounded-2xl p-6">
                 <h3 className="text-xl font-semibold text-purple-900 mb-6">Contact Information</h3>
                 
                 <div className="flex flex-col md:flex-row w-full justify-center items-center text-start gap-8">
@@ -241,7 +241,7 @@ const EstimateForm = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row items-center justify-center md:justify-between w-full mt-8 p-4 px-4 md:px-28 bg-purple-50 rounded-lg">
+                <div className="flex flex-col md:flex-row items-center justify-center md:justify-between w-full mt-8 p-4 px-4 md:px-28 bg-purple-50/80 rounded-lg">
                   <h4 className="font-semibold text-2xl md:text-4xl text-purple-800 mb-2">Why choose OG Center?</h4>
                   <ul className="text-lg text-purple-700 space-y-1">
                     <li>• Digital technology of the latest generation</li>
@@ -255,7 +255,7 @@ const EstimateForm = () => {
 
             {/* Form */}
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-2xl shadow-lg p-8">
+              <div className="bg-white/90 rounded-2xl shadow-lg p-8">
                 <div className="space-y-6">
                   {error && (
                     <div className="flex items-center space-x-2 text-red-600 bg-red-50 p-3 rounded-lg">
@@ -275,7 +275,7 @@ const EstimateForm = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-400 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Your full name"
                       />
                     </div>
@@ -290,7 +290,7 @@ const EstimateForm = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-400 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="your.email@example.com"
                       />
                     </div>
@@ -307,8 +307,8 @@ const EstimateForm = () => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="+506 2000-0000"
+                        className="w-full px-4 py-3 border border-gray-400 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="+1 888 8888-8888"
                       />
                     </div>
                     
@@ -321,7 +321,7 @@ const EstimateForm = () => {
                         name="country"
                         value={formData.country}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-400 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="USA, Canada"
                       />
                     </div>
@@ -336,7 +336,7 @@ const EstimateForm = () => {
                       value={formData.treatment}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-200 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-400 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                       <option value="">Select a treatment</option>
                       {treatments.map(treatment => (
@@ -355,7 +355,7 @@ const EstimateForm = () => {
                         name="visitDate"
                         value={formData.visitDate}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-200 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-400 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         min={new Date().toISOString().split('T')[0]}
                       />
                     </div>
@@ -368,7 +368,7 @@ const EstimateForm = () => {
                         name="preferredContact"
                         value={formData.preferredContact}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-200 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-400 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       >
                         <option value="email">Email</option>
                         <option value="phone">Phone</option>
@@ -397,7 +397,7 @@ const EstimateForm = () => {
                     
                     <div className="flex flex-col w-full items-center space-y-4">
                       {/* Upload Area */}
-                      <div className="flex flex-col w-full items-center border-2 border-dashed border-gray-200 text-gray-900 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
+                      <div className="flex flex-col w-full items-center border-2 border-dashed border-gray-400 text-gray-900 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
                         <input
                           type="file"
                           multiple
@@ -483,7 +483,7 @@ const EstimateForm = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={4}
-                      className="w-full px-4 py-3 border border-gray-200 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-400 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Describe your current dental situation, symptoms, or any specific questions..."
                     />
                   </div>

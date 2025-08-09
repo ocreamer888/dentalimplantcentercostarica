@@ -1,4 +1,5 @@
 import "./globals.css";
+import { StrictMode } from "react";
 
 export default function RootLayout({
   children,
@@ -8,7 +9,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        {children}
+        <StrictMode>
+          {children}
+        </StrictMode>
       </body>
     </html>
   );
