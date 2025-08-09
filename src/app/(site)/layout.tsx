@@ -6,7 +6,7 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Implant Center Costa Rica",
+  title: "DentalImplant Center Costa Rica",
   description: "Save up to 70% on your new smile while discovering Costa Rica!",
 };
 
