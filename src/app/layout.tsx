@@ -8,6 +8,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Preload critical CSS */}
+        <link
+          rel="preload"
+          href="/_next/static/css/app/globals.css"
+          as="style"
+        />
+      </head>
       <body className="antialiased">
         <StrictMode>
           {children}
