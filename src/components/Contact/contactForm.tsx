@@ -109,10 +109,11 @@ const ContactForm: React.FC = () => {
 
                   <div className="flex flex-col gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                         Full Name *
                       </label>
                       <input
+                        id="name"
                         type="text"
                         name="name"
                         value={formData.name}
@@ -124,10 +125,11 @@ const ContactForm: React.FC = () => {
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                         Email
                       </label>
                       <input
+                        id="email"
                         type="email"
                         name="email"
                         value={formData.email}
@@ -141,11 +143,12 @@ const ContactForm: React.FC = () => {
 
                   <div className="flex flex-col gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
                         Subject
                       </label>
                       <input
-                        type="tel"
+                        id="subject"
+                        type="text"
                         name="subject"
                         value={formData.subject}
                         onChange={handleInputChange}
@@ -154,15 +157,14 @@ const ContactForm: React.FC = () => {
                         placeholder="Subject"
                       />
                     </div>
-
-                    </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-900 mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-900 mb-2">
                       Additional Message
                     </label>
                     <textarea
+                      id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
@@ -216,7 +218,7 @@ const ContactForm: React.FC = () => {
           </div>
         </div>
       </div>
-    
+    </div>
   );
 };
 

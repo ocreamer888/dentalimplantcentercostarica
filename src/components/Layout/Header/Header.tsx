@@ -54,11 +54,15 @@ export default function Header() {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
               className="md:hidden p-2 rounded-md text-gray-700 hover:text-blue-600 transition-colors"
             >
               <Icon 
                 icon={isMenuOpen ? "mdi:close" : "mdi:menu"} 
                 className="h-6 w-6" 
+                aria-hidden="true"
               />
             </button>
           </div>
@@ -66,7 +70,7 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden">
+          <div id="mobile-menu" className="md:hidden" role="navigation" aria-label="Mobile navigation">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white rounded-3xl">
               {navigation.map((item) => (
                 <Link

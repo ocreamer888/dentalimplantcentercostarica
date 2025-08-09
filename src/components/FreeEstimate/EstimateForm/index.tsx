@@ -266,10 +266,11 @@ const EstimateForm = () => {
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                         Full Name *
                       </label>
                       <input
+                        id="name"
                         type="text"
                         name="name"
                         value={formData.name}
@@ -281,10 +282,11 @@ const EstimateForm = () => {
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                         Email
                       </label>
                       <input
+                        id="email"
                         type="email"
                         name="email"
                         value={formData.email}
@@ -298,10 +300,11 @@ const EstimateForm = () => {
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                         Phone
                       </label>
                       <input
+                        id="phone"
                         type="tel"
                         name="phone"
                         value={formData.phone}
@@ -313,10 +316,11 @@ const EstimateForm = () => {
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-2">
                         Country of Origin
                       </label>
                       <input
+                        id="country"
                         type="text"
                         name="country"
                         value={formData.country}
@@ -328,10 +332,11 @@ const EstimateForm = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="treatment" className="block text-sm font-medium text-gray-700 mb-2">
                       Interest in Treatment
                     </label>
                     <select
+                      id="treatment"
                       name="treatment"
                       value={formData.treatment}
                       onChange={handleInputChange}
@@ -347,10 +352,11 @@ const EstimateForm = () => {
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-900 mb-2">
+                      <label htmlFor="visitDate" className="block text-sm font-medium text-gray-900 mb-2">
                         Preferred Visit Date
                       </label>
                       <input
+                        id="visitDate"
                         type="date"
                         name="visitDate"
                         value={formData.visitDate}
@@ -361,10 +367,11 @@ const EstimateForm = () => {
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="preferredContact" className="block text-sm font-medium text-gray-700 mb-2">
                         Preferred Contact Method
                       </label>
                       <select
+                        id="preferredContact"
                         name="preferredContact"
                         value={formData.preferredContact}
                         onChange={handleInputChange}
@@ -378,112 +385,16 @@ const EstimateForm = () => {
                   </div>
 
                   <div className='flex flex-col items-start justify-center p-4'>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Dental Images
-                    </label>
-                    <div className='flex flex-row items-center justify-center w-full p-4 gap-4'>
-                      <Image src="/images/dentalimages/dentaltop.webp" alt="Dental image reference #1" width={80} height={80} className="rounded-lg md:w-1/6 md:h-1/6 object-cover" />
-                      <Image src="/images/dentalimages/dentalsmile.webp" alt="Dental image reference #2" width={80} height={80} className="rounded-lg md:w-1/6 md:h-1/6 object-cover" />
-                      <Image src="/images/dentalimages/frontdental.webp" alt="Dental image reference #3" width={80} height={80} className="rounded-lg md:w-1/6 md:h-1/6 object-cover" />
-                      <Image src="/images/dentalimages/dentalside2.webp" alt="Dental image reference #4" width={80} height={80} className="rounded-lg md:w-1/6 md:h-1/6 object-cover" />
-                      <Image src="/images/dentalimages/dentalside1.webp" alt="Dental image reference #5" width={80} height={80} className="rounded-lg md:w-1/6 md:h-1/6 object-cover" />
-
-
-                    </div>
-                    <p className="text-sm text-gray-500 mb-4">
-                    Share photos of your current smile, X-rays, or any relevant dental documentation.
-                      Maximum {MAX_IMAGES} images, 10MB each.
-                    </p>
-                    
-                    <div className="flex flex-col w-full items-center space-y-4">
-                      {/* Upload Area */}
-                      <div className="flex flex-col w-full items-center border-2 border-dashed border-gray-400 text-gray-900 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
-                        <input
-                          type="file"
-                          multiple
-                          accept="image/*"
-                          onChange={handleImageUpload}
-                          className="hidden"
-                          id="image-upload"
-                          disabled={images.length >= MAX_IMAGES}
-                        />
-                        <label
-                          htmlFor="image-upload"
-                          className={`cursor-pointer ${images.length >= MAX_IMAGES ? 'cursor-not-allowed opacity-50' : ''}`}
-                        >
-                          <span className="mx-auto mb-2 text-gray-400 block" style={{ fontSize: 32 }}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 9l5-5m0 0l5 5m-5-5v12" />
-                            </svg>
-                          </span>
-                          <p className="text-gray-600">
-                            {images.length >= MAX_IMAGES 
-                              ? `Maximum ${MAX_IMAGES} images reached`
-                              : 'Click to select images or drag here'
-                            }
-                          </p>
-                            <p className="text-xs text-gray-500 mt-1">JPG, PNG, WebP - Maximum 10MB each</p>
-                        </label>
-                      </div>
-
-                      {/* Image Previews */}
-                      {images.length > 0 && (
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                          {images.map((image: { id: string | number; preview: string; name?: string; size?: number }) => (
-                            <div key={image.id} className="relative group">
-                              <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
-                                <Image
-                                  src={image.preview}
-                                  alt={image.name ?? ''}
-                                  fill
-                                  className="object-cover"
-                                />
-                                <button
-                                  type="button"
-                                  onClick={() => removeImage(Number((image as { id: string | number }).id))}
-                                  className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
-                                  aria-label="Delete image"
-                                >
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width={14}
-                                    height={14}
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={2}
-                                      d="M6 18L18 6M6 6l12 12"
-                                    />
-                                  </svg>
-                                </button>
-                              </div>
-                              <div className="mt-1 text-xs text-gray-600 truncate">
-                                {(image as { name?: string }).name ?? ''}
-                              </div>
-                              <div className="text-xs text-gray-500">
-                                {formatFileSize((image as { size?: number }).size ?? 0)}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-900 mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                       Additional Message
                     </label>
                     <textarea
+                      id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={4}
-                      className="w-full px-4 py-3 border border-gray-400 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-400 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Describe your current dental situation, symptoms, or any specific questions..."
                     />
                   </div>
