@@ -1,6 +1,7 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { submitEstimate } from '@/lib/actions/estimateForm';
+import Image from 'next/image';
 
 
 const EstimateForm = () => {
@@ -25,6 +26,8 @@ const EstimateForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
   const MAX_IMAGES = 5;
   const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
@@ -52,9 +55,7 @@ const EstimateForm = () => {
     }));
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files ?? []);
-    
+  const addFiles = (files: File[]) => {
     if (images.length + files.length > MAX_IMAGES) {
       setError(`Max ${MAX_IMAGES} permited images.`);
       return;
@@ -68,12 +69,10 @@ const EstimateForm = () => {
         errors.push(`${file.name}: Not valid format. Use JPG, PNG o WebP`);
         return;
       }
-      
       if (file.size > MAX_FILE_SIZE) {
         errors.push(`${file.name}: File is too large. Maximum 10MB`);
         return;
       }
-      
       validFiles.push(file);
     });
 
@@ -85,11 +84,11 @@ const EstimateForm = () => {
     validFiles.forEach(file => {
       const reader = new FileReader();
       reader.onload = (e) => {
-        setImages((prev: typeof images) => [
+        setImages(prev => [
           ...prev,
           {
             id: Date.now() + Math.random(),
-            file: file,
+            file,
             preview: e.target && typeof e.target.result === 'string' ? e.target.result : '',
             name: file.name,
             size: file.size
@@ -100,6 +99,27 @@ const EstimateForm = () => {
     });
 
     setError('');
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    addFiles(Array.from(e.target.files ?? []));
+  };
+
+  const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const onDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const files = Array.from(e.dataTransfer.files ?? []);
+    if (files.length) addFiles(files);
   };
 
   const removeImage = (imageId: number) => {
@@ -396,6 +416,86 @@ const EstimateForm = () => {
                       className="w-full px-4 py-3 border border-gray-400 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Describe your current dental situation, symptoms, or any specific questions..."
                     />
+                  </div>
+
+                  <div className="flex flex-col gap-3 p-4">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Upload Images (optional)
+                    </label>
+
+                    <div
+                      onDragOver={onDragOver}
+                      onDragLeave={onDragLeave}
+                      onDrop={onDrop}
+                      onClick={() => fileInputRef.current?.click()}
+                      className={[
+                        "w-full cursor-pointer rounded-xl border-2 border-dashed p-6 transition",
+                        "bg-white",
+                        isDragging ? "border-purple-500 bg-purple-50 ring-2 ring-purple-200" : "border-gray-300 hover:border-purple-400"
+                      ].join(" ")}
+                    >
+                      <div className="flex flex-col items-center justify-center gap-2 text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        <div className="text-sm">
+                          <span className="font-medium text-purple-800">Drag and drop</span> images here, or <span className="font-medium text-purple-800 underline">browse</span>
+                        </div>
+                        <p className="text-xs text-gray-500">
+                          Up to {MAX_IMAGES} images, max 10MB each (JPG, PNG, WebP).
+                        </p>
+                      </div>
+                      <input
+                        ref={fileInputRef}
+                        id="images"
+                        type="file"
+                        multiple
+                        accept="image/jpeg,image/jpg,image/png,image/webp"
+                        onChange={handleImageUpload}
+                        className="hidden"
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-between text-xs text-gray-600">
+                      <span className="inline-flex items-center gap-2">
+                        <span className="inline-flex h-6 items-center rounded-full bg-purple-100 px-3 font-medium text-purple-700">
+                          {images.length} / {MAX_IMAGES}
+                        </span>
+                        <span className="text-gray-500">selected</span>
+                      </span>
+                    </div>
+
+                    {images.length > 0 && (
+                      <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                        {images.map(img => (
+                          <li key={img.id} className="group relative overflow-hidden rounded-xl border bg-white">
+                            <Image
+                              src={img.preview}
+                              alt={img.name}
+                              width={100}
+                              height={100}
+                              className="h-28 w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => removeImage(img.id)}
+                              className="absolute top-2 right-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/90 text-gray-700 shadow-sm ring-1 ring-black/5 hover:bg-white"
+                              aria-label={`Remove ${img.name}`}
+                              title="Remove"
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                              </svg>
+                            </button>
+                            <div className="p-2">
+                              <p className="truncate text-sm font-medium text-gray-800">{img.name}</p>
+                              <p className="text-xs text-gray-500">{formatFileSize(img.size)}</p>
+                            </div>
+                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
 
                   <div className="bg-gray-50 p-4 rounded-lg">
