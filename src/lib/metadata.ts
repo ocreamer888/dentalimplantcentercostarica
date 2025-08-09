@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { siteDetails } from '@/data/siteDetails';
 
 /**
  * Required Environment Variables for Dental Implant Center Costa Rica Metadata Utility
@@ -53,6 +54,22 @@ interface GenerateMetadataProps {
   tags?: string[];
 }
 
+// Derived defaults from siteDetails
+const DEFAULTS = {
+  siteName: siteDetails?.siteName || 'Dental Implant Center Costa Rica',
+  siteUrl: (siteDetails?.siteUrl || 'https://dentalimplantcentercostarica.com').replace(/\/+$/, ''),
+  defaultTitle: siteDetails?.metadata?.title || 'Dental Implant Center Costa Rica: Premium Dental Care at Affordable Prices',
+  defaultDescription:
+    siteDetails?.metadata?.description ||
+    'Get premium dental implants in Costa Rica at up to 70% savings. All-inclusive packages with verified dentists, luxury accommodations, and comprehensive care.',
+  logoPath:
+    (typeof siteDetails?.siteLogo === 'string' && siteDetails.siteLogo.replace(/^https?:\/\/[^/]+/, '')) ||
+    '/images/DentalImplantSocials.png',
+  gaId: (siteDetails as any)?.googleAnalyticsId || '',
+  locale: siteDetails?.locale || 'en-US',
+  ogLocale: (siteDetails?.locale || 'en-US').replace('-', '_'),
+} as const;
+
 // Environment Variables Configuration
 const ENV_VARS = {
   // Required
@@ -78,12 +95,12 @@ const ENV_VARS = {
 
 // Utility function to validate required environment variables
 function validateEnvironment(): void {
-  const siteUrl = process.env[ENV_VARS.SITE_URL];
+  const siteUrl = process.env[ENV_VARS.SITE_URL] || DEFAULTS.siteUrl;
   
   if (!siteUrl) {
     console.error(`❌ Missing required environment variable: ${ENV_VARS.SITE_URL}`);
     console.log('Please add the following to your .env.local file:');
-    console.log(`${ENV_VARS.SITE_URL}=https://dentalimplantcentercostarica.com`);
+    console.log(`${ENV_VARS.SITE_URL}=${DEFAULTS.siteUrl}`);
   }
   
   // Warn about missing optional but recommended variables
@@ -101,7 +118,7 @@ function validateEnvironment(): void {
   }
 }
 
-// Validate environment on module load
+// Validate environment on module load (server-side only)
 if (typeof window === 'undefined') {
   validateEnvironment();
 }
@@ -115,9 +132,8 @@ function isValidUrl(url: string): boolean {
   }
 }
 
-// Utility function to format phone number
+// Utility function to format phone number (E.164-ish)
 function formatPhoneNumber(phone: string): string {
-  // Remove non-digit characters and validate
   const cleaned = phone.replace(/\D/g, '');
   if (cleaned.length === 10) {
     return `+1${cleaned}`;
@@ -125,24 +141,22 @@ function formatPhoneNumber(phone: string): string {
   if (cleaned.length === 11 && cleaned.startsWith('1')) {
     return `+${cleaned}`;
   }
-  return phone; // Return original if can't format
+  return phone;
 }
 
 // Utility function to safely get environment variables with validation
 function getEnvVar(key: string, fallback: string = ''): string {
   const value = process.env[key];
-  
   if (!value && !fallback) {
     console.warn(`⚠️  Environment variable ${key} is not set and no fallback provided`);
   }
-  
   return value || fallback;
 }
 
 // Get all environment variables with proper validation
 function getEnvironmentConfig() {
   return {
-    siteUrl: getEnvVar(ENV_VARS.SITE_URL, 'https://dentalimplantcentercostarica.com'),
+    siteUrl: (getEnvVar(ENV_VARS.SITE_URL, DEFAULTS.siteUrl) || DEFAULTS.siteUrl).replace(/\/+$/, ''),
     googleVerification: getEnvVar(ENV_VARS.GOOGLE_VERIFICATION),
     yandexVerification: getEnvVar(ENV_VARS.YANDEX_VERIFICATION),
     yahooVerification: getEnvVar(ENV_VARS.YAHOO_VERIFICATION),
@@ -152,7 +166,7 @@ function getEnvironmentConfig() {
     twitterHandle: getEnvVar(ENV_VARS.TWITTER_HANDLE, '@dentalimplantcentercostarica'),
     twitterCreatorId: getEnvVar(ENV_VARS.TWITTER_CREATOR_ID),
     twitterSiteId: getEnvVar(ENV_VARS.TWITTER_SITE_ID),
-    googleAnalytics: getEnvVar(ENV_VARS.GOOGLE_ANALYTICS),
+    googleAnalytics: getEnvVar(ENV_VARS.GOOGLE_ANALYTICS, DEFAULTS.gaId),
     facebookPixel: getEnvVar(ENV_VARS.FACEBOOK_PIXEL)
   };
 }
@@ -160,7 +174,7 @@ function getEnvironmentConfig() {
 export function generateMetadata({
   title,
   description,
-  image = '/DentalImplantSocials.png',
+  image = '/images/DentalImplantSocials.png',
   url,
   type = 'website',
   keywords,
@@ -179,19 +193,16 @@ export function generateMetadata({
 }: GenerateMetadataProps): Metadata {
   const env = getEnvironmentConfig();
   const siteUrl = env.siteUrl;
-  
-  // Validate site URL
+
   if (!isValidUrl(siteUrl)) {
     console.warn('Invalid NEXT_PUBLIC_SITE_URL provided, using default');
   }
   
-  // Dynamic title optimization with better fallback
-  const fullTitle = title ? `${title} | Dental Implant Center Costa Rica` : 'Dental Implant Center Costa Rica: Premium Dental Care at Affordable Prices';
-  
-  // Enhanced description with CTAs and better keyword integration
-  const fullDescription = description || 'Get premium dental implants in Costa Rica at up to 70% savings. All-inclusive packages with verified dentists, luxury accommodations, and comprehensive care.';
+  // Title & description
+  const fullTitle = title ? `${title} | ${DEFAULTS.siteName}` : DEFAULTS.defaultTitle;
+  const fullDescription = description || DEFAULTS.defaultDescription;
 
-  // Enhanced keywords with long-tail variations and semantic search optimization
+  // Keywords
   const defaultKeywords: string[] = [
     'dental implants costa rica',
     'all on four costa rica',
@@ -215,43 +226,36 @@ export function generateMetadata({
     'dental implant aftercare'
   ];
 
-  // TypeScript-safe keyword combination
-  let finalKeywords: string[];
-  if (keywords && keywords.length > 0) {
-    finalKeywords = [...keywords, ...defaultKeywords];
-  } else {
-    finalKeywords = defaultKeywords;
-  }
-
-  // Add tags to keywords if provided
+  let finalKeywords: string[] = keywords && keywords.length > 0 ? [...keywords, ...defaultKeywords] : defaultKeywords;
   if (tags && tags.length > 0) {
     finalKeywords = [...finalKeywords, ...tags];
   }
 
-  // Enhanced image URL handling with validation and optimization parameters
+  // Image absolute URL
   let absoluteImageUrl = image;
   if (!/^https?:\/\//i.test(image)) {
     const imagePath = image.startsWith('/') ? image : `/${image}`;
     absoluteImageUrl = `${siteUrl}${imagePath}`;
   }
-
-  // Validate constructed image URL
   if (!isValidUrl(absoluteImageUrl)) {
     console.warn('Invalid image URL constructed, using fallback');
-    absoluteImageUrl = `${siteUrl}/DentalImplantSocials.png`;
+    absoluteImageUrl = `${siteUrl}${DEFAULTS.logoPath}`;
   }
-
-  // Add image optimization parameters for better performance
   const optimizedImageUrl = `${absoluteImageUrl}?w=1200&h=630&q=85&fit=crop`;
 
-  // Build canonical URL with validation
-  let canonicalUrl = canonical ? `${siteUrl}${canonical}` : siteUrl;
+  // Canonical URL
+  let canonicalUrl = siteUrl;
+  if (canonical) {
+    canonicalUrl = /^https?:\/\//i.test(canonical)
+      ? canonical
+      : `${siteUrl}${canonical.startsWith('/') ? canonical : `/${canonical}`}`;
+  }
   if (!isValidUrl(canonicalUrl)) {
     console.warn('Invalid canonical URL, using site URL');
     canonicalUrl = siteUrl;
   }
 
-  // Generate enhanced structured data
+  // Structured data
   const enhancedStructuredData = generateEnhancedStructuredData({
     title: fullTitle,
     description: fullDescription,
@@ -266,7 +270,6 @@ export function generateMetadata({
     type
   });
 
-  // Get environment variables with validation
   const {
     googleVerification,
     yandexVerification, 
@@ -279,24 +282,19 @@ export function generateMetadata({
     twitterHandle
   } = env;
 
-  // Enhanced metadata object with comprehensive SEO features
   const metadata: Metadata = {
     title: fullTitle,
     description: fullDescription,
     keywords: finalKeywords,
-    authors: [{ name: author || 'Dental Implant Center Costa Rica Team' }],
-    creator: 'Dental Implant Center Costa Rica',
-    publisher: 'Dental Implant Center Costa Rica',
-    formatDetection: {
-      email: false,
-      address: false,
-      telephone: false,
-    },
+    authors: [{ name: author || `${DEFAULTS.siteName} Team` }],
+    creator: DEFAULTS.siteName,
+    publisher: DEFAULTS.siteName,
     metadataBase: new URL(siteUrl),
     alternates: {
       canonical: canonicalUrl,
       ...(alternateLanguages && { languages: alternateLanguages }),
     },
+    formatDetection: { email: false, address: false, telephone: false },
     robots: {
       index: !noindex,
       follow: !nofollow,
@@ -321,7 +319,7 @@ export function generateMetadata({
       title: fullTitle,
       description: fullDescription,
       url: url || siteUrl,
-      siteName: 'Dental Implant Center Costa Rica',
+      siteName: DEFAULTS.siteName,
       images: [
         {
           url: optimizedImageUrl,
@@ -332,7 +330,7 @@ export function generateMetadata({
           secureUrl: optimizedImageUrl,
         },
       ],
-      locale: 'en_US',
+      locale: DEFAULTS.ogLocale,
       type,
       countryName: 'United States',
       emails: ['contact@dentalimplantcentercostarica.com'],
@@ -356,33 +354,29 @@ export function generateMetadata({
       ...(twitterSiteId && { siteId: twitterSiteId }),
     },
     other: {
-      // Only include Facebook App ID if provided
       ...(facebookAppId && { 'fb:app_id': facebookAppId }),
-      
-      // App configuration
       'msapplication-TileColor': '#2563eb',
       'theme-color': '#2563eb',
       'apple-mobile-web-app-capable': 'yes',
       'apple-mobile-web-app-status-bar-style': 'default',
-      'apple-mobile-web-app-title': 'Dental Implant Center Costa Rica',
-      'application-name': 'Dental Implant Center Costa Rica',
+      'apple-mobile-web-app-title': DEFAULTS.siteName,
+      'application-name': DEFAULTS.siteName,
       'msapplication-config': '/browserconfig.xml',
       'mobile-web-app-capable': 'yes',
-      'viewport': 'width=device-width, initial-scale=1, maximum-scale=5',
+      viewport: 'width=device-width, initial-scale=1, maximum-scale=5',
       'X-UA-Compatible': 'IE=edge',
-      'referrer': 'origin-when-cross-origin',
+      referrer: 'origin-when-cross-origin',
       'color-scheme': 'light dark',
       'format-detection': 'telephone=no,date=no,address=no,email=no',
-      'HandheldFriendly': 'true',
-      'MobileOptimized': '320',
-      'cleartype': 'on',
-      'imagetoolbar': 'no',
-      
+      HandheldFriendly: 'true',
+      MobileOptimized: '320',
+      cleartype: 'on',
+
       // Only include verification codes if provided
       ...(googleVerification && { 'google-site-verification': googleVerification }),
       ...(yandexVerification && { 'yandex-verification': yandexVerification }),
       ...(bingVerification && { 'msvalidate.01': bingVerification }),
-      
+
       // Structured data
       ...enhancedStructuredData,
     },
@@ -442,7 +436,7 @@ function generateEnhancedStructuredData({
           '@type': 'ListItem',
           position: index + 1,
           name: crumb.name,
-          item: isValidUrl(crumb.url) ? crumb.url : `${getEnvVar('NEXT_PUBLIC_SITE_URL', 'https://dentalimplantcentercostarica.com')}${crumb.url}`
+          item: isValidUrl(crumb.url) ? crumb.url : `${getEnvVar('NEXT_PUBLIC_SITE_URL', DEFAULTS.siteUrl)}${crumb.url}`
         }))
       });
     }
@@ -473,14 +467,14 @@ function generateEnhancedStructuredData({
         image: image,
         author: {
           '@type': 'Person',
-          name: author || 'Dental Implant Center Costa Rica Team'
+          name: author || `${DEFAULTS.siteName} Team`
         },
         publisher: {
           '@type': 'Organization',
-          name: 'Dental Implant Center Costa Rica',
+          name: DEFAULTS.siteName,
           logo: {
             '@type': 'ImageObject',
-            url: `${env.siteUrl}/DentalImplantSocials.png`
+            url: `${env.siteUrl}${DEFAULTS.logoPath}`
           }
         },
         ...(publishedTime && { datePublished: publishedTime }),
@@ -504,8 +498,8 @@ function generateEnhancedStructuredData({
       ...(publishedTime && { datePublished: publishedTime }),
       publisher: {
         '@type': 'Organization',
-        name: 'Dental Implant Center Costa Rica',
-        url: getEnvVar('NEXT_PUBLIC_SITE_URL', 'https://dentalimplantcentercostarica.com')
+        name: DEFAULTS.siteName,
+        url: getEnvVar('NEXT_PUBLIC_SITE_URL', DEFAULTS.siteUrl)
       }
     });
   } catch (error) {
@@ -518,36 +512,49 @@ function generateEnhancedStructuredData({
 // Predefined metadata for common pages with enhanced structured data
 export const metadataConfig = {
   home: {
-    title: 'Dental Implant Center Costa Rica: Premium Dental Care at Affordable Prices',
-    description: 'Get premium dental implants in Costa Rica at up to 70% savings. All-inclusive packages with verified dentists, luxury accommodations, and comprehensive care.',
-    keywords: ['dental implants costa rica', 'all on four costa rica', 'all on six costa rica', 'zirconia dental implants', 'dental implant cost', 'dental tourism costa rica', 'dental implants abroad', 'affordable dental implants'],
-    image: '/DentalImplantSocials.png',
+    title: DEFAULTS.defaultTitle,
+    description: DEFAULTS.defaultDescription,
+    keywords: [
+      'dental implants costa rica',
+      'all on four costa rica',
+      'all on six costa rica',
+      'zirconia dental implants',
+      'dental implant cost',
+      'dental tourism costa rica',
+      'dental implants abroad',
+      'affordable dental implants'
+    ],
+    image: '/images/DentalImplantSocials.png',
     canonical: '/',
     breadcrumbs: [
       { name: 'Home', url: '/' }
     ],
     faqData: [
       {
-        question: 'What is Dental Implant Center Costa Rica?',
-        answer: 'Dental Implant Center Costa Rica is a premier dental tourism platform that connects patients with verified dental professionals in Costa Rica, offering all-inclusive packages with luxury accommodations and comprehensive care.'
+        question: `What is ${DEFAULTS.siteName}?`,
+        answer:
+          `${DEFAULTS.siteName} is a premier dental tourism platform that connects patients with verified dental professionals in Costa Rica, offering all-inclusive packages with luxury accommodations and comprehensive care.`
       },
       {
         question: 'How does Dental Implant Center Costa Rica ensure quality care?',
-        answer: 'All dental professionals on our platform undergo rigorous verification processes including license validation, background checks, and peer reviews to ensure the highest quality of care.'
+        answer:
+          'All dental professionals on our platform undergo rigorous verification processes including license validation, background checks, and peer reviews to ensure the highest quality of care.'
       },
       {
         question: 'What payment methods does Dental Implant Center Costa Rica accept?',
-        answer: 'We accept cash payments, credit cards, and traditional bank transfers, providing secure and transparent payment processing for all dental implant procedures.'
+        answer:
+          'We accept cash payments, credit cards, and traditional bank transfers, providing secure and transparent payment processing for all dental implant procedures.'
       }
     ],
     structuredData: {
-      'organization': JSON.stringify({
+      organization: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'MedicalOrganization',
-        name: 'Dental Implant Center Costa Rica',
-        description: 'Premier dental tourism platform connecting patients with verified dental professionals in Costa Rica',
+        name: DEFAULTS.siteName,
+        description:
+          'Premier dental tourism platform connecting patients with verified dental professionals in Costa Rica',
         url: getEnvironmentConfig().siteUrl,
-        logo: `${getEnvironmentConfig().siteUrl}/DentalImplantSocials.png`,
+        logo: `${getEnvironmentConfig().siteUrl}${DEFAULTS.logoPath}`,
         medicalSpecialty: ['Dental Tourism', 'Dental Implants', 'All on Four', 'All on Six'],
         availableService: [
           {
@@ -556,7 +563,7 @@ export const metadataConfig = {
             description: 'Premium dental implant treatments in Costa Rica'
           },
           {
-            '@type': 'MedicalService', 
+            '@type': 'MedicalService',
             name: 'All-Inclusive Dental Packages',
             description: 'Complete dental care packages with luxury accommodations'
           }
@@ -564,7 +571,7 @@ export const metadataConfig = {
         paymentAccepted: ['Cash', 'Credit Card', 'Bank Transfer'],
         areaServed: ['Worldwide'],
         sameAs: [
-          `https://twitter.com/${getEnvironmentConfig().twitterHandle.replace('@', '')}`,
+          `https://twitter.com/${getEnvironmentConfig().siteUrl ? '' : ''}${getEnvironmentConfig().siteUrl}`, // optional placeholder; replace with real profiles if needed
           'https://linkedin.com/company/dentalimplantcentercostarica'
         ],
         contactPoint: {
@@ -576,12 +583,20 @@ export const metadataConfig = {
       })
     }
   },
-  
+
   freeEstimate: {
     title: 'Get Free Dental Implant Quote | Dental Implant Center Costa Rica',
-    description: 'Get your free dental implant quote today. Connect with verified dental professionals in Costa Rica. Transparent pricing, secure payments, and comprehensive care coordination.',
-    keywords: ['free dental implant quote', 'dental implant cost', 'dental implant consultation', 'dental implants costa rica', 'all on four costa rica', 'all on six costa rica'],
-    image: '/DentalImplantSocials.png',
+    description:
+      'Get your free dental implant quote today. Connect with verified dental professionals in Costa Rica. Transparent pricing, secure payments, and comprehensive care coordination.',
+    keywords: [
+      'free dental implant quote',
+      'dental implant cost',
+      'dental implant consultation',
+      'dental implants costa rica',
+      'all on four costa rica',
+      'all on six costa rica'
+    ],
+    image: '/images/DentalImplantSocials.png',
     canonical: '/free-estimate',
     breadcrumbs: [
       { name: 'Home', url: '/' },
@@ -590,15 +605,18 @@ export const metadataConfig = {
     faqData: [
       {
         question: 'How do I get a free dental implant quote?',
-        answer: 'Fill out our comprehensive form including your location, treatment type, and 5 images of your mouth. You will receive your free quote within 24 hours after submitting the form.'
+        answer:
+          'Fill out our comprehensive form including your location, treatment type, and 5 images of your mouth. You will receive your free quote within 24 hours after submitting the form.'
       },
       {
         question: 'Is it safe to get dental implants through Dental Implant Center Costa Rica?',
-        answer: 'Yes, we ensure safety through verified dental providers, secure payment processing, and comprehensive care coordination throughout your dental implant journey.'
+        answer:
+          'Yes, we ensure safety through verified dental providers, secure payment processing, and comprehensive care coordination throughout your dental implant journey.'
       },
       {
         question: 'What support does Dental Implant Center Costa Rica provide during treatment?',
-        answer: 'We provide 24/7 support including travel coordination, luxury accommodation assistance, translation services, and ongoing care coordination throughout your dental implant treatment.'
+        answer:
+          'We provide 24/7 support including travel coordination, luxury accommodation assistance, translation services, and ongoing care coordination throughout your dental implant treatment.'
       }
     ],
     structuredData: {
@@ -610,7 +628,7 @@ export const metadataConfig = {
         url: `${getEnvironmentConfig().siteUrl}/free-estimate`,
         mainEntity: {
           '@type': 'MedicalOrganization',
-          name: 'Dental Implant Center Costa Rica',
+          name: DEFAULTS.siteName,
           medicalSpecialty: ['Dental Tourism', 'Dental Implants'],
           availableService: {
             '@type': 'MedicalService',
@@ -627,7 +645,7 @@ export const metadataConfig = {
       })
     }
   }
-};
+} as const;
 
 // Utility function for generating hreflang tags
 export function generateHreflangTags(baseUrl: string, path: string, availableLocales: string[] = ['en', 'es']) {
@@ -658,6 +676,6 @@ export function generateSitemapEntry(
     url,
     lastModified: lastModified || new Date().toISOString(),
     changeFrequency,
-    priority: Math.max(0, Math.min(1, priority)) // Clamp priority between 0 and 1
+    priority: Math.max(0, Math.min(1, priority))
   };
 }
