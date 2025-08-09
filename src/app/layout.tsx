@@ -1,5 +1,5 @@
-import "./globals.css";
-import { StrictMode } from "react";
+import './globals.css';
+import { StrictMode } from 'react';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
