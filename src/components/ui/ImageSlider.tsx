@@ -128,7 +128,7 @@ const CompareSlider = ({
       {/* Swiper Image */}
       <Image
         src={swiperImage}
-        alt="Drag handle"
+        alt="Drag handle to compare before and after images"
         width={32}
         height={32}
         className="absolute cursor-pointer z-10"

@@ -117,24 +117,29 @@ export default function TestimonialSlider({
        <button
          onClick={prevTestimonial}
          disabled={currentTestimonial === 0}
+         aria-label={`Previous testimonial. Currently viewing testimonial ${currentTestimonial + 1} of ${testimonials.length}`}
          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
        >
-         <ChevronLeft className="w-6 h-6" />
+         <ChevronLeft className="w-6 h-6" aria-hidden="true" />
        </button>
        <button
          onClick={nextTestimonial}
+         aria-label={`Next testimonial. Currently viewing testimonial ${currentTestimonial + 1} of ${testimonials.length}`}
          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
        >
-         <ChevronRight className="w-6 h-6" />
+         <ChevronRight className="w-6 h-6" aria-hidden="true" />
        </button>
      </div>
 
      {/* Slide Indicators */}
-     <div className="flex justify-center mt-8 space-x-2">
+     <div className="flex justify-center mt-8 space-x-2" role="tablist" aria-label="Testimonial navigation">
        {testimonials.map((_, index) => (
          <button
            key={index}
            onClick={() => setCurrentTestimonial(index)}
+           role="tab"
+           aria-selected={index === currentTestimonial}
+           aria-label={`Go to testimonial ${index + 1} of ${testimonials.length}`}
            className={`w-3 h-3 rounded-full transition-all ${
              index === currentTestimonial 
                ? 'bg-white' 

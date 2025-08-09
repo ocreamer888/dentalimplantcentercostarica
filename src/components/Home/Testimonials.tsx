@@ -136,24 +136,29 @@ export default function Testimonials() {
           {/* Navigation Buttons */}
           <button
             onClick={prevTestimonial}
+            aria-label={`Previous testimonial. Currently viewing testimonial ${currentTestimonial + 1} of ${testimonials.length}`}
             className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/90 rounded-full shadow-lg hover:bg-white transition-all duration-200 hover:scale-110"
           >
-            <ChevronLeft className="w-6 h-6 text-gray-700" />
+            <ChevronLeft className="w-6 h-6 text-gray-700" aria-hidden="true" />
           </button>
           <button
             onClick={nextTestimonial}
+            aria-label={`Next testimonial. Currently viewing testimonial ${currentTestimonial + 1} of ${testimonials.length}`}
             className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-white/90 rounded-full shadow-lg hover:bg-white transition-all duration-200 hover:scale-110"
           >
-            <ChevronRight className="w-6 h-6 text-gray-700" />
+            <ChevronRight className="w-6 h-6 text-gray-700" aria-hidden="true" />
           </button>
         </div>
 
         {/* Slide Indicators */}
-        <div className="flex justify-center mt-8 space-x-3">
+        <div className="flex justify-center mt-8 space-x-3" role="tablist" aria-label="Testimonial navigation">
           {testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentTestimonial(index)}
+              role="tab"
+              aria-selected={index === currentTestimonial}
+              aria-label={`Go to testimonial ${index + 1} of ${testimonials.length}`}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentTestimonial 
                   ? 'bg-blue-600 scale-125' 
