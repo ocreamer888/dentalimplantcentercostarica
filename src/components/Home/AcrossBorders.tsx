@@ -43,7 +43,11 @@ export const AcrossBorders = () => {
             <Image
               src="/images/hero/DentalPassport6.webp"
               alt="Banner"
-              fill
+              width={200}
+              height={200}
+              sizes="200px"
+              quality={60}
+              loading="lazy"
               className="object-cover object-right rounded-3xl"
             />
           </div>

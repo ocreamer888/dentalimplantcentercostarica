@@ -50,10 +50,14 @@ export default function Features() {
             {/* Top row */}
             <div className="flex flex-col md:flex-row gap-4 h-3/5">
                 <div className="relative flex flex-col justify-between items-start text-white p-4 rounded-3xl flex-1 overflow-hidden bg-gradient-to-tr from-pink-200/70 via-pink-300/80 to-purple-200/80 backdrop-blur-2xl">
-                    <Image 
+                <Image 
                         src="/images/allonsix1.webp" 
                         alt="Dental image reference #1" 
-                        width={200} height={200}
+                        width={200}
+                        height={200}
+                        sizes="200px"
+                        quality={60}
+                        loading="lazy"
                         className="absolute top-0 right-4 md:top-4 lg:right-20 object-cover rounded-3xl"
                     />
                     <div className="absolute inset-0 bg-gradient-to-tr from-black/80 to-transparent rounded-3xl"></div>
@@ -83,10 +87,13 @@ export default function Features() {
             {/* Bottom row */}
             <div className="flex flex-col md:flex-row gap-4 h-3/5">
             <div className="relative flex flex-col justify-end items-start text-white p-4 rounded-3xl flex-1 md:flex-none md:w-1/3 overflow-hidden bg-gradient-to-tr from-purple-500/70 via-purple-500/80 to-purple-600/80 backdrop-blur-2xl">
-                     <Image 
+            <Image 
                         src="/images/DentalPassport2.webp" 
                         alt="Dental image reference #1" 
                         fill
+                        sizes="200px"
+                        quality={60}
+                        loading="lazy"
                         className="object-cover rounded-3xl -z-10"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-3xl"></div>
@@ -104,7 +111,10 @@ export default function Features() {
                         src="/images/hero/DentalPassport4.webp" 
                         alt="Dental image reference #1" 
                         fill
-                        className="object-cover rounded-3xl"
+                        sizes="600px"
+                        quality={100}
+                        loading="lazy"
+                        className="object-cover rounded-3xl -z-10"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent rounded-3xl"></div>
                     <div className="relative z-10 rounded-3xl p-4 w-full h-full flex flex-col justify-end">
@@ -137,7 +147,11 @@ export default function Features() {
                     <Image 
                         src="/images/allonsix1.webp" 
                         alt="Dental image reference #1" 
-                        width={200} height={200}
+                        width={200}
+                        height={200}
+                        sizes="200px"
+                        quality={60}
+                        loading="lazy"
                         className="absolute top-0 right-4 md:top-4 lg:right-20 object-cover rounded-3xl"
                     />
                     <div className="absolute inset-0 bg-gradient-to-tr from-black/80 to-transparent rounded-3xl"></div>
