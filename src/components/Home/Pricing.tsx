@@ -19,7 +19,7 @@ export default function Pricing() {
   const plans: PricingPlan[] = [
     {
       name: "Single Implant",
-      price: "$1,200",
+      price: "$1,500",
       originalPrice: "$4,500",
       description: "Perfect for replacing a single missing tooth",
       treatment: "Single Dental Implant",
@@ -35,8 +35,8 @@ export default function Pricing() {
     },
     {
       name: "All-on-4 Implants",
-      price: "$14,950",
-      originalPrice: "$45,000",
+      price: "$19,950",
+      originalPrice: "$50,000",
       description: "Full arch restoration with 4 implants",
       treatment: "All-on-4 Full Arch",
       duration: "5-7 days",
@@ -47,14 +47,14 @@ export default function Pricing() {
         "Pre-surgery consultation",
         "Surgery & placement",
         "Temporary prosthesis",
-        "Final prosthesis",
+        "Final zirconia prosthesis",
         "Follow-up care",
         "Lifetime warranty"
       ]
     },
     {
       name: "All-on-6 Implants",
-      price: "$19,950",
+      price: "$22,950",
       originalPrice: "$60,000",
       description: "Maximum stability with 6 implants",
       treatment: "All-on-6 Full Arch",

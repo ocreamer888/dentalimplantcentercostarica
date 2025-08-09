@@ -18,8 +18,7 @@ interface TestimonialSliderProps {
 }
 
 export default function TestimonialSlider({ 
-  backgroundColor,
-  textColor
+  
 }: TestimonialSliderProps) {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   

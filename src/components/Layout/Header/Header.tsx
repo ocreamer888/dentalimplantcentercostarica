@@ -22,7 +22,7 @@ export default function Header() {
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
               <Icon icon="mdi:tooth" className="h-8 w-8 text-purple-200" />
-              <span className="ml-2 text-xl font-bold text-white">
+              <span className="ml-2 md:text-xl font-bold text-white">
                 Dental Implant Center Costa Rica
               </span>
             </Link>
@@ -67,7 +67,7 @@ export default function Header() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white rounded-3xl">
               {navigation.map((item) => (
                 <Link
                   key={item.name}

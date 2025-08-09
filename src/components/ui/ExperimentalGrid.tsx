@@ -5,10 +5,7 @@ import Image from "next/image";
 export default function ExperimentalGrid() {
     return (
     <div className="flex flex-col w-full justify-center items-center h-screen bg-gradient-to-t from-black/60 via-black/40 to-transparent z-10">
-        
         {/* Title and Description */}
-      
-        
         <div className="flex flex-col max-w-7xl h-5/6 justify-center gap-4 p-4 my-16 md:my-8">
             {/* Top row */}
             <div className="flex flex-col md:flex-row gap-4 h-3/5">

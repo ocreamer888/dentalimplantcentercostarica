@@ -1,6 +1,5 @@
 import AllOnFour from "@/components/Home/AllOnFour/Index";
 import EstimateForm from "@/components/FreeEstimate/EstimateForm/index";
-import ExperimentalGrid from "@/components/ui/ExperimentalGrid";
 import Hero from "@/components/Home/Hero/hero";
 import Bento from "@/components/ui/Bento";
 import Testimonials from "@/components/Home/Testimonials";
@@ -13,7 +12,6 @@ export default function Home() {
     <>
       <Hero />
       <Features />
-      <ExperimentalGrid />
       <Bento/>
       <Pricing />
       <AllOnFour/>
