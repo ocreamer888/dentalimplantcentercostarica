@@ -24,7 +24,7 @@ export default function Hero2() {
                             priority
                             fetchPriority="high"
                             sizes="100vw"
-                            className="relative object-top object-cover rounded-b-3xl"
+                            className="hidden lg:block relative object-top object-cover rounded-b-3xl"
                         />
           <Header />
       
