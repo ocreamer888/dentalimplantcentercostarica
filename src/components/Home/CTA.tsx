@@ -101,7 +101,7 @@ export default function CTA() {
             <Button
               variant="primary"
               size="lg"
-              className="bg-yellow-400 text-gray-800"
+              className="bg-purple-900 border-2 border-purple-200 text-gray-800"
             >
               Claim Your Free Estimate
             </Button>

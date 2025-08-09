@@ -189,14 +189,14 @@ const EstimateForm = () => {
   }
 
   return (
-    <div id="estimate-form" className="flex flex-col md:mx-4 rounded-3xl min-h-screen bg-white/20">
+    <div id="estimate-form" className="flex flex-col md:mx-4 rounded-3xl min-h-screen bg-purple-800">
       
       
       <div className="container mx-auto pt-12 md:py-12">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-purple-100 mb-4">Free Estimate</h2>
-            <p className="text-xl text-balance text-purple-100 max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-4">Free Estimate</h2>
+            <p className="text-xl text-balance text-white max-w-3xl mx-auto">
             Get a personalized evaluation of our state-of-the-art dental treatments. Our team of specialists will provide you with a detailed and transparent treatment plan.
             </p>
           </div>
@@ -255,7 +255,7 @@ const EstimateForm = () => {
 
             {/* Form */}
             <div className="lg:col-span-2">
-              <div className="bg-white/90 rounded-2xl shadow-lg p-8">
+              <div className="bg-white rounded-2xl shadow-lg p-8">
                 <div className="space-y-6">
                   {error && (
                     <div className="flex items-center space-x-2 text-red-600 bg-red-50 p-3 rounded-lg">
@@ -300,7 +300,7 @@ const EstimateForm = () => {
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-900 mb-2">
                         Phone
                       </label>
                       <input
@@ -316,7 +316,7 @@ const EstimateForm = () => {
                     </div>
                     
                     <div>
-                      <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="country" className="block text-sm font-medium text-gray-900 mb-2">
                         Country of Origin
                       </label>
                       <input
@@ -341,7 +341,7 @@ const EstimateForm = () => {
                       value={formData.treatment}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-400 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-400 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                       <option value="">Select a treatment</option>
                       {treatments.map(treatment => (
@@ -361,7 +361,7 @@ const EstimateForm = () => {
                         name="visitDate"
                         value={formData.visitDate}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-400 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-400 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         min={new Date().toISOString().split('T')[0]}
                       />
                     </div>
@@ -375,7 +375,7 @@ const EstimateForm = () => {
                         name="preferredContact"
                         value={formData.preferredContact}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-400 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-400 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       >
                         <option value="email">Email</option>
                         <option value="phone">Phone</option>
@@ -394,13 +394,13 @@ const EstimateForm = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={4}
-                      className="w-full px-4 py-3 border border-gray-400 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-400 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Describe your current dental situation, symptoms, or any specific questions..."
                     />
                   </div>
 
                   <div className="bg-gray-50 p-4 rounded-lg">
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-purple-800">
                       By submitting this form, you agree that OG Center will contact you to provide information about our dental services. Your personal data will be handled in accordance with our privacy policy.
                     </p>
                   </div>
