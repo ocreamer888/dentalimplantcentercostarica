@@ -28,7 +28,7 @@ export default function Hero2() {
         
         {/* Left: Text */}
         <div className="flex w-full lg:w-1/2 justify-center items-center lg:justify-start lg:items-start">
-        <div className="flex-1 flex flex-col bg-purple-900/80 backdrop-blur rounded-3xl p-4 md:p-8 md:my-8 items-center md:items-start justify-center gap-4">
+        <div className="flex-1 flex flex-col bg-gray-900/80 backdrop-blur rounded-3xl p-4 md:p-8 md:my-8 items-center md:items-start justify-center gap-4">
           <h1 className="text-5xl font-extrabold text-balance text-center md:text-left text-pretty text-white">
           Reimagine Your Smile.
             <span className="text-white"> Reclaim Your Confidence.</span>

@@ -123,7 +123,7 @@ export default function Testimonials() {
 
                     {/* Patient Info */}
                     <div className="text-center">
-                      <h4 className="font-semibold text-xl text-gray-900">{testimonial.name}</h4>
+                      <h3 className="font-semibold text-xl text-gray-900">{testimonial.name}</h3>
                       <p className="text-gray-600">{testimonial.location}</p>
                       <p className="text-sm text-blue-600 font-medium">{testimonial.treatment}</p>
                     </div>
