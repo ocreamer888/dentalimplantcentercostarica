@@ -1,10 +1,3 @@
-declare global {
-  interface LayoutShiftEntry extends PerformanceEntry {
-    hadRecentInput: boolean;
-    value: number;
-  }
-}
-
 export function measurePerformance() {
   if (typeof window !== 'undefined') {
     // Measure LCP
@@ -25,9 +18,8 @@ export function measurePerformance() {
     new PerformanceObserver((list) => {
       let clsValue = 0;
       for (const entry of list.getEntries()) {
-        const layoutShiftEntry = entry as LayoutShiftEntry;
-        if (!layoutShiftEntry.hadRecentInput) {
-          clsValue += layoutShiftEntry.value;
+        if (!entry.hadRecentInput) {
+          clsValue += (entry as any).value;
         }
       }
       console.log('CLS:', clsValue);
