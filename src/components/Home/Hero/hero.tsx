@@ -16,7 +16,7 @@ export default function Hero2() {
   };
 
     return (
-        <section className="relative flex flex-col lg:flex-row h-[96vh] m-4 rounded-3xl overflow-hidden justify-center lg:justify-start px-4 lg:pl-20 items-center backdrop-blur-2xl z-10 mb-40 md:mb-8">
+        <section className="relative flex flex-col lg:flex-row h-screen rounded-b-3xl overflow-hidden justify-center lg:justify-start px-4 lg:pl-20 items-center backdrop-blur-2xl z-10 mb-40 md:mb-8">
                         <Image 
                             src="/images/Dental Implants - Doctor Guzman.webp" 
                             alt="Dental image reference #1" 
@@ -24,7 +24,7 @@ export default function Hero2() {
                             priority
                             fetchPriority="high"
                             sizes="100vw"
-                            className="hidden lg:block relative object-top object-cover rounded-b-3xl"
+                            className="hidden md:block relative object-top object-cover rounded-b-3xl"
                         />
           <Header />
       

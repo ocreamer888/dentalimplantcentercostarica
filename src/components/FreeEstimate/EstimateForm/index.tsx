@@ -208,14 +208,14 @@ const EstimateForm = () => {
   }
 
   return (
-    <div id="estimate-form" className="flex flex-col md:mx-4 rounded-3xl min-h-screen bg-purple-800">
+    <div id="estimate-form" className="flex flex-col -mt-8 pb-52 min-h-screen bg-gradient-to-t from-black/60 via-black/40 to-black/20 relative overflow-hidden">
       
       
-      <div className="container mx-auto pt-12 md:py-12">
+      <div className="container mx-auto pt-40">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-white mb-4">Free Estimate</h2>
-            <p className="text-xl text-balance text-white max-w-3xl mx-auto">
+            <h2 className="text-6xl font-bold text-gray-100 mb-4">Free Estimate</h2>
+            <p className="text-xl text-balance text-gray-100 max-w-3xl mx-auto">
             Get a personalized evaluation of our state-of-the-art dental treatments. Our team of specialists will provide you with a detailed and transparent treatment plan.
             </p>
           </div>

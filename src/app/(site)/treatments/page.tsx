@@ -1,6 +1,5 @@
-import AboutHero from '@/components/About/AboutHero'
-import AboutIntro from '@/components/About/AboutIntro'
-import OurDocs from '@/components/About/OurDocs'
+import TreatmentsHero from '@/components/Treatments/TreatmentsHero'
+import Treatments from '@/components/Treatments/Treatments'
 import ContactForm from '@/components/ui/contactForm'
 import { Metadata } from 'next'
 
@@ -9,12 +8,11 @@ export const metadata: Metadata = {
   description: 'Discover who we are and what we do at Dental Implant Center Costa Rica',
 }
 
-export default function AboutPage() {
+export default function TreatmentsPage() {
   return (
     <>
-    <AboutHero />
-    <AboutIntro />
-    <OurDocs />
+    <TreatmentsHero />
+    <Treatments />
     <ContactForm />
     </>
   )

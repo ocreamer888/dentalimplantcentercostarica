@@ -72,15 +72,15 @@ const ContactForm: React.FC = () => {
               <circle cx="12" cy="12" r="10" />
               <path d="M9 12l2 2l4-4" />
             </svg>
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">¡Solicitud Enviada!</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Your request has been sent successfully!</h2>
             <p className="text-gray-600 mb-6">
-              Gracias por su interés en nuestros servicios dentales. Nuestro equipo se pondrá en contacto con usted dentro de las próximas 24 horas para proporcionarle su estimación gratuita.
+              Thank you for your interest in our dental services. Our team will contact you within the next 24 hours to provide you with your free estimate.
             </p>
             <button
               onClick={() => setSubmitted(false)}
               className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
             >
-              Enviar Otra Solicitud
+              Send Another Request
             </button>
           </div>
         </div>
@@ -89,7 +89,7 @@ const ContactForm: React.FC = () => {
   }
 
   return (
-    <div id="estimate-form" className="flex flex-col mx-4 rounded-3xl min-h-screen bg-gradient-to-br from-purple-50 to-white">
+    <div id="estimate-form" className="flex flex-col min-h-screen bg-white">
       
       
       <div className="container mx-auto px-4 py-12">
@@ -174,7 +174,7 @@ const ContactForm: React.FC = () => {
                     />
                   </div>
 
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-gray-50 p-4 rounded-3xl">
                     <p className="text-sm text-gray-600">
                       By submitting this form, you agree that OG Center will contact you to provide information about our dental services. Your personal data will be handled in accordance with our privacy policy.
                     </p>

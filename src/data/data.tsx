@@ -1,23 +1,18 @@
 export const ProductType: { id: number; section: string; link: string[]; }[] = [
   {
     id: 1,
-    section: "Menu",
-    link: ['Home', 'Popular', 'About', 'Contact'],
+    section: "Treatments",
+    link: ['Dental Implants', 'Dental Bridges', 'Dental Crowns', 'Dental Veneers', 'Dental Inlays', 'Dental Onlays', 'Smile Makeover', 'Whitening']
   },
   {
     id: 2,
-    section: "Category",
-    link: ['Design', 'Mockup', 'View all', 'Log In']
+    section: "Get in Touch",
+    link: ['Free Estimate', 'Contact Us']
   },
   {
     id: 3,
-    section: "Pages",
-    link: ['404', 'Instructions', 'License']
-  },
-  {
-    id: 4,
-    section: "Others",
-    link: ['Styleguide', 'Changelog']
+    section: "Legal",
+    link: ['Privacy Policy', 'Terms of Service']
   }
 ];
 

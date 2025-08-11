@@ -1,6 +1,6 @@
 'use client'
 import { Metadata } from 'next';
-import ContactForm from './contactForm';
+import ContactForm from '../ui/contactForm';
 import HeroContact from './HeroContact';
 
 export const metadata: Metadata = {
