@@ -3,23 +3,22 @@
 import { useState, useEffect, useRef } from 'react';
 
 interface YouTubePlayerProps {
-  videoUrl?: string; // YouTube URL (full URL or just videoId)
-  videoId?: string;  // Direct video ID (fallback)
+  videoUrl?: string;
+  videoId?: string;
   width?: string | number;
   height?: string | number;
   className?: string;
   autoplay?: boolean;
   muted?: boolean;
   loop?: boolean;
-  startTime?: number; // Start time in seconds
-  endTime?: number;   // End time in seconds
+  startTime?: number;
+  endTime?: number;
   onReady?: () => void;
   onPlay?: () => void;
   onPause?: () => void;
   onEnd?: () => void;
 }
 
-// YouTube API types
 interface YTPlayerVars {
   autoplay?: 0 | 1;
   controls?: 0 | 1;
@@ -45,6 +44,7 @@ interface YTPlayer {
   unMute: () => void;
   mute: () => void;
   setVolume: (volume: number) => void;
+  getPlayerState: () => number;
 }
 
 interface YTPlayerEvent {
@@ -82,14 +82,14 @@ declare global {
 }
 
 export default function YouTubePlayer({
-  videoUrl,
+  videoUrl = "dQw4w9WgXcQ",
   videoId,
   width = "100%",
-  height = "100%",
+  height = 315,
   className = "",
-  autoplay = true,
+  autoplay = false,
   muted = true,
-  loop = false,
+  loop = true,
   startTime,
   endTime,
   onReady,
@@ -97,19 +97,18 @@ export default function YouTubePlayer({
   onPause,
   onEnd
 }: YouTubePlayerProps) {
-  const [player, setPlayer] = useState<YTPlayer | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [apiReady, setApiReady] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const playerRef = useRef<HTMLDivElement>(null);
   const playerInstanceRef = useRef<YTPlayer | null>(null);
+  const initAttempted = useRef(false);
 
   // Extract video ID from URL or use provided videoId
   const extractedVideoId = (() => {
     if (videoId) return videoId;
-    if (!videoUrl) return null;
+    if (!videoUrl) return "dQw4w9WgXcQ";
 
     try {
-      // Handle various YouTube URL formats
       const patterns = [
         /(?:youtube\.com\/watch\?.*v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/)([a-zA-Z0-9_-]{11})/,
         /youtube\.com\/watch\?.*[?&]v=([a-zA-Z0-9_-]{11})/
@@ -118,50 +117,63 @@ export default function YouTubePlayer({
       for (const pattern of patterns) {
         const match = videoUrl.match(pattern);
         if (match && match[1]) {
-          console.log('Extracted video ID:', match[1]);
           return match[1];
         }
       }
 
-      // If it's already just an ID (11 characters, alphanumeric + - and _)
       if (/^[a-zA-Z0-9_-]{11}$/.test(videoUrl.trim())) {
         return videoUrl.trim();
       }
 
-      console.error('Could not extract video ID from URL:', videoUrl);
-      return null;
-    } catch (error) {
-      console.error('Error extracting video ID:', error);
-      return null;
+      return "dQw4w9WgXcQ";
+    } catch {
+      return "dQw4w9WgXcQ";
     }
   })();
 
   // Load YouTube API
   useEffect(() => {
-    if (window.YT && window.YT.Player) {
-      console.log('YouTube API already loaded');
+    if (window.YT?.Player) {
       setApiReady(true);
       return;
     }
 
-    console.log('Loading YouTube API...');
-    
-    // Load the YouTube API script
+    if (document.querySelector('script[src*="youtube.com/iframe_api"]')) {
+      const checkInterval = setInterval(() => {
+        if (window.YT?.Player) {
+          setApiReady(true);
+          clearInterval(checkInterval);
+        }
+      }, 100);
+
+      const timeout = setTimeout(() => {
+        clearInterval(checkInterval);
+        if (!window.YT?.Player) {
+          setError('YouTube API failed to load');
+        }
+      }, 10000);
+
+      return () => {
+        clearInterval(checkInterval);
+        clearTimeout(timeout);
+      };
+    }
+
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     tag.async = true;
+    
     const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+    firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
 
-    // Set up the callback
     window.onYouTubeIframeAPIReady = () => {
-      console.log('YouTube API ready');
       setApiReady(true);
     };
 
-    // Fallback timeout
     const timeout = setTimeout(() => {
-      console.error('YouTube API failed to load within 10 seconds');
+      if (!window.YT?.Player) {
+        setError('YouTube API failed to load');
+      }
     }, 10000);
 
     return () => clearTimeout(timeout);
@@ -169,19 +181,12 @@ export default function YouTubePlayer({
 
   // Initialize player when API is ready
   useEffect(() => {
-    if (!apiReady || !playerRef.current || playerInstanceRef.current || !extractedVideoId) {
-      console.log('Player initialization blocked:', {
-        apiReady,
-        hasPlayerRef: !!playerRef.current,
-        hasExistingPlayer: !!playerInstanceRef.current,
-        hasVideoId: !!extractedVideoId
-      });
+    if (!apiReady || !playerRef.current || playerInstanceRef.current || initAttempted.current) {
       return;
     }
 
-    console.log('Initializing YouTube player with video ID:', extractedVideoId);
+    initAttempted.current = true;
 
-    // Build player vars dynamically - always muted for silence
     const playerVars: YTPlayerVars = {
       autoplay: autoplay ? 1 : 0,
       controls: 0,
@@ -192,178 +197,157 @@ export default function YouTubePlayer({
       playsinline: 1,
       rel: 0,
       showinfo: 0,
-      loop: loop ? 1 : 0,
-      mute: 1, // Always start muted for complete silence
       enablejsapi: 1,
-      origin: window.location.origin
+      origin: typeof window !== 'undefined' ? window.location.origin : undefined
     };
 
-    // Add start time if provided
-    if (startTime !== undefined) {
-      playerVars.start = startTime;
-    }
-
-    // Add end time if provided  
-    if (endTime !== undefined) {
-      playerVars.end = endTime;
-    }
-
-    // If loop is enabled, need to set playlist to the same video
+    if (muted) playerVars.mute = 1;
     if (loop) {
+      playerVars.loop = 1;
       playerVars.playlist = extractedVideoId;
     }
-
-    console.log('Player vars:', playerVars);
+    if (startTime !== undefined) playerVars.start = startTime;
+    if (endTime !== undefined) playerVars.end = endTime;
 
     try {
       new window.YT.Player(playerRef.current, {
-        height: typeof height === 'number' ? height : height.replace('px', ''),
-        width: typeof width === 'number' ? width : width.replace('px', ''),
+        height: typeof height === 'number' ? height : parseInt(height.toString()),
+        width: typeof width === 'number' ? width : '100%',
         videoId: extractedVideoId,
         playerVars,
         events: {
           onReady: (event: YTPlayerEvent) => {
-            console.log('Player ready');
             playerInstanceRef.current = event.target;
-            setPlayer(event.target);
+            setError(null);
             
-            // Always keep video completely silent - no sound at all
-            event.target.mute();
-            event.target.setVolume(0);
-            console.log('Video silenced - no audio will play');
+            if (muted) {
+              event.target.mute();
+            }
             
             onReady?.();
           },
           onStateChange: (event: YTPlayerEvent) => {
-            const states: Record<number, string> = {
-              '-1': 'unstarted',
-              '0': 'ended',
-              '1': 'playing',
-              '2': 'paused',
-              '3': 'buffering',
-              '5': 'cued'
-            };
-            console.log('Player state changed to:', states[event.data] || event.data);
-            
-            const isCurrentlyPlaying = event.data === YTPlayerState.PLAYING;
-            setIsPlaying(isCurrentlyPlaying);
-            
-            if (isCurrentlyPlaying) {
+            if (event.data === YTPlayerState.PLAYING) {
               onPlay?.();
             } else if (event.data === YTPlayerState.PAUSED) {
               onPause?.();
             } else if (event.data === YTPlayerState.ENDED) {
+              // Force restart the video for infinite loop
+              if (playerInstanceRef.current) {
+                playerInstanceRef.current.playVideo();
+              }
               onEnd?.();
             }
           },
           onError: (event: YTPlayerEvent) => {
-            const errors: Record<number, string> = {
+            const errorMessages: Record<number, string> = {
               2: 'Invalid video ID',
               5: 'HTML5 player error',
               100: 'Video not found or private',
-              101: 'Embedding not allowed by video owner',
-              150: 'Embedding not allowed by video owner'
+              101: 'Embedding disabled by video owner',
+              150: 'Embedding disabled by video owner'
             };
-            console.error('YouTube player error:', errors[event.data] || `Error code: ${event.data}`);
+            const errorMsg = errorMessages[event.data] || `YouTube error: ${event.data}`;
+            setError(errorMsg);
           }
         }
       });
-    } catch (error) {
-      console.error('Failed to create YouTube player:', error);
+    } catch {
+      setError('Failed to initialize player');
     }
   }, [apiReady, extractedVideoId, width, height, autoplay, muted, loop, startTime, endTime, onReady, onPlay, onPause, onEnd]);
 
-  // Handle click to play/pause
-  const handleClick = () => {
-    if (!player) return;
-
-    if (isPlaying) {
-      player.pauseVideo();
-    } else {
-      player.playVideo();
-    }
-  };
-
-  // Show error if no valid video ID found
-  if (!extractedVideoId) {
+  // Show nothing during loading or error states
+  if (error || !apiReady) {
     return (
       <div 
-        className={`flex items-center justify-center bg-gray-800 text-white ${className}`}
+        className={className}
         style={{ 
           width: typeof width === 'number' ? `${width}px` : width,
           height: typeof height === 'number' ? `${height}px` : height
         }}
-      >
-        <div className="text-center">
-          <div className="text-lg font-semibold mb-2">Invalid Video</div>
-          <div className="text-sm opacity-75">Please provide a valid YouTube URL or video ID</div>
-        </div>
-      </div>
+      />
     );
   }
 
   return (
     <div 
-      className={`relative cursor-pointer ${className}`}
+      className={`relative overflow-hidden ${className}`}
       style={{ 
         width: typeof width === 'number' ? `${width}px` : width,
         height: typeof height === 'number' ? `${height}px` : height
       }}
-      onClick={handleClick}
     >
-      {/* YouTube Player Container */}
+      {/* YouTube Player Container - scaled up and cropped to hide UI */}
       <div 
         ref={playerRef}
-        className="w-full h-full"
+        className="pointer-events-none"
+        style={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+          top: '0%',
+          left: '0%',
+          transform: 'scale(1)',
+        }}
       />
       
-      {/* Invisible overlay to capture clicks */}
-      <div 
-        className="absolute inset-0 z-10 bg-transparent"
-        onClick={handleClick}
-      />
+      {/* Global CSS to hide all YouTube UI elements */}
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          iframe {
+            pointer-events: none !important;
+          }
+          
+          /* Hide all YouTube UI elements */
+          .ytp-chrome-top,
+          .ytp-chrome-bottom,
+          .ytp-gradient-top,
+          .ytp-gradient-bottom,
+          .ytp-title,
+          .ytp-chrome-controls,
+          .ytp-watermark,
+          .ytp-pause-overlay,
+          .ytp-title-text,
+          .ytp-title-link,
+          .ytp-show-cards-title,
+          .ytp-card-add-to-playlist,
+          .ytp-cards-teaser,
+          .ytp-ce-video,
+          .ytp-ce-playlist,
+          .ytp-ce-channel,
+          .ytp-spinner,
+          .ytp-bezel,
+          .ytp-big-mode .ytp-bezel,
+          .html5-endscreen,
+          .html5-player-chrome,
+          .ytp-impression-link,
+          .ytp-click-to-subscribe-button,
+          .ytp-videowall-still,
+          .ytp-scroll-min,
+          .ytp-contextmenu {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            z-index: -9999 !important;
+          }
+          
+          /* Hide the video info overlay that appears on start */
+          .ytp-gradient-top,
+          .ytp-chrome-top-buttons {
+            display: none !important;
+          }
+          
+          /* Remove any padding or margins that might show UI */
+          .html5-video-container {
+            padding: 0 !important;
+            margin: 0 !important;
+          }
+        `
+      }} />
       
-      {/* Optional: Custom play/pause indicator (hidden by default) */}
-      <div 
-        className={`
-          absolute inset-0 flex items-center justify-center
-          bg-black bg-opacity-0 transition-all duration-300 pointer-events-none
-          hover:bg-opacity-20
-        `}
-      >
-        <div 
-          className={`
-            w-16 h-16 rounded-full bg-white bg-opacity-0 flex items-center justify-center
-            transition-all duration-300 transform scale-0
-            group-hover:bg-opacity-90 group-hover:scale-100
-          `}
-        >
-          {isPlaying ? (
-            // Pause icon
-            <div className="flex gap-1">
-              <div className="w-1.5 h-6 bg-black"></div>
-              <div className="w-1.5 h-6 bg-black"></div>
-            </div>
-          ) : (
-            // Play icon
-            <div 
-              className="w-0 h-0 ml-1"
-              style={{
-                borderLeft: '8px solid black',
-                borderTop: '6px solid transparent',
-                borderBottom: '6px solid transparent'
-              }}
-            />
-          )}
-        </div>
-      </div>
-      
-      {/* Loading state */}
-      {!player && (
-        <div className="absolute inset-0 bg-gray-900 flex items-center justify-center">
-          <div className="text-white text-lg">Loading...</div>
-        </div>
-      )}
+      {/* Invisible overlay to block all user interactions */}
+      <div className="absolute inset-0 bg-transparent pointer-events-auto cursor-default" />
     </div>
   );
 }

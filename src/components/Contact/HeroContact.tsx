@@ -22,7 +22,7 @@ export default function HeroContact() {
      <Header />
 
       <div className="relative isolate px-8 max-w-3xl lg:pl-20">
-        <div className=" backdrop-blur-md bg-purple-600/40 shadow-lg p-8 rounded-3xl justify-center mx-auto max-w-3xl">
+        <div className=" backdrop-blur-md bg-purple-900/40 shadow-lg p-8 rounded-3xl justify-center mx-auto max-w-3xl">
           
           <div className="text-center text-balance py-8">
             <h1 className="text-4xl md:text-6xl font-semibold text-center tracking-tight text-white">

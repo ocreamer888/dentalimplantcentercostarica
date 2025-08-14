@@ -7,18 +7,33 @@ import Testimonials from "@/components/Home/Testimonials";
 import Pricing from "@/components/Home/Pricing";
 import Features from "@/components/Home/Features";
 import CTA from "@/components/Home/CTA";
+import { ContactInfo } from "@/components/ui/ContactInfo";
+import Footer from "@/components/Layout/Footer";
+
+
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Features />
-      <Bento/>
+      <div className="bg-gradient-to-br from-purple-100/50 via-purple-500/50 to-purple-900/50">
+        <Features/>
+      </div>
+      <div className="bg-gradient-to-tr from-purple-100/50 via-purple-500/50 to-purple-900/50">
+        <Bento/>
+      </div>
       <Pricing />
-      <AllOnFour/>
+      <div className="bg-gradient-to-tr from-purple-100/50 via-purple-500/50 to-purple-900/50">
+        <AllOnFour/>
+      </div>
+      
       <Testimonials />
       <CTA />
-      <EstimateForm />
+      <div className="flex flex-col justify-center py-20 items-center w-full gap-4 bg-gradient-to-br from-purple-100/50 via-purple-500/50 to-purple-900/50">
+            <ContactInfo />
+            <EstimateForm />
+            <Footer />
+       </div>
       
     </>
   );

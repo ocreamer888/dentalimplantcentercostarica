@@ -81,7 +81,7 @@ export default function Testimonials() {
   }, [testimonials.length]);
 
   return (
-    <section className="py-24 bg-gradient-to-t from-black/60 via-black/40 to-transparent">
+    <section className="py-24 bg-gradient-to-br from-purple-100/50 via-purple-500/50 to-purple-900/50">
       <Container>
         <div className="text-center mb-16">
           <SectionTitle>

@@ -36,7 +36,7 @@ export default function Features() {
   ];
 
   return (
-    <section className="pt-24 bg-gradient-to-t from-black/60 via-black/40 to-transparent">
+    <section className="pt-24 -mt-12">
       <Container>
         <div className="text-center mb-16">
           <SectionTitle>
@@ -114,7 +114,7 @@ export default function Features() {
                         sizes="600px"
                         quality={100}
                         loading="lazy"
-                        className="object-cover rounded-3xl -z-10"
+                        className="object-cover rounded-3xl"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent rounded-3xl"></div>
                     <div className="relative z-10 rounded-3xl p-4 w-full h-full flex flex-col justify-end">

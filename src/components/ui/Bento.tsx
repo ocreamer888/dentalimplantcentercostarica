@@ -26,7 +26,7 @@ export default function Bento({
 
   return (
     <section 
-      className={`w-full bg-gradient-to-t from-black/transparent via-black/40 to-black/60  ${className}`}
+      className={`w-full  ${className}`}
     >
        <div className="flex flex-col justify-center items-center p-12 lg:pl-20 py-40">
                 <h3 className="text-6xl text-balance text-pretty font-semibold pb-8">

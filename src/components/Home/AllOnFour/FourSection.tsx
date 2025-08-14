@@ -51,7 +51,7 @@ const FourSection: React.FC<Props> = ({ benefit, imageAtRight }: Props) => {
     const { title, subtitle, description, imageSrc, bullets } = benefit;
 
     return (
-        <section className="benefit-section justify-center items-center">
+        <section className="benefit-section justify-center items-center ">
             <motion.div
                 className="flex flex-wrap bg-gradient-to-tl from-purple-900/80 via-purple-800/80 to-purple-900/80 backdrop-blur shadow-md w-[96vw] flex-col items-center justify-center md:justify-between rounded-3xl p-8 my-4 px-4 lg:py-20 md:px-20 lg:flex-row lg:flex-nowrap"
                 variants={containerVariants}

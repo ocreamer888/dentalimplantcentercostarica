@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Treatments() {
     return (
         
-        <div className="relative flex flex-col gap-4 p-4 py-20 lg:p-4 lg:py-20 -mt-8 h-auto bg-white rounded-b-3xl shadow-lg z-40">
+        <div id="treatments" className="relative flex flex-col gap-4 p-4 py-20 lg:p-4 lg:py-20 -mt-8 h-auto bg-white rounded-b-3xl shadow-lg z-40">
             <div className="flex flex-col w-full h-[50vh] md:flex-row gap-4">
             <div className="relative flex flex-col justify-end items-start text-white p-4 rounded-3xl flex-1 overflow-hidden bg-gradient-to-tr from-purple-500/70 via-purple-500/80 to-purple-600/80 backdrop-blur-2xl">
             <Image 
