@@ -1,6 +1,6 @@
 import TreatmentsHero from '@/components/Treatments/TreatmentsHero'
 import Treatments from '@/components/Treatments/Treatments'
-import ContactForm from '@/components/ui/contactForm'
+import ContactUs from '@/components/ui/ContactUs'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export default function TreatmentsPage() {
     <>
     <TreatmentsHero />
     <Treatments />
-    <ContactForm />
+    <ContactUs />
     </>
   )
 }

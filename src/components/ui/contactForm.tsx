@@ -89,16 +89,16 @@ const ContactForm: React.FC = () => {
   }
 
   return (
-    <div id="estimate-form" className="flex flex-col min-h-screen bg-white">
+    <div id="estimate-form" className="flex flex-col justify-center items-center min-h-screen">
       
       
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col gap-8">
             
             {/* Form */}
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-2xl shadow-lg p-8">
+              <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-lg p-8">
                 <div className="space-y-6">
                   {error && (
                     <div className="flex items-center space-x-2 text-red-600 bg-red-50 p-3 rounded-lg">
@@ -109,7 +109,7 @@ const ContactForm: React.FC = () => {
 
                   <div className="flex flex-col gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-900 mb-2">
                         Full Name *
                       </label>
                       <input
@@ -119,13 +119,13 @@ const ContactForm: React.FC = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-500 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Your full name"
                       />
                     </div>
                     
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-900 mb-2">
                         Email
                       </label>
                       <input
@@ -135,7 +135,7 @@ const ContactForm: React.FC = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-500 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="your.email@example.com"
                       />
                     </div>
@@ -143,7 +143,7 @@ const ContactForm: React.FC = () => {
 
                   <div className="flex flex-col gap-6">
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-900 mb-2">
                         Subject
                       </label>
                       <input
@@ -153,7 +153,7 @@ const ContactForm: React.FC = () => {
                         value={formData.subject}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-500 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Subject"
                       />
                     </div>
@@ -169,7 +169,7 @@ const ContactForm: React.FC = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={4}
-                      className="w-full px-4 py-3 border border-gray-200 text-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-500 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Describe your current dental situation, symptoms, or any specific questions..."
                     />
                   </div>
