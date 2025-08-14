@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 import { Check, Star } from "lucide-react";
 import Container from "@/components/ui/Container";
@@ -71,6 +72,15 @@ export default function Pricing() {
       ]
     }
   ];
+  const scrollToForm = () => {
+    const formElement = document.getElementById('estimate-form');
+    if (formElement) {
+      formElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
 
   return (
     <section className="py-24 bg-gradient-to-t from-black/0 via-black/40 to-black/0">
@@ -129,6 +139,7 @@ export default function Pricing() {
                 </div>
 
                 <Button
+                onClick={scrollToForm}
                   variant="primary"
                   size="lg"
                   className="w-full"

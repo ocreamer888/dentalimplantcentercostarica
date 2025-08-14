@@ -9,7 +9,7 @@ export default function ContactUs() {
             Contact Us
         </h1>
         <p className="text-xl text-balance font-medium text-pretty text-center md:text-left text-white">
-            We're here to help you with any questions or concerns you may have.
+            We are here to help you with any questions or concerns you may have.
         </p>
         </div>
     <div className="flex flex-col justify-center items-center gap-4 h-auto lg:max-w-2xl">

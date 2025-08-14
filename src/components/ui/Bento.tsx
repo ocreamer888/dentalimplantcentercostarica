@@ -78,8 +78,8 @@ export default function Bento({
             </div>
 
             {/* Feature Card 2 */}
-            <div className="mt-4">
-                  <button className="w-full py-3 bg-white text-gray-900 font-semibold rounded-full hover:bg-gray-100 transition-colors">
+            <div  className="mt-4">
+                  <button onClick={scrollToForm} className="w-full py-3 bg-white text-gray-900 font-semibold rounded-full hover:bg-gray-100 transition-colors">
                     Get started
                   </button>
                 </div>

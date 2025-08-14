@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode } from 'react';
 
 interface ButtonProps {
@@ -37,4 +39,4 @@ export default function Button({
       {children}
     </button>
   );
-} 
+}
