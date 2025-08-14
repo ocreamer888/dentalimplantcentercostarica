@@ -12,7 +12,16 @@ interface BentoProps {
 export default function Bento({ 
   className = "" 
 }: BentoProps) {
-  
+ 
+  const scrollToForm = () => {
+    const formElement = document.getElementById('estimate-form');
+    if (formElement) {
+      formElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
 
 
   return (
@@ -31,15 +40,15 @@ export default function Bento({
             <div className="">
               <span className="block pb-8 text-8xl text-white font-bold">Before & After</span>
               <ImageSlider 
-                beforeImage="/images/dentalimages/dentalimplant1.webp"
-                afterImage="/images/dentalimages/dentalsmile.webp"
+                beforeImage="/images/dentalimages/ao4-before.webp"
+                afterImage="/images/dentalimages/ao4-completed.webp"
               />
             </div>
 
             <div className="">
               <ImageSlider 
-                beforeImage="/images/dentalimages/dentalimplant1.webp"
-                afterImage="/images/dentalimages/dentalsmile.webp"
+                beforeImage="/images/dentalimages/need-implants-all-on-four.webp"
+                afterImage="/images/dentalimages/all-on-four-completed.webp"
               />
             </div>
 
@@ -54,14 +63,14 @@ export default function Bento({
                
                 <div className="pb-4">
               <ImageSlider 
-                beforeImage="/images/dentalimages/dentalimplant1.webp"
-                afterImage="/images/dentalimages/dentalsmile.webp"
+                beforeImage="/images/dentalimages/need-implants-replace-all-teeth.webp"
+                afterImage="/images/dentalimages/all-teeth-replaced-ao4.webp"
               />
             </div>
                 <div className="">
               <ImageSlider 
-                beforeImage="/images/dentalimages/dentalimplant1.webp"
-                afterImage="/images/dentalimages/dentalsmile.webp"
+                beforeImage="/images/dentalimages/dental_implants_done.webp"
+                afterImage="/images/dentalimages/need-dental-implants.webp"
               />
             </div>
                 

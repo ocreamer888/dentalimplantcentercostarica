@@ -1,9 +1,19 @@
+'use client';
 import React from "react";
 import { Phone, Calendar, MessageCircle, ArrowRight } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 
 export default function CTA() {
+  const scrollToForm = () => {
+    const formElement = document.getElementById('estimate-form');
+    if (formElement) {
+      formElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
   return (
     <section className="py-24 bg-gradient-to-t from-black/transparent via-black/40 to-black/60 relative overflow-hidden">
       {/* Background Pattern */}
@@ -22,7 +32,7 @@ export default function CTA() {
             Join thousands of patients who have already saved money and regained their confidence with our dental implant treatments
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+          {/*<div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/20 transition-all duration-300">
               <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Phone className="w-8 h-8" />
@@ -70,7 +80,7 @@ export default function CTA() {
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
-          </div>
+          </div>*/}
 
           {/* Trust Indicators */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
@@ -99,6 +109,7 @@ export default function CTA() {
               Book your consultation this month and receive a complimentary virtual consultation and treatment planning session.
             </p>
             <Button
+            onClick={scrollToForm}
               variant="primary"
               size="lg"
               className="bg-purple-900 border-2 border-purple-200 text-gray-800"

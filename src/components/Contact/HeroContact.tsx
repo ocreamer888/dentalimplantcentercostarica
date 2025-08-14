@@ -7,7 +7,7 @@ export default function HeroContact() {
 
 
   return (
-    <div className="relative overflow-hidden h-[96vh] flex items-center m-4 rounded-3xl justify-center">
+    <div className="relative overflow-hidden h-screen flex items-center rounded-b-3xl justify-center z-20">
       {/* Background image */}
       <div className="absolute inset-0 -z-20">
         <Image

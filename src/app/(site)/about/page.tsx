@@ -1,7 +1,7 @@
 import AboutHero from '@/components/About/AboutHero'
 import AboutIntro from '@/components/About/AboutIntro'
 import OurDocs from '@/components/About/OurDocs'
-import ContactForm from '@/components/ui/contactForm'
+import ContactUs from '@/components/ui/ContactUs'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default function AboutPage() {
     <AboutHero />
     <AboutIntro />
     <OurDocs />
-    <ContactForm />
+    <ContactUs />
     </>
   )
 }

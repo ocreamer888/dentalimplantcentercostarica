@@ -12,10 +12,11 @@ export default function ContactPage() {
   return (
     <>
     <HeroContact />
+    <div className="relative flex flex-col gap-4 justify-center items-center bg-gradient-to-br from-purple-100/50 via-purple-500/50 to-purple-900/50 md:px-8 -mt-8 h-auto pt-28 w-full">
 
-    <div className="min-h-screen">
+    <div className="flex flex-col justify-center items-center h-full w-full">
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Contact Information */}
@@ -62,6 +63,7 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
+    </div>
     </div>
     </>
   );

@@ -3,7 +3,7 @@ import Intro from "@/components/Labs/Intro";
 import DentalLab from "@/components/Labs/DentalLab";
 import LabFeatures from "@/components/Labs/LabFeatures";
 import VidSection from "./VidSection";
-import ContactForm from "@/components/ui/contactForm";
+import ContactUs from "../ui/ContactUs";
 export default function LabPage() {
   return (
     <section>
@@ -12,7 +12,7 @@ export default function LabPage() {
       <Intro />
       <LabFeatures />
       <VidSection /> 
-      <ContactForm />
+      <ContactUs />
     </section>
   );
 }

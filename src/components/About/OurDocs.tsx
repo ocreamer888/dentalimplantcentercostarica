@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function OurDocs() {
     return (
         
-        <div className="flex flex-col md:flex-row gap-4 p-4 pt-12 md:p-12 -mt-8 h-full bg-white">
+        <div className="relative flex flex-col md:flex-row gap-4 p-4 pt-12 md:p-12 -mt-8 h-full bg-white rounded-b-3xl z-20">
            
                 <div className="relative flex flex-col justify-end items-start text-white p-4 rounded-3xl flex-1 overflow-hidden">
          
