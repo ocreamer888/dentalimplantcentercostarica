@@ -18,7 +18,7 @@ export default function Hero2() {
     return (
         <section className="relative flex flex-col lg:flex-row h-screen rounded-b-3xl overflow-hidden justify-center lg:justify-start px-4 lg:pl-20 items-center backdrop-blur-2xl z-10 mb-40 md:mb-8">
                         <Image 
-                            src="/images/Dental Implants - Doctor Guzman.webp" 
+                            src="/images/hero/Dental Implants - Doctor Guzman.webp" 
                             alt="Dental image reference #1" 
                             fill
                             priority

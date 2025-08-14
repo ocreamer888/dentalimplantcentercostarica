@@ -1,7 +1,6 @@
-import EstimateHero from "@/components/FreeEstimate/EstimateHero";
-import EstimateForm from "@/components/FreeEstimate/EstimateForm";
+import FreeEstimateP from "@/components/FreeEstimate/FreeEstimateP";
 import { Metadata } from "next";
-import Footer from "@/components/Layout/Footer";
+
 
 export const metadata: Metadata = {
   title: "Free Estimate - Dental Implant Center Costa Rica",
@@ -10,10 +9,6 @@ export const metadata: Metadata = {
 
 export default function FreeEstimatePage() {
   return (
-    <>
-  <EstimateHero />
-  <EstimateForm />
-  <Footer />
-    </>
+    <FreeEstimateP/>
   );
 }

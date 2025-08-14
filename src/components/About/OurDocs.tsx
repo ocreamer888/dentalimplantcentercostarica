@@ -17,7 +17,7 @@ export default function OurDocs() {
                 </div>
                 <div className="relative flex flex-col h-[60vh] justify-end items-start text-white p-4 rounded-3xl flex-1 overflow-hidden bg-gradient-to-tr from-purple-500/70 via-purple-500/80 to-purple-600/80 backdrop-blur-2xl">
             <Image 
-                        src="/images/Dr.Guzman1.webp" 
+                        src="/images/hero/Dr.Guzman1.webp" 
                         alt="Dental image reference #1" 
                         fill
                         sizes="1000px"

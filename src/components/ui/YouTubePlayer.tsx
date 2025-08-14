@@ -43,6 +43,8 @@ interface YTPlayer {
   playVideo: () => void;
   pauseVideo: () => void;
   unMute: () => void;
+  mute: () => void;
+  setVolume: (volume: number) => void;
 }
 
 interface YTPlayerEvent {
@@ -179,7 +181,7 @@ export default function YouTubePlayer({
 
     console.log('Initializing YouTube player with video ID:', extractedVideoId);
 
-    // Build player vars dynamically
+    // Build player vars dynamically - always muted for silence
     const playerVars: YTPlayerVars = {
       autoplay: autoplay ? 1 : 0,
       controls: 0,
@@ -191,7 +193,7 @@ export default function YouTubePlayer({
       rel: 0,
       showinfo: 0,
       loop: loop ? 1 : 0,
-      mute: muted ? 1 : 0,
+      mute: 1, // Always start muted for complete silence
       enablejsapi: 1,
       origin: window.location.origin
     };
@@ -225,13 +227,10 @@ export default function YouTubePlayer({
             playerInstanceRef.current = event.target;
             setPlayer(event.target);
             
-            // If autoplay and muted, unmute after a delay (if desired)
-            if (autoplay && muted) {
-              setTimeout(() => {
-                console.log('Unmuting player');
-                event.target.unMute();
-              }, 1000);
-            }
+            // Always keep video completely silent - no sound at all
+            event.target.mute();
+            event.target.setVolume(0);
+            console.log('Video silenced - no audio will play');
             
             onReady?.();
           },
