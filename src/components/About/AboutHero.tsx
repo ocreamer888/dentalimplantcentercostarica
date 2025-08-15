@@ -2,12 +2,20 @@
 
 import Image from 'next/image'
 import Header from '@/components/Layout/Header/Header'
+import ImagePreloader from '../ui/ImagePreloader'
 
 export default function AboutHero() {
 
+  const imagesToPreload = [
+  "/images/hero/Dental Implants - Doctor Guzman.webp",
+  "/images/hero/DentalOffice.webp",
+  "/images/hero/DentalPassport1.webp",
+  // Add more images as needed
+];
 
   return (
         <section className="relative flex flex-col lg:flex-row h-screen rounded-b-3xl overflow-hidden justify-center lg:justify-start px-4 lg:pl-20 items-center backdrop-blur-2xl bg-gradient-to-br from-purple-500 to-purple-800 z-50">
+     <ImagePreloader images={imagesToPreload} priority={true} />
       {/* Background image */}
       <div className="absolute inset-0 -z-20">
       <Image 

@@ -3,7 +3,7 @@
 export function ContactInfo() {
     return (
 
-<div className="flex max-w-3xl">
+<div className="flex max-w-4xl min-h-auto relative overflow-hidden">
 <div className="flex flex-col items-center justify-around bg-white/80 overflow-hidden rounded-3xl p-4">
   <h3 className="text-3xl font-semibold text-purple-900 mb-6">Contact Information</h3>
   

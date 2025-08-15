@@ -2,9 +2,14 @@
 
 import Image from 'next/image'
 import Header from '@/components/Layout/Header/Header'
+import ImagePreloader from '../ui/ImagePreloader';
 
 export default function TreatmentsHero() {
  
+   const imagesToPreload = [
+  "/images/labs/dentalimplantcentercostarica-lab4.webp",
+  // Add more images as needed
+];
   const scrollToIntro = () => {
     const formElement = document.getElementById('treatments');
     if (formElement) {
@@ -17,13 +22,14 @@ export default function TreatmentsHero() {
 
   return (
         <section className="relative flex flex-col lg:flex-row h-screen rounded-b-3xl overflow-hidden justify-center lg:justify-start px-4 lg:pl-20 items-center backdrop-blur-2xl z-50 bg-gradient-to-br from-purple-500 to-purple-800">
+     <ImagePreloader images={imagesToPreload} priority={true} />
       {/* Background image */}
       <div className="absolute inset-0 -z-20">
 <Image 
-    src="/images/dentalimages/dentalimplant1.webp" 
+    src="/images/labs/dentalimplantcentercostarica-lab4.webp" 
     alt="Dental image reference #1" 
     fill
-    sizes="100vw"
+    quality={100}
     priority
     className="hidden md:block relative object-top object-cover rounded-b-3xl"
 />

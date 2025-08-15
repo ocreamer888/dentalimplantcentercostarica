@@ -2,9 +2,18 @@
 import React, { useRef, useState } from 'react';
 import { submitEstimate } from '@/lib/actions/estimateForm';
 import Image from 'next/image';
+import ImagePreloader from './ImagePreloader';
 
 
 const EstimateForm = () => {
+   const imagesToPreload = [
+  "/images/dentalimages/dentaltop.webp",
+  "/images/dentalimages/dentalside2.webp",
+  "/images/dentalimages/dentalsmile.webp",
+  "/images/dentalimages/frontdental.webp",
+  "/images/dentalimages/dentalside1.webp",
+  // Add more images as needed
+];
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -208,8 +217,9 @@ const EstimateForm = () => {
   }
 
   return (
-    <div id="estimate-form" className="flex max-w-3xl min-h-screen relative overflow-hidden">
+    <div id="estimate-form" className="flex max-w-4xl min-h-screen relative overflow-hidden">
       
+      <ImagePreloader images={imagesToPreload} priority={true} />
       
       <div className="container mx-auto">
         <div className="mx-auto">
@@ -363,10 +373,10 @@ const EstimateForm = () => {
                   </div>
 
                   <div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 my-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 my-8">
                       <div className="relative rounded-lg h-40 overflow-hidden">
                         <Image
-                          src="/images/dentalimages/dentalimplant1.webp"
+                          src="/images/dentalimages/dentalside2.webp"
                           alt="Dental implant procedure"
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -377,7 +387,7 @@ const EstimateForm = () => {
                       </div>
                       <div className="relative rounded-lg h-40 overflow-hidden">
                         <Image
-                          src="/images/dentalimages/dentalimplant2.webp"
+                          src="/images/dentalimages/dentalsmile.webp"
                           alt="Dental implant close-up"
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -388,7 +398,7 @@ const EstimateForm = () => {
                       </div>
                       <div className="relative rounded-lg h-40 overflow-hidden">
                         <Image
-                          src="/images/dentalimages/dentalimplant3.webp"
+                          src="/images/dentalimages/frontdental.webp"
                           alt="Dental implant surgery"
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -399,7 +409,18 @@ const EstimateForm = () => {
                       </div>
                       <div className="relative rounded-lg h-40 overflow-hidden">
                         <Image
-                          src="/images/dentalimages/dentalimplant4.webp"
+                          src="/images/dentalimages/dentaltop.webp"
+                          alt="Dental implant result"
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          className="object-cover"
+                          quality={85}
+                          loading="lazy"
+                        />
+                      </div>
+                       <div className="relative rounded-lg h-40 overflow-hidden">
+                        <Image
+                          src="/images/dentalimages/dentalside1.webp"
                           alt="Dental implant result"
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"

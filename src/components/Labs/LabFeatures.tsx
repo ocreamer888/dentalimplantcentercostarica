@@ -4,7 +4,7 @@ import ImagePreloader from "../ui/ImagePreloader";
 export default function LabFeatures() {
 
       const imagesToPreload = [
-  "/images/labs/dentalimplantcentercostarica-laboratory.webp",
+  "/images/labs/DentalPassport2.webp",
   // Add more images as needed
 ];
 

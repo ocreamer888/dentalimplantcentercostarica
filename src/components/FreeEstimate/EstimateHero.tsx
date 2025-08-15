@@ -1,21 +1,26 @@
 'use client'
 
-import Image from 'next/image'
-import Header from '@/components/Layout/Header/Header'
+import Image from 'next/image';
+import Header from '@/components/Layout/Header/Header';
+import ImagePreloader from '../ui/ImagePreloader';
 
 export default function EstimateHero() {
 
-
+   const imagesToPreload = [
+  "/images/hero/DentalPassport4.webp",
+  // Add more images as needed
+];
   return (
         <section className="relative flex flex-col lg:flex-row h-screen rounded-b-3xl overflow-hidden justify-center lg:justify-start px-4 lg:pl-20 items-center backdrop-blur-2xl z-50">
       {/* Background image */}
+      <ImagePreloader images={imagesToPreload} priority={true} />
       <div className="absolute inset-0 -z-20">
       <Image 
                         src="/images/hero/DentalPassport4.webp" 
                         alt="Dental image reference #1" 
                         fill
                         sizes="1000px"
-                        quality={90}
+                        quality={100}
                         loading="lazy"
                         className="hidden md:block object-cover object-left -z-10"
                     />
