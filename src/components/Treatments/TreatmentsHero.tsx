@@ -19,15 +19,14 @@ export default function TreatmentsHero() {
         <section className="relative flex flex-col lg:flex-row h-screen rounded-b-3xl overflow-hidden justify-center lg:justify-start px-4 lg:pl-20 items-center backdrop-blur-2xl z-50 bg-gradient-to-br from-purple-500 to-purple-800">
       {/* Background image */}
       <div className="absolute inset-0 -z-20">
-      <Image 
-                            src="/images/labs/dentalimplantcentercostarica-lab4.webp" 
-                            alt="Dental image reference #1" 
-                            fill
-                            priority
-                            fetchPriority="high"
-                            sizes="100vw"
-                            className="hidden md:block relative object-top object-cover rounded-b-3xl"
-                        />
+<Image 
+    src="/images/dentalimages/dentalimplant1.webp" 
+    alt="Dental image reference #1" 
+    fill
+    sizes="100vw"
+    priority
+    className="hidden md:block relative object-top object-cover rounded-b-3xl"
+/>
       </div>
 
      <Header />

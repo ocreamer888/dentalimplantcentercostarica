@@ -3,7 +3,7 @@
 export default function DentalLab() {
 
   return (
-    <div className="relative overflow-hidden h-[96vh] bg-white flex items-center -mt-8 rounded-b-3xl justify-left z-40">
+    <div id="imp" className="relative overflow-hidden h-[96vh] bg-white flex items-center -mt-8 rounded-b-3xl justify-left z-40">
      
       <div className="flex flex-col relative isolate px-8 w-full">
         <div className="backdrop-blur gap-8 rounded-3xl justify-end items-end mx-auto w-full text-white h-full">

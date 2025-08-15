@@ -1,11 +1,19 @@
 'use client'
 
 import Image from 'next/image'
+import ImagePreloader from '../ui/ImagePreloader'
 
 export default function Intro() {
 
+  const imagesToPreload = [
+  "/images/labs/dentalimplantcentercostarica-laboratory.webp",
+  // Add more images as needed
+];
+
   return (
-    <div className="relative overflow-hidden h-[96vh] flex items-center -mt-4 rounded-b-3xl justify-left z-30">
+    <div id="dental" className="relative overflow-hidden h-[96vh] flex items-center -mt-4 rounded-b-3xl justify-left z-30">
+      
+      <ImagePreloader images={imagesToPreload} priority={true} />
       {/* Background image */}
       <div className="absolute inset-0 -z-20">
         <Image

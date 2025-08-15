@@ -3,6 +3,7 @@ import { Clock, Users, Award } from "lucide-react";
 import Container from "@/components/ui/Container";
 import SectionTitle from "@/components/SectionTitle";
 import Image from "next/image";
+import ImagePreloader from "@/components/ui/ImagePreloader";
 
 interface Feature {
   icon: React.ComponentType<{ className?: string }>;
@@ -12,7 +13,15 @@ interface Feature {
 }
 
 export default function Features() {
-  const features: Feature[] = [
+const imagesToPreload = [
+  "/images/dentalimages/allonsix1.webp",
+  "/images/hero/DentalPassport2.webp",
+  "/images/hero/DentalPassport4.webp",
+  "/images/vacations-all-on-4-dental-implants.webp",
+  // Add more images as needed
+];
+
+const features: Feature[] = [
   
     {
       icon: Clock,
@@ -35,8 +44,11 @@ export default function Features() {
     }
   ];
 
+  
   return (
     <section className="pt-24 -mt-12">
+            <ImagePreloader images={imagesToPreload} priority={true} />
+      
       <Container>
         <div className="text-center mb-16">
           <SectionTitle>
@@ -145,12 +157,11 @@ export default function Features() {
         </div>
         <div className="relative flex flex-col justify-between items-start text-white p-4 mt-8 rounded-3xl flex-1 overflow-hidden bg-gradient-to-tr from-pink-200/70 via-pink-300/80 to-purple-200/80 backdrop-blur-2xl">
                     <Image 
-                        src="/images/dentalimages/allonsix1.webp" 
+                        src="/images/vacations-all-on-4-dental-implants.webp" 
                         alt="Dental image reference #1" 
-                        width={200}
-                        height={200}
-                        sizes="200px"
-                        quality={60}
+                       fill
+                        sizes="1000px"
+                        quality={100}
                         loading="lazy"
                         className="absolute top-0 right-4 md:top-4 lg:right-20 object-cover rounded-3xl"
                     />

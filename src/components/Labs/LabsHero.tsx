@@ -2,10 +2,11 @@
 
 import Image from 'next/image'
 import Header from '@/components/Layout/Header/Header'
+import ImagePreloader from '../ui/ImagePreloader';
 
 export default function LabsHero() {
-  const scrollToForm = () => {
-    const formElement = document.getElementById('estimate-form');
+  const scrollToimp = () => {
+    const formElement = document.getElementById('imp');
     if (formElement) {
       formElement.scrollIntoView({ 
         behavior: 'smooth',
@@ -14,9 +15,15 @@ export default function LabsHero() {
     }
   };
 
+      const imagesToPreload = [
+  "/images/labs/dentalimplantcentercostarica-laboratory.webp",
+  // Add more images as needed
+];
+
   return (
-        <section className="relative flex flex-col lg:flex-row h-screen rounded-b-3xl overflow-hidden justify-center lg:justify-start px-4 lg:pl-20 items-center backdrop-blur-2xl z-50">
+        <section className="relative flex flex-col lg:flex-row h-screen rounded-b-3xl overflow-hidden justify-center lg:justify-start px-4 lg:pl-20 items-center backdrop-blur-2xl -mt-12 z-50">
       {/* Background image */}
+      <ImagePreloader images={imagesToPreload} priority={true} />
       <div className="absolute inset-0 -z-20">
         <Image
           src="/images/labs/dentalimplantcentercostarica-laboratory.webp"
@@ -41,7 +48,7 @@ export default function LabsHero() {
             </p>
             <div className="mt-8 flex items-center justify-center md:justify-start md:items-center gap-x-6">
               <button
-                onClick={scrollToForm}
+                onClick={scrollToimp}
                 className="rounded-full bg-yellow-500 text-black px-12 py-4 text-md font-semibold shadow-xs hover:bg-yellow-600 transition-colors"
               >
                 Learn More

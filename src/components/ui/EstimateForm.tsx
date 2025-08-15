@@ -362,6 +362,54 @@ const EstimateForm = () => {
                     />
                   </div>
 
+                  <div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 my-8">
+                      <div className="relative rounded-lg h-40 overflow-hidden">
+                        <Image
+                          src="/images/dentalimages/dentalimplant1.webp"
+                          alt="Dental implant procedure"
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          className="object-cover"
+                          quality={85}
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="relative rounded-lg h-40 overflow-hidden">
+                        <Image
+                          src="/images/dentalimages/dentalimplant2.webp"
+                          alt="Dental implant close-up"
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          className="object-cover"
+                          quality={85}
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="relative rounded-lg h-40 overflow-hidden">
+                        <Image
+                          src="/images/dentalimages/dentalimplant3.webp"
+                          alt="Dental implant surgery"
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          className="object-cover"
+                          quality={85}
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="relative rounded-lg h-40 overflow-hidden">
+                        <Image
+                          src="/images/dentalimages/dentalimplant4.webp"
+                          alt="Dental implant result"
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          className="object-cover"
+                          quality={85}
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  </div>
                   <div className="flex flex-col gap-3 p-4">
                     <label className="block text-sm font-medium text-gray-700">
                       Upload Images (optional)
@@ -416,9 +464,12 @@ const EstimateForm = () => {
                             <Image
                               src={img.preview}
                               alt={img.name}
-                              width={100}
-                              height={100}
+                              width={112}
+                              height={112}
+                              sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
                               className="h-28 w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
+                              quality={80}
+                              loading="lazy"
                             />
                             <button
                               type="button"

@@ -1,11 +1,14 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
+import ImagePreloader from "./ImagePreloader";
 
 interface ImageSliderProps {
   beforeImage: string;
   afterImage: string;
   swiperImage?: string; // Optional, with default
   className?: string; // Optional styling
+  priority?: boolean; // For priority loading
+  loading?: "lazy" | "eager"; // Loading strategy
 }
 
 // Move this component outside
@@ -13,12 +16,16 @@ const CompareSlider = ({
   beforeImage,
   afterImage,
   swiperImage,
-  className = ""
+  className = "",
+  priority = false,
+  loading = "lazy"
 }: {
   beforeImage: string;
   afterImage: string;
   swiperImage: string;
   className?: string;
+  priority?: boolean;
+  loading?: "lazy" | "eager";
 }) => {
   const [sliderPosition, setSliderPosition] = useState(50); // Initial slider position at 50%
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -97,11 +104,15 @@ const CompareSlider = ({
       {/* Before Image - Full size */}
       <Image
         src={beforeImage}
-        alt="Before Image"
+        alt="Before dental treatment - patient's original condition"
         fill
         className="absolute top-0 left-0 w-full h-full rounded-3xl object-cover"
-        sizes="(max-width: 768px) 100vw, 50vw"
-        priority
+        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        priority={priority}
+        loading={loading}
+        quality={85}
+        placeholder="blur"
+        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
       />
 
       {/* After Image - Full size but clipped */}
@@ -111,11 +122,15 @@ const CompareSlider = ({
       >
         <Image
           src={afterImage}
-          alt="After Image"
+          alt="After dental treatment - patient's transformed smile"
           fill
           className="object-cover w-full h-full"
-          sizes="(max-width: 768px) 100vw, 50vw"
-          priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          priority={priority}
+          loading={loading}
+          quality={85}
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
         />
       </div>
 
@@ -146,19 +161,27 @@ const CompareSlider = ({
   );
 };
 
-const ImageSlider = ({ 
-  beforeImage, 
-  afterImage, 
+const ImageSlider = ({
+  beforeImage,
+  afterImage,
   swiperImage = "/images/icons/icon-star.svg",
-  className = ""
+  className = "",
+  priority = false,
+  loading = "lazy"
 }: ImageSliderProps) => {
   return (
     <div className="relative w-full">
+      <ImagePreloader
+        images={[beforeImage, afterImage, swiperImage]}
+        priority={priority}
+      />
       <CompareSlider
         beforeImage={beforeImage}
         afterImage={afterImage}
         swiperImage={swiperImage}
         className={className}
+        priority={priority}
+        loading={loading}
       />
     </div>
   );

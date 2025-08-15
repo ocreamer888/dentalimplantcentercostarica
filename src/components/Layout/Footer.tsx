@@ -9,8 +9,23 @@ const footer = () => {
         <div className="grid grid-cols-1 gap-y-10 gap-x-16 sm:grid-cols-2 lg:grid-cols-12 xl:gap-x-8">
           {/* COLUMN-1 */}
           <div className='col-span-4'>
-            <h3 className='text-white text-4xl font-semibold leading-9 mb-4 lg:mb-20'>Dental Implant Center Costa Rica</h3>
-            <div className='flex gap-4'>
+           <div className='flex flex-col gap-4'>
+             <h3 className='text-white text-4xl font-semibold leading-9 mb-4 lg:mb-20'>
+  <span className="relative inline-block">
+    <span className="
+      text-6xl font-bold 
+      text-transparent 
+      bg-clip-text 
+      bg-[url('/images/dental-vacations-costa-rica.webp')]
+      bg-cover
+      bg-center
+    ">
+      Costa Rica
+    </span>
+  </span>
+  Dental Implant Center 
+</h3>
+
               <div className='footer-icons'>
                 <Link href="https://facebook.com"><Image src={'/images/footer/vec.svg'} alt="facebook" width={15} height={20} /></Link>
               </div>
