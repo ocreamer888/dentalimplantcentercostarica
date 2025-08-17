@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "optimize-images": "node scripts/optimize-images-advanced.js",
+    "build:images": "npm run optimize-images && npm run build",
+    "analyze": "ANALYZE=true npm run build"
   },
   "dependencies": {
     "@iconify/react": "^6.0.0",
@@ -46,6 +49,10 @@
     "eslint-config-next": "15.4.5",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.6",
-    "typescript": "^5"
+    "typescript": "^5",
+    "glob": "^10.3.10",
+    "imagemin": "^8.0.1",
+    "imagemin-webp": "^8.0.0",
+    "imagemin-avif": "^1.0.1"
   }
 }

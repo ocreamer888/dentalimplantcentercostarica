@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [360, 414, 640, 768, 1024, 1280, 1536],
     imageSizes: [16, 24, 32, 48, 64, 96, 128, 160, 192, 200, 230, 256, 320, 348, 384],
-    minimumCacheTTL: 31536000, // 1 year - this helps with performance
+    minimumCacheTTL: 31536000, // 1 year - this actually helps
     remotePatterns: [
       {
         protocol: 'https',
