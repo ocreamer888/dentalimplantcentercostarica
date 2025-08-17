@@ -65,9 +65,9 @@ const features: Feature[] = [
                 <Image 
                         src="/images/dentalimages/allonsix1.webp" 
                         alt="Dental image reference #1" 
-                        width={200}
-                        height={200}
-                        sizes="200px"
+                        width={400}
+                        height={400}
+                        sizes="400px"
                         quality={60}
                         loading="lazy"
                         className="absolute top-0 right-4 md:top-4 lg:right-20 object-cover rounded-3xl"
@@ -123,7 +123,7 @@ const features: Feature[] = [
                         src="/images/hero/DentalPassport4.webp" 
                         alt="Dental image reference #1" 
                         fill
-                        sizes="600px"
+                        sizes="400px"
                         quality={100}
                         loading="lazy"
                         className="object-cover rounded-3xl"
@@ -160,8 +160,8 @@ const features: Feature[] = [
                         src="/images/vacations-all-on-4-dental-implants.webp" 
                         alt="Dental image reference #1" 
                        fill
-                        sizes="1000px"
-                        quality={100}
+                        sizes="4300px"
+                        quality={80}
                         loading="lazy"
                         className="absolute top-0 right-4 md:top-4 lg:right-20 object-cover rounded-3xl"
                     />
