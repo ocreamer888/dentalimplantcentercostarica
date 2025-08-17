@@ -1,14 +1,5 @@
-/* Load this asynchronously */
-@import "tailwindcss";
-@import "tw-animate-css";
-
 /* Non-critical styles */
 @custom-variant dark (&:is(.dark *));
-
-/* Your existing CSS variables and styles */
-@theme inline {
-  /* ... your existing theme variables ... */
-}
 
 /* Dark mode styles */
 .dark {
