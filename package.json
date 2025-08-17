@@ -50,9 +50,6 @@
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.6",
     "typescript": "^5",
-    "glob": "^10.3.10",
-    "imagemin": "^8.0.1",
-    "imagemin-webp": "^8.0.0",
-    "imagemin-avif": "^1.0.1"
+    "glob": "^10.3.10"
   }
 }
