@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { generateMetadata } from "@/lib/metadata";
+import { StrictMode } from 'react';
+import { CSSLoader } from '@/components/ui/CSSLoader';
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -24,7 +26,10 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     <>
       <GoogleAnalytics />
       <div className={`justify-center items-center ${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+      <StrictMode>
+          {children}
+          <CSSLoader />
+        </StrictMode>
       </div>
     </>
   );

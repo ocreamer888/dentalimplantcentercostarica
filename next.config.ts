@@ -5,9 +5,24 @@ const nextConfig: NextConfig = {
     serverActions: { bodySizeLimit: "10mb" },
     reactCompiler: true,
     optimizeCss: true,
+    // Add CSS optimization
+    optimizePackageImports: ['tailwindcss', 'tw-animate-css'],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
+  },
+  // Add CSS optimization
+  webpack: (config, { dev, isServer }) => {
+    if (!dev && !isServer) {
+      // Optimize CSS extraction
+      config.optimization.splitChunks.cacheGroups.styles = {
+        name: 'styles',
+        test: /\.(css|scss)$/,
+        chunks: 'all',
+        enforce: true,
+      };
+    }
+    return config;
   },
   images: {
     formats: ['image/avif', 'image/webp'],
