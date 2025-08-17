@@ -7,9 +7,9 @@ import Testimonials from "@/components/Home/Testimonials";
 import Pricing from "@/components/Home/Pricing";
 import Features from "@/components/Home/Features";
 import CTA from "@/components/Home/CTA";
-import { ContactInfo } from "@/components/ui/ContactInfo";
 import Footer from "@/components/Layout/Footer";
-
+import { Suspense } from 'react';
+import LoadingSkeleton from "@/components/ui/LoadingSkeleton";
 
 
 export default function Home() {
@@ -27,7 +27,10 @@ export default function Home() {
         <AllOnFour/>
       </div>
       
-      <Testimonials />
+      <Suspense fallback={<LoadingSkeleton />}>
+      
+        <Testimonials />
+      </Suspense>
       <CTA />
 
      <div className="bg-gradient-to-tl from-purple-900/50 via-purple-500/50 to-purple-100/50 py-12">
@@ -39,7 +42,6 @@ export default function Home() {
                         </p>
                     </div>
                     <div className="flex flex-col justify-center items-center w-full gap-4">
-                        <ContactInfo />
                         <EstimateForm />
                     </div>
                     <Footer />

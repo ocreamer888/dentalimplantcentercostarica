@@ -1,6 +1,5 @@
 'use client';
 import Image from "next/image";
-import ImagePreloader from "./ImagePreloader";
 
 interface CardTwoProps {
   title: string;
@@ -39,11 +38,9 @@ const CardTwo: React.FC<CardTwoProps> = ({
   imageSrc = "/default-image.webp",
   imageAlt = "Default Image",
 }) => {
-  const imagesToPreload = [imageSrc];
 
   return (
     <div className="relative flex flex-col h-auto w-full py-8 justify-start items-center text-white p-4 rounded-3xl flex-1 overflow-hidden bg-gradient-to-t from-purple-600/70 via-purple-500/60 to-purple-500/50 backdrop-blur-2xl" role="region" aria-labelledby="card-title">
-      <ImagePreloader images={imagesToPreload} priority={true} />
       <CardImage src={imageSrc} alt={imageAlt} />
       <CardContent title={title} description={description} />
     </div>

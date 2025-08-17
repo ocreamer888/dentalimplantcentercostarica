@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import ImagePreloader from "./ImagePreloader";
 
 interface ImageSliderProps {
   beforeImage: string;
@@ -171,10 +170,7 @@ const ImageSlider = ({
 }: ImageSliderProps) => {
   return (
     <div className="relative w-full">
-      <ImagePreloader
-        images={[beforeImage, afterImage, swiperImage]}
-        priority={priority}
-      />
+      
       <CompareSlider
         beforeImage={beforeImage}
         afterImage={afterImage}

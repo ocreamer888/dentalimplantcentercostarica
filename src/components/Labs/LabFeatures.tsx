@@ -1,17 +1,12 @@
 import Image from "next/image";
-import ImagePreloader from "../ui/ImagePreloader";
 
 export default function LabFeatures() {
 
-      const imagesToPreload = [
-  "/images/labs/DentalPassport2.webp",
-  // Add more images as needed
-];
+
 
     return (
         
         <div className="flex flex-col md:flex-row gap-4 p-20 -mt-8 h-screen bg-white">
-           <ImagePreloader images={imagesToPreload} priority={true} />
             <div className="relative flex flex-col justify-end items-start text-white p-4 rounded-3xl flex-1 overflow-hidden bg-gradient-to-tr from-purple-500/70 via-purple-500/80 to-purple-600/80 backdrop-blur-2xl">
             <Image 
                         src="/images/DentalPassport2.webp" 

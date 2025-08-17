@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import Header from '@/components/Layout/Header/Header'
-import ImagePreloader from '../ui/ImagePreloader';
 
 export default function LabsHero() {
   const scrollToimp = () => {
@@ -14,14 +13,10 @@ export default function LabsHero() {
       });
     }
   };
-   const imagesToPreload = [
-  "/images/labs/dentalimplantcentercostarica-laboratory.webp",
-  // Add more images as needed
-];
+
 
   return (
         <section className="relative flex flex-col lg:flex-row h-screen rounded-b-3xl overflow-hidden justify-center lg:justify-start px-4 lg:pl-20 items-center backdrop-blur-2xl z-50">
-      <ImagePreloader images={imagesToPreload} priority={true} />
      
       {/* Background image */}
       <div className="absolute inset-0 -z-20">

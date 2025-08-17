@@ -2,18 +2,10 @@
 import React, { useRef, useState } from 'react';
 import { submitEstimate } from '@/lib/actions/estimateForm';
 import Image from 'next/image';
-import ImagePreloader from './ImagePreloader';
 
 
 const EstimateForm = () => {
-   const imagesToPreload = [
-  "/images/dentalimages/dentaltop.webp",
-  "/images/dentalimages/dentalside2.webp",
-  "/images/dentalimages/dentalsmile.webp",
-  "/images/dentalimages/frontdental.webp",
-  "/images/dentalimages/dentalside1.webp",
-  // Add more images as needed
-];
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -218,9 +210,7 @@ const EstimateForm = () => {
 
   return (
     <div id="estimate-form" className="flex max-w-4xl min-h-screen relative overflow-hidden">
-      
-      <ImagePreloader images={imagesToPreload} priority={true} />
-      
+            
       <div className="container mx-auto">
         <div className="mx-auto">
           

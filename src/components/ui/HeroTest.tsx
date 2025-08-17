@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import Image from "next/image";
-import ImagePreloader from "./ImagePreloader";
 import Header from '../Layout/Header/Header';
 
 interface HeroTestProps {
@@ -48,13 +47,12 @@ class HeroTest extends React.Component<HeroTestProps> {
 
   render() {
 const { title, description, imageSrc, imageAlt, linkHref } = this.props;
-const imagesToPreload = [imageSrc];
+
 
 return (
   <div className='relative flex flex-col h-screen w-full bg-gradient-to-tl from-purple-400/70 via-purple-300/60 to-purple-100/50'>
     <Header/>
     <div className="relative flex flex-col md:flex-row h-screen w-full justify-end md:justify-center md:py-8 items-center text-white rounded-b-3xl flex-1 overflow-hidden backdrop-blur" role="region" aria-labelledby="card-title">
-      <ImagePreloader images={imagesToPreload} priority={true} />
       <CardContent title={title} description={description} linkHref={linkHref} />
       <CardImage src={imageSrc} alt={imageAlt} />
     </div>

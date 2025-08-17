@@ -3,7 +3,6 @@ import { Clock, Users, Award } from "lucide-react";
 import Container from "@/components/ui/Container";
 import SectionTitle from "@/components/SectionTitle";
 import Image from "next/image";
-import ImagePreloader from "@/components/ui/ImagePreloader";
 
 interface Feature {
   icon: React.ComponentType<{ className?: string }>;
@@ -13,13 +12,7 @@ interface Feature {
 }
 
 export default function Features() {
-const imagesToPreload = [
-  "/images/dentalimages/allonsix1.webp",
-  "/images/hero/DentalPassport2.webp",
-  "/images/hero/DentalPassport4.webp",
-  "/images/vacations-all-on-4-dental-implants.webp",
-  // Add more images as needed
-];
+
 
 const features: Feature[] = [
   
@@ -47,7 +40,6 @@ const features: Feature[] = [
   
   return (
     <section className="pt-24 -mt-12">
-            <ImagePreloader images={imagesToPreload} priority={true} />
       
       <Container>
         <div className="text-center mb-16">

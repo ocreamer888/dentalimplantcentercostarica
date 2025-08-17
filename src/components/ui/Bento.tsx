@@ -1,7 +1,6 @@
 "use client";
 import { lazy, Suspense } from "react";
 import ImageSlider from "./ImageSlider";
-import ImagePreloader from "./ImagePreloader";
 
 // Lazy load ImageSlider for better performance
 const LazyImageSlider = lazy(() => import("./ImageSlider"));
@@ -77,18 +76,13 @@ export default function Bento({
     }
   };
 
-  // Extract critical images for preloading
-  const criticalImages = [
-    imageData[0].beforeImage,
-    imageData[0].afterImage
-  ];
+
 
   return (
     <section 
       className={`w-full ${className}`}
     >
       {/* Preload critical images */}
-      <ImagePreloader images={criticalImages} priority={true} />
       
       <div className="flex flex-col justify-center items-center p-12 lg:pl-20 py-40">
         <h3 className="text-6xl text-balance text-pretty font-semibold pb-8">
