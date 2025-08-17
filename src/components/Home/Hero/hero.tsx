@@ -24,7 +24,8 @@ export default function Hero2() {
               fill
               priority
               fetchPriority="high"
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"  // ✅ Responsive sizing
+              quality={85}  // ✅ Reduced quality for better performance
               className="hidden md:block relative object-top object-cover rounded-b-3xl"
           />
       <Header />

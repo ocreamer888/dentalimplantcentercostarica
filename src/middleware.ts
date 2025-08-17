@@ -33,6 +33,14 @@ export function middleware(request: NextRequest) {
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   
+  // Cache images aggressively
+  if (request.nextUrl.pathname.match(/\.(jpg|jpeg|png|webp|avif|gif)$/)) {
+    response.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+  }
+  
+  // Add compression headers
+  response.headers.set('Accept-Encoding', 'gzip, deflate, br');
+  
   return response;
 }
 
@@ -49,6 +57,9 @@ function getCountryFromIP(ip: string | null): string | null {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
-};
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  ],
+}
+
 
