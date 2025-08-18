@@ -40,7 +40,13 @@ const LazyEstimateForm = dynamic(() => import("@/components/ui/EstimateForm"), {
 });
 
 // Intersection Observer wrapper
-const LazyComponent = ({ component: Component, ...props }: { component: React.ComponentType<any>; [key: string]: any }) => {
+const LazyComponent = ({ 
+  component: Component, 
+  ...props 
+}: { 
+  component: React.ComponentType<Record<string, unknown>>; 
+  [key: string]: unknown 
+}) => {
   const [isVisible, setIsVisible] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
 
