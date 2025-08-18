@@ -28,7 +28,8 @@ const CardImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => (
       width={200}
       sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 50vw"
       quality={80}
-      loading="lazy"
+      priority
+      fetchPriority='high'
       className="object-cover object-top flex w-full md:w-[80vw] md:h-[90vh] h-full md:bg-gradient-to-t from-yellow-600 via-yellow-400/20 to-yellow-200/0 md:pt-12 md:rounded-full"
     />
     </div>
@@ -70,9 +71,7 @@ return (
      <Image 
             src={backgroundImage}
             alt="Background image"
-                 fill
-                 priority
-                 fetchPriority="high"
+            fill
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             quality={80}
             loading="lazy"
