@@ -27,7 +27,7 @@ const CardImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => (
       height={200}
       width={200}
       sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 50vw"
-      quality={100}
+      quality={80}
       loading="lazy"
       className="object-cover object-top flex w-full md:w-[80vw] md:h-[90vh] h-full md:bg-gradient-to-t from-yellow-600 via-yellow-400/20 to-yellow-200/0 md:pt-12 md:rounded-full"
     />
@@ -74,7 +74,8 @@ return (
                  priority
                  fetchPriority="high"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            quality={85}
+            quality={80}
+            loading="lazy"
             className="relative object-top object-cover rounded-b-3xl backdrop-blur"
              />
         )}

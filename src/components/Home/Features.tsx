@@ -152,7 +152,7 @@ const features: Feature[] = [
                         src="/images/vacations-all-on-4-dental-implants.webp" 
                         alt="Dental image reference #1" 
                        fill
-                        sizes="4300px"
+                        sizes="600px"
                         quality={80}
                         loading="lazy"
                         className="absolute top-0 right-4 md:top-4 lg:right-20 object-cover rounded-3xl"
