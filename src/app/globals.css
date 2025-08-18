@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -123,4 +122,28 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Non-critical styles (loaded after first paint) */
+
+/* Dark mode scaffolding (if needed later) */
+@custom-variant dark (&:is(.dark *));
+
+/* Minimal animations used above-the-fold */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translate3d(0, 16px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
