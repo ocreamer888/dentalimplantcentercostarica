@@ -1,13 +1,10 @@
-import { motion, Variants } from "framer-motion"
+// Replace framer-motion with CSS animations
+import React from "react"
 import { IBenefitBullet } from "@/types/types"
-import { childVariants } from "./BenefitSection"
 
 const BenefitBullet: React.FC<IBenefitBullet> = ({ title, description, icon }: IBenefitBullet) => {
     return (
-        <motion.div
-            className="flex flex-col items-center mt-8 gap-3 lg:gap-5 lg:flex-row lg:items-start"
-            variants={childVariants as Variants}
-        >
+        <div className="flex flex-col items-center mt-8 gap-3 lg:gap-5 lg:flex-row lg:items-start animate-fade-in-up">
             <div className="flex justify-center mx-auto lg:mx-0 flex-shrink-0 mt-3 w-fit">
                 {icon}
             </div>
@@ -19,7 +16,7 @@ const BenefitBullet: React.FC<IBenefitBullet> = ({ title, description, icon }: I
                     {description}
                 </p>
             </div>
-        </motion.div>
+        </div>
     )
 }
 

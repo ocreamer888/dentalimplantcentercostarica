@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Icon } from '@iconify/react';
+import Image from 'next/image';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,12 +22,19 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
-              <Icon icon="mdi:tooth" className="h-8 w-8 text-purple-200" />
-              <span className="ml-2 md:text-xl font-bold text-white">
-                Dental Implant Center Costa Rica
-              </span>
-            </Link>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/images/logo/dental-implant-center-costa-rica-logo.svg"
+              alt="Dental Implant Center Costa Rica"
+              width={32}
+              height={32}
+              className="h-8 w-8"
+              priority
+            />
+            <span className="ml-2 md:text-xl font-bold text-white">
+              Dental Implant Center Costa Rica
+            </span>
+          </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -61,11 +68,11 @@ export default function Header() {
               aria-controls="mobile-menu"
               className="md:block lg:hidden p-2 rounded-md text-gray-100 hover:text-blue-100 transition-colors"
             >
-              <Icon 
-                icon={isMenuOpen ? "mdi:close" : "mdi:menu"} 
-                className="h-6 w-6" 
-                aria-hidden="true"
-              />
+            {isMenuOpen ? (
+                <Image src="/images/icons/MenuIsOpen.svg" alt="" width={24} height={24} className="h-6 w-6" aria-hidden="true" />
+              ) : (
+                <Image src="/images/icons/MenuIsClosed.svg" alt="" width={24} height={24} className="h-6 w-6" aria-hidden="true" />
+              )}
             </button>
           </div>
         </div>

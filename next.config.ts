@@ -5,22 +5,42 @@ const nextConfig: NextConfig = {
     serverActions: { bodySizeLimit: "10mb" },
     reactCompiler: true,
     optimizeCss: true,
-    // Add CSS optimization
-    optimizePackageImports: ['tailwindcss', 'tw-animate-css'],
+    optimizePackageImports: ['tailwindcss', 'tw-animate-css', 'lucide-react'],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
-  // Add CSS optimization
+  // Optimize webpack for better chunking
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
-      // Optimize CSS extraction
-      config.optimization.splitChunks.cacheGroups.styles = {
-        name: 'styles',
-        test: /\.(css|scss)$/,
+      // Better chunk splitting
+      config.optimization.splitChunks = {
         chunks: 'all',
-        enforce: true,
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+            priority: 10,
+          },
+          framerMotion: {
+            test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+            name: 'framer-motion',
+            chunks: 'all',
+            priority: 20,
+          },
+          common: {
+            name: 'common',
+            minChunks: 2,
+            chunks: 'all',
+            priority: 5,
+          },
+        },
       };
+      
+      // Tree shaking optimization
+      config.optimization.usedExports = true;
+      config.optimization.sideEffects = false;
     }
     return config;
   },
@@ -28,7 +48,7 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [360, 414, 640, 768, 1024, 1280, 1536],
     imageSizes: [16, 24, 32, 48, 64, 96, 128, 160, 192, 200, 230, 256, 320, 348, 384],
-    minimumCacheTTL: 31536000, // 1 year - this actually helps
+    minimumCacheTTL: 31536000,
     remotePatterns: [
       {
         protocol: 'https',
@@ -36,15 +56,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  async redirects() {
-    return [
-      {
-        source: '/old-path',
-        destination: '/new-path',
-        permanent: true,
-      },
-    ];
-  },
+  // Add compression
+  compress: true,
+  poweredByHeader: false,
+  generateEtags: false,
 };
 
 export default nextConfig;
