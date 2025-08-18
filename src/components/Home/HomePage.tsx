@@ -18,7 +18,7 @@ export default function Home() {
       <HeroSecs
         title="Expert All-On 4 Implants from $19,950"
         description="Enjoy a new smile with our All-inclusive packages and a relaxing trip to Costa Rica, all for a fraction of the cost back home."
-        imageSrc="/images/hero/Layer 1.webp"
+        imageSrc="/images/Layer 1.webp"
         imageAlt="Dental Clinic"
         linkHref="#form"
         backgroundImage="/images/hero/DentalOffice1.webp"
