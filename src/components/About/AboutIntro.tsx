@@ -15,7 +15,7 @@ export default function AboutIntro() {
             </h1>
             <div className="w-full lg:w-1/2 gap-4 text-left">
             <p className="text-xl text-balance font-medium text-pretty text-center md:text-left text-gray-900">
-            <span className="font-bold">Our in-house dental laboratory at OG Health Center</span> empowers us to deliver personalized, immediate solutions tailored to each patient&apos;s needs. Supported by an interdisciplinary team of skilled dentists, technicians, and ceramists—chosen for their expertise, precision, and dedication—we simplify treatments, enhance quality of life, and achieve optimal results.
+            <span className="font-bold">Our in-house dental laboratory at OG Dental Center</span> empowers us to deliver personalized, immediate solutions tailored to each patient&apos;s needs. Supported by an interdisciplinary team of skilled dentists, technicians, and ceramists—chosen for their expertise, precision, and dedication—we simplify treatments, enhance quality of life, and achieve optimal results.
             </p>
             </div>
             

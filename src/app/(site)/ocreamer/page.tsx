@@ -1,4 +1,4 @@
-import HeroTest from "@/components/ui/HeroTest";
+import HeroTest from "@/components/ui/HeroSecs";
 
 export default function OcreamerPage() {
   return (

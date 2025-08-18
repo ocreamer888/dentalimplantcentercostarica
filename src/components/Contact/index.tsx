@@ -1,7 +1,7 @@
 'use client'
 import { Metadata } from 'next';
 import ContactForm from '../ui/contactForm';
-import HeroContact from './HeroContact';
+import HeroSecs from '../ui/HeroSecs';
 
 export const metadata: Metadata = {
   title: 'Contact Us - Implant Center Costa Rica',
@@ -11,14 +11,25 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-    <HeroContact />
+     <HeroSecs
+        title="Contact Dental Implant Center Costa Rica"
+        description="We are verifieded dental smile confidence providers. Let's start today!"
+        imageSrc=""
+        imageAlt="Dental Clinic"
+        linkHref="#contact"
+        backgroundImage="/images/all-on-4-dental-vacations.webp"
+        backgroundColor="bg-gradient-to-tl from-purple-400/10 via-purple-500/0 to-purple-900/10"
+        buttonText="Learn More"
+        cardButton="true"
+        className=""
+      />
     <div className="relative flex flex-col gap-4 justify-center items-center bg-gradient-to-br from-purple-100/50 via-purple-500/50 to-purple-900/50 md:px-8 -mt-8 h-auto pt-28 w-full">
 
     <div className="flex flex-col justify-center items-center h-full w-full">
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto">
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div id="contact" className="grid md:grid-cols-2 gap-8">
             {/* Contact Information */}
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <h2 className="text-2xl font-semibold text-purple-900 mb-6">Contact Information</h2>

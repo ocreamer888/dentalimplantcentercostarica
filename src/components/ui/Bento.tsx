@@ -103,8 +103,6 @@ export default function Bento({
                   beforeImage={imageData[0].beforeImage}
                   afterImage={imageData[0].afterImage}
                   className="priority-image"
-                  priority={true}
-                  loading="eager"
                 />
               </div>
             </div>

@@ -17,7 +17,7 @@ export default function Hero2() {
 
 
         return (
-          <section className="relative flex flex-col lg:flex-row h-screen rounded-b-3xl overflow-hidden justify-center lg:justify-start px-4 lg:pl-20 items-center backdrop-blur-2xl z-10 mb-40 md:mb-8">
+          <section className="relative flex flex-col lg:flex-row h-screen rounded-b-3xl overflow-hidden justify-center lg:justify-start items-center backdrop-blur-2xl z-10 mb-40 md:mb-8">
           <Image 
               src="/images/hero/Dental Implants - Doctor Guzman.webp" 
               alt="Dental image reference #1" 
@@ -28,11 +28,12 @@ export default function Hero2() {
               quality={85}  // ✅ Reduced quality for better performance
               className="hidden md:block relative object-top object-cover rounded-b-3xl"
           />
+          
       <Header />
 
 
       {/* Left: Text */}
-      <div className="flex w-full lg:w-1/2 justify-center items-center lg:justify-start lg:items-start">
+      <div className="flex w-full lg:w-1/2 justify-center items-center lg:justify-start lg:items-start lg:pl-20">
       <div className="flex-1 flex flex-col bg-gray-900/80 backdrop-blur rounded-3xl p-4 md:p-8 md:my-8 items-center md:items-start justify-center gap-4">
       <h1 className="text-5xl font-extrabold text-balance text-center md:text-left text-pretty text-white">
       The Smile You Deserve. Expert All-On 4 Implants from 

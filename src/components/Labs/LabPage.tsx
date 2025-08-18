@@ -1,15 +1,25 @@
-import LabsHero from "@/components/Labs/LabsHero";
 import Intro from "@/components/Labs/Intro";
 import DentalLab from "@/components/Labs/DentalLab";
 import LabFeatures from "@/components/Labs/LabFeatures";
+import HeroSecs from "../ui/HeroSecs";
 import VidSection from "./VidSection";
-import { ContactInfo }from "@/components/ui/ContactInfo"
 import EstimateForm from "../ui/EstimateForm";
 import Footer from "../Layout/Footer";
 export default function LabPage() {
   return (
     <section>
-      <LabsHero />
+      <HeroSecs
+        title="Discover Our Dental Laboratory"
+        description="Your Smile will Thank You for Choosing a Quality Dental Laboratory"
+        imageSrc=""
+        imageAlt="Dental Clinic"
+        linkHref="#imp"
+        backgroundImage="/images/labs/dentalimplantcentercostarica-laboratory.webp"
+        backgroundColor="bg-gradient-to-tl from-purple-400/40 via-purple-500/40 to-purple-900/50"
+        buttonText="Learn More"
+        cardButton="true"
+        className=""
+      />
       <DentalLab />
       <Intro />
       <LabFeatures />
@@ -23,7 +33,7 @@ export default function LabPage() {
                         </p>
                     </div>
                     <div className="flex flex-col justify-center items-center w-full gap-4">
-                        <ContactInfo />
+                        
                         <EstimateForm />
                     </div>
                     <Footer />

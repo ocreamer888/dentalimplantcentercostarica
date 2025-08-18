@@ -1,10 +1,11 @@
-import AboutHero from '@/components/About/AboutHero'
 import AboutIntro from '@/components/About/AboutIntro'
 import OurDocs from '@/components/About/OurDocs'
-import { ContactInfo } from '@/components/ui/ContactInfo'
 import { Metadata } from 'next'
 import EstimateForm from '@/components/ui/EstimateForm'
 import Footer from '@/components/Layout/Footer'
+import HeroSecs from '@/components/ui/HeroSecs'
+
+
 
 export const metadata: Metadata = {
   title: 'About Us - Dental Implant Center Costa Rica',
@@ -14,7 +15,18 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-    <AboutHero />
+    <HeroSecs
+        title="Welcome to our world-class dental clinic in Costa Rica!"
+        description="Learn more about us and who we are!"
+        imageSrc=""
+        imageAlt="Dental Clinic"
+        linkHref="#treatments"
+        backgroundImage="/images/hero/DentalPassport7.webp"
+        backgroundColor="bg-gradient-to-tl from-purple-400/0 via-purple-500/0 to-purple-900/50"
+        buttonText="Learn More"
+        cardButton="true"
+        className=""
+      />
     <AboutIntro />
     <OurDocs />
     <div className="bg-gradient-to-tl from-purple-900/50 via-purple-500/50 to-purple-100/50 py-12 -mt-8">
@@ -26,7 +38,6 @@ export default function AboutPage() {
                         </p>
                     </div>
                     <div className="flex flex-col justify-center items-center w-full gap-4">
-                        <ContactInfo />
                         <EstimateForm />
                     </div>
                     <Footer />

@@ -1,9 +1,9 @@
-import TreatmentsHero from '@/components/Treatments/TreatmentsHero'
 import Treatments from '@/components/Treatments/Treatments'
 import { Metadata } from 'next'
 import { ContactInfo }  from '@/components/ui/ContactInfo'
 import EstimateForm from '@/components/ui/EstimateForm'
 import Footer from '@/components/Layout/Footer'
+import HeroSecs from '@/components/ui/HeroSecs'
 
 
 export const metadata: Metadata = {
@@ -14,7 +14,19 @@ export const metadata: Metadata = {
 export default function TreatmentsPage() {
   return (
     <>
-    <TreatmentsHero />
+   
+    <HeroSecs
+        title="Discover Our Dental Treatments"
+        description="We are verifieded dental smile confidence providers. Let's start today!"
+        imageSrc=""
+        imageAlt="Dental Clinic"
+        linkHref="#treatments"
+        backgroundImage="/images/labs/dentalimplantcentercostarica-lab4.webp"
+        backgroundColor="bg-gradient-to-tl from-purple-400/40 via-purple-500/40 to-purple-900/50"
+        buttonText="Learn More"
+        cardButton="true"
+        className=""
+      />
     <Treatments />
       <div className="bg-gradient-to-tl from-purple-900/50 via-purple-500/50 to-purple-100/50 py-12 -mt-8">
                 <div className="lg:px-4">
