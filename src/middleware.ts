@@ -1,62 +1,70 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+// 1. Specify protected and public routes
+const PUBLIC_FILE = /\.(.*)$/;
+
 export function middleware(request: NextRequest) {
-  // Get the user's country from Cloudflare headers or IP geolocation
-  const country = request.headers.get('cf-ipcountry') || 
-                  request.headers.get('x-vercel-ip-country') ||
-                  getCountryFromIP(request.headers.get('x-forwarded-for'));
+  // Clone the request headers so we can modify them
+  const requestHeaders = new Headers(request.headers);
 
-  // Serve different content based on location
-  if (country === 'US') {
-    // US-specific content (insurance, travel from US)
-    console.log('Serving US-specific content');
-    // Add US-specific headers or cookies here
-  } else if (country === 'CA') {
-    // Canadian content (different regulations)
-    console.log('Serving Canadian content');
-    // Add Canadian-specific headers or cookies here
-  } else if (country) {
-    // General international content
-    console.log(`Serving international content for ${country}`);
-    // Add international-specific headers or cookies here
-  } else {
-    // Unknown location - default behavior
-    console.log('Location unknown, serving default content');
+  // Get the user's country from Cloudflare headers, Vercel headers, or a fallback for local dev
+  const country =
+    request.headers.get('cf-ipcountry') ||
+    request.headers.get('x-vercel-ip-country') ||
+    'US'; // Default to 'US' for local development
+
+  // Store the country in the request headers
+  requestHeaders.set('x-country', country);
+
+  // Generate a nonce for Content Security Policy
+  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
+  requestHeaders.set('x-nonce', nonce);
+
+  // Clone the URL to modify it
+  const url = request.nextUrl.clone();
+
+  // Skip middleware for static files
+  if (PUBLIC_FILE.test(url.pathname)) {
+    return NextResponse.next();
   }
 
-  // Add security headers
-  const response = NextResponse.next();
-  
-  // Security headers
-  response.headers.set('X-Frame-Options', 'DENY');
-  response.headers.set('X-Content-Type-Options', 'nosniff');
-  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-  
-  // Cache images aggressively
-  if (request.nextUrl.pathname.match(/\.(jpg|jpeg|png|webp|avif|gif)$/)) {
-    response.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+  // Rewrite the path to include the country code (e.g., /us/about)
+  // This is a common pattern for internationalization.
+  if (!url.pathname.startsWith(`/${country.toLowerCase()}/`) && url.pathname !== '/') {
+     url.pathname = `/${country.toLowerCase()}${url.pathname}`;
   }
-  
-  // Add compression headers
-  response.headers.set('Accept-Encoding', 'gzip, deflate, br');
-  
+
+  // Create the new response with the rewritten URL and updated headers
+  const response = NextResponse.rewrite(url, {
+    request: {
+      headers: requestHeaders,
+    },
+  });
+
+  // Set the Content Security Policy header
+  const cspHeader = `
+    default-src 'self';
+    script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
+    style-src 'self' 'nonce-${nonce}';
+    img-src 'self' blob: data:;
+    font-src 'self';
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self';
+    frame-ancestors 'none';
+    block-all-mixed-content;
+    upgrade-insecure-requests;
+  `;
+
+  response.headers.set(
+    'Content-Security-Policy',
+    cspHeader.replace(/\s{2,}/g, ' ').trim()
+  );
+
   return response;
-}
-
-// Helper function to get country from IP address
-function getCountryFromIP(ip: string | null): string | null {
-  if (!ip) return null;
-  
-  // For local development, allow all traffic
-  if (ip === '127.0.0.1' || ip === '::1' || ip.startsWith('192.168.') || ip.startsWith('10.')) {
-    return 'US';
-  }
-  
-  return null; // Return null to allow traffic if we can't determine country
 }
 
 export const config = {
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };
-
