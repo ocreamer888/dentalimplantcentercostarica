@@ -13,7 +13,7 @@ export default function LabPage() {
         description="Your Smile will Thank You for Choosing a Quality Dental Laboratory"
         imageSrc=""
         imageAlt="Dental Clinic"
-        linkHref="#imp"
+        linkHref="#dental"
         backgroundImage="/images/labs/dentalimplantcentercostarica-laboratory.webp"
         backgroundColor="bg-gradient-to-tl from-purple-400/40 via-purple-500/40 to-purple-900/50"
         buttonText="Learn More"
