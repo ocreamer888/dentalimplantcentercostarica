@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import '../app/(site)/non-critical.css'; // Direct import
+import '../../app/(site)/non-critical.css'; // Correct relative path
 
 export function CSSLoader() {
   useEffect(() => {
