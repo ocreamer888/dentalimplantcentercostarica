@@ -1,7 +1,7 @@
 import AboutIntro from '@/components/About/AboutIntro'
 import OurDocs from '@/components/About/OurDocs'
 import { Metadata } from 'next'
-import EstimateForm from '@/components/ui/EstimateForm'
+import EstimateForm from '@/components/FreeEstimate/EstimateForm'
 import Footer from '@/components/Layout/Footer'
 import HeroSecs from '@/components/ui/HeroSecs'
 

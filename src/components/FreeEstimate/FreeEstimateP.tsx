@@ -1,5 +1,5 @@
 'use client';
-import EstimateForm from "../ui/EstimateForm";
+import EstimateForm from "./EstimateForm";
 import Footer from "../Layout/Footer";
 import HeroSecs from "../ui/HeroSecs";
 

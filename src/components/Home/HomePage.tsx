@@ -7,20 +7,20 @@ import Footer from "@/components/Layout/Footer";
 import HeroSecs from "@/components/ui/HeroSecs";
 import React from "react";
 
-// Only load heavy components when needed with intersection observer
+// Optimize dynamic imports with better loading strategies
 const Bento = dynamic(() => import("@/components/ui/Bento"), {
-  ssr: false,
+  ssr: true, // Enable SSR for better initial paint
   loading: () => <LoadingSkeleton />,
 });
 
 const Pricing = dynamic(() => import("@/components/Home/Pricing"), {
-  ssr: false,
+  ssr: true,
   loading: () => <LoadingSkeleton />,
 });
 
-// Lazy load with intersection observer
+// Lazy load below-the-fold components
 const LazyAllOnFour = dynamic(() => import("@/components/Home/AllOnFour/Index"), {
-  ssr: false,
+  ssr: false, // Keep SSR disabled for heavy components
   loading: () => <LoadingSkeleton />,
 });
 
@@ -34,46 +34,10 @@ const LazyCTA = dynamic(() => import("@/components/Home/CTA"), {
   loading: () => <LoadingSkeleton />,
 });
 
-const LazyEstimateForm = dynamic(() => import("@/components/ui/EstimateForm"), {
+const LazyEstimateForm = dynamic(() => import("@/components/FreeEstimate/EstimateForm"), {
   ssr: false,
   loading: () => <LoadingSkeleton />,
 });
-
-// Intersection Observer wrapper
-const LazyComponent = ({ 
-  component: Component, 
-  ...props 
-}: { 
-  component: React.ComponentType<Record<string, unknown>>; 
-  [key: string]: unknown 
-}) => {
-  const [isVisible, setIsVisible] = React.useState(false);
-  const ref = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div ref={ref}>
-      {isVisible ? <Component {...props} /> : <LoadingSkeleton />}
-    </div>
-  );
-};
 
 export default function Home() {
   return (
@@ -82,20 +46,15 @@ export default function Home() {
         title="Expert All-On 4 Implants from $19,950"
         description="Enjoy a new smile with our All-inclusive packages and a relaxing trip to Costa Rica, all for a fraction of the cost back home."
         imageSrc="/images/Layer 1.webp"
-        imageVisibility={{
-          hideOnMobile: true
-        }}
+        imageVisibility={{hideOnMobile: true}}
         imageAlt="Dental Clinic"
         linkHref="#form"
         backgroundImage="/images/hero/DentalOffice1.webp"
-        backgroundVisibility={{
-          hideOnMobile: true,
-          showOnTablet: true,
-          showOnDesktop: true
-        }}
+        backgroundVisibility={{hideOnMobile: true}}
         backgroundColor="bg-gradient-to-tl from-purple-400/70 via-purple-600/60 to-purple-900/50"
         buttonText="Free Estimate"
         cardButton="true"
+        className="backdrop-blur-sm"
       />
 
       <div className="bg-gradient-to-br from-purple-100/50 via-purple-500/50 to-purple-900/50">
@@ -132,3 +91,39 @@ export default function Home() {
     </>
   );
 }
+
+// Intersection Observer wrapper - moved outside the Home component
+const LazyComponent = ({
+  component: Component,
+  ...props
+}: {
+  component: React.ComponentType<Record<string, unknown>>;
+  [key: string]: unknown;
+}) => {
+  const [isVisible, setIsVisible] = React.useState(false);
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref}>
+      {isVisible ? <Component {...props} /> : <LoadingSkeleton />}
+    </div>
+  );
+};

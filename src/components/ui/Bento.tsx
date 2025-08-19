@@ -24,7 +24,7 @@ const imageData = [
     id: "primary-comparison",
     beforeImage: "/images/dentalimages/ao4-before.webp",
     afterImage: "/images/dentalimages/ao4-completed.webp",
-    priority: true, // First visible image gets priority
+    priority: true, // Only first image gets priority
     alt: {
       before: "Patient's teeth before All-On-4 dental implant treatment",
       after: "Patient's beautiful smile after All-On-4 dental implant completion"

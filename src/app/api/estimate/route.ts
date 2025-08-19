@@ -11,29 +11,39 @@ const EstimateSchema = z.object({
   images: z.array(z.string()).optional(),
 });
 
-// Rate limiting map (in production, use Redis or similar)
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
+const RATE_LIMIT_MAX_REQUESTS = 5;
+
+// In-memory store for rate limiting.
+// In production, use a more persistent store like Redis.
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+
+function checkRateLimit(ip: string): { limited: boolean; status?: number; error?: string } {
+  const now = Date.now();
+  const rateLimit = rateLimitMap.get(ip);
+
+  if (rateLimit && now < rateLimit.resetTime) {
+    if (rateLimit.count >= RATE_LIMIT_MAX_REQUESTS) {
+      return {
+        limited: true,
+        status: 429,
+        error: 'Too many requests. Please try again later.',
+      };
+    }
+    rateLimit.count++;
+  } else {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+  }
+
+  return { limited: false };
+}
 
 export async function POST(request: NextRequest) {
   try {
-    // Rate limiting check - fix IP extraction
-    const forwarded = request.headers.get('x-forwarded-for');
-    const ip = forwarded ? forwarded.split(',')[0] : 'unknown';
-    const now = Date.now();
-    const rateLimit = rateLimitMap.get(ip);
-    
-    if (rateLimit && now < rateLimit.resetTime && rateLimit.count >= 5) {
-      return NextResponse.json(
-        { error: 'Too many requests. Please try again later.' },
-        { status: 429 }
-      );
-    }
-
-    // Reset rate limit if expired
-    if (!rateLimit || now >= rateLimit.resetTime) {
-      rateLimitMap.set(ip, { count: 1, resetTime: now + 60000 }); // 1 minute window
-    } else {
-      rateLimit.count++;
+    const ip = (request.headers.get('x-forwarded-for') ?? '127.0.0.1').split(',')[0];
+    const { limited, status, error: rateLimitError } = checkRateLimit(ip);
+    if (limited) {
+      return NextResponse.json({ error: rateLimitError }, { status });
     }
 
     // Parse and validate request body

@@ -23,12 +23,7 @@ const nextConfig: NextConfig = {
             chunks: 'all',
             priority: 10,
           },
-          framerMotion: {
-            test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
-            name: 'framer-motion',
-            chunks: 'all',
-            priority: 20,
-          },
+          // Remove framer-motion specific chunk since we're replacing it
           common: {
             name: 'common',
             minChunks: 2,
@@ -60,6 +55,8 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   generateEtags: false,
+  // Add performance optimizations
+  swcMinify: true,
 };
 
 export default nextConfig;

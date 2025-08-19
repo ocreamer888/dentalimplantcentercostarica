@@ -1,7 +1,7 @@
 import Treatments from '@/components/Treatments/Treatments'
 import { Metadata } from 'next'
 import { ContactInfo }  from '@/components/ui/ContactInfo'
-import EstimateForm from '@/components/ui/EstimateForm'
+import EstimateForm from '@/components/FreeEstimate/EstimateForm'
 import Footer from '@/components/Layout/Footer'
 import HeroSecs from '@/components/ui/HeroSecs'
 
@@ -25,7 +25,7 @@ export default function TreatmentsPage() {
         backgroundColor="bg-gradient-to-tl from-purple-400/40 via-purple-500/40 to-purple-900/50"
         buttonText="Learn More"
         cardButton="true"
-        className=""
+        className="backdrop-blur-sm"
       />
     <Treatments />
       <div className="bg-gradient-to-tl from-purple-900/50 via-purple-500/50 to-purple-100/50 py-12 -mt-8">

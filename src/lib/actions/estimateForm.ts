@@ -1,7 +1,9 @@
 // src/lib/actions/estimateForm.ts
 'use server'
 
-import { getSupabaseClient } from '@/lib/supabaseClient'
+import { EstimateFormSchema } from '@/lib/schemas';
+import { getSupabaseClient } from '@/lib/supabaseClient';
+import { revalidatePath } from 'next/cache';
 
 // Test function to check Supabase connection
 export async function testSupabaseConnection() {
@@ -26,50 +28,118 @@ export async function testSupabaseConnection() {
   }
 }
 
-export async function submitEstimate(formData: {
-  name: string
-  email: string
-  phone: string
-  country?: string
-  treatment: string
-  message?: string
-  preferredContact: string
-  visitDate?: string
-  images?: Array<{name: string, url: string, size: number}>
-}) {
+export async function submitEstimate(
+  prevState: any,
+  formData: FormData
+) {
+  const supabase = getSupabaseClient();
+
   try {
-    const supabase = getSupabaseClient()
-    
-    // Check if environment variables are properly set
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-      console.error('Missing Supabase environment variables')
-      return { success: false, message: 'Server configuration error' }
+    // Extract text fields
+    const validatedFields = EstimateFormSchema.safeParse({
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      country: formData.get('country'),
+      treatment: formData.get('treatment'),
+      message: formData.get('message'),
+      preferredContact: formData.get('preferredContact'),
+      visitDate: formData.get('visitDate'),
+    });
+
+    if (!validatedFields.success) {
+      return {
+        errors: validatedFields.error.flatten().fieldErrors,
+        message: 'Validation failed. Please check the fields.',
+        success: false,
+      };
     }
 
+    const { data: validatedData } = validatedFields;
+
+    // Handle image uploads
+    const imageCount = parseInt(formData.get('imageCount') as string) || 0;
+    const uploadedImageUrls: string[] = [];
+
+    if (imageCount > 0) {
+      for (let i = 0; i < imageCount; i++) {
+        const imageFile = formData.get(`image-${i}`) as File;
+        
+        if (imageFile && imageFile.size > 0) {
+          try {
+            // Generate unique filename
+            const fileExt = imageFile.name.split('.').pop();
+            const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+            
+            // Upload to Supabase Storage
+            const { data: uploadData, error: uploadError } = await supabase.storage
+              .from('estimate-images')
+              .upload(fileName, imageFile, {
+                cacheControl: '3600',
+                upsert: false
+              });
+
+            if (uploadError) {
+              console.error('Image upload error:', uploadError);
+              return { 
+                success: false, 
+                message: `Failed to upload image: ${uploadError.message}`, 
+                errors: {} 
+              };
+            }
+
+            // Get public URL
+            const { data: urlData } = supabase.storage
+              .from('estimate-images')
+              .getPublicUrl(fileName);
+
+            uploadedImageUrls.push(urlData.publicUrl);
+          } catch (uploadError) {
+            console.error('Image upload error:', uploadError);
+            return { 
+              success: false, 
+              message: 'Failed to upload one or more images', 
+              errors: {} 
+            };
+          }
+        }
+      }
+    }
+
+    // Save to database with image URLs
     const { data, error } = await supabase
       .from('estimate_requests')
-      .insert([{
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        country: formData.country || null,
-        treatment: formData.treatment,
-        visit_date: formData.visitDate || null,
-        preferred_contact: formData.preferredContact,
-        images: formData.images || [],
-        message: formData.message || null,
-        status: 'pending'
+      .insert([{ 
+        ...validatedData, 
+        visit_date: validatedData.visitDate, 
+        preferred_contact: validatedData.preferredContact,
+        image_urls: uploadedImageUrls.length > 0 ? uploadedImageUrls : null
       }])
-      .select()
+      .select();
 
     if (error) {
-      console.error('Supabase error:', error)
-      return { success: false, message: `Database error: ${error.message}` }
+      console.error('Supabase error:', error);
+      return { 
+        success: false, 
+        message: `Database error: Could not save the estimate.`, 
+        errors: {} 
+      };
     }
 
-    return { success: true, data }
+    // Revalidate the page to show updated data
+    revalidatePath('/free-estimate');
+
+    return { 
+      success: true, 
+      message: 'Estimate request submitted successfully!', 
+      errors: {} 
+    };
   } catch (error) {
-    console.error('Unexpected error in submitEstimate:', error)
-    return { success: false, message: 'Unexpected error occurred' }
+    console.error('Unexpected error in submitEstimate:', error);
+    return { 
+      success: false, 
+      message: 'An unexpected server error occurred.', 
+      errors: {} 
+    };
   }
 }

@@ -31,4 +31,6 @@ module.exports = {
     preflight: true,
     container: false,
   },
+  // Add JIT mode for better performance
+  mode: 'jit',
 };

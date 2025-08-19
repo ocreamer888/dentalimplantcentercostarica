@@ -3,7 +3,7 @@ import DentalLab from "@/components/Labs/DentalLab";
 import LabFeatures from "@/components/Labs/LabFeatures";
 import HeroSecs from "../ui/HeroSecs";
 import VidSection from "./VidSection";
-import EstimateForm from "../ui/EstimateForm";
+import EstimateForm from "../FreeEstimate/EstimateForm";
 import Footer from "../Layout/Footer";
 export default function LabPage() {
   return (
