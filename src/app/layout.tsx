@@ -6,16 +6,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-        {/* Critical CSS preload - CORRECT path */}
-        <link rel="preload" href="/_next/static/css/app/globals.css" as="style" />
-        
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         
-        {/* Critical CSS inline */}
+        {/* Critical CSS inline - keep this */}
         <style dangerouslySetInnerHTML={{
           __html: `
             /* Critical above-the-fold styles */
