@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 // A list of all supported country codes on the site.
-const SUPPORTED_COUNTRIES = ['us', 'ca']; // Add more countries as you support them
+const SUPPORTED_COUNTRIES = ['us', 'ca', 'uk', 'cr']; // Add more countries as you support them
 
 // 1. Specify protected and public routes
 const PUBLIC_FILE = /\.(.*)$/;
