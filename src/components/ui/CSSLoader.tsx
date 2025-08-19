@@ -1,18 +1,12 @@
 'use client';
 
 import { useEffect } from 'react';
+import '../app/(site)/non-critical.css'; // Direct import
 
 export function CSSLoader() {
   useEffect(() => {
-    // Load non-critical CSS after page load
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = '/non-critical.css';
-    link.media = 'print';
-    link.onload = () => {
-      link.media = 'all';
-    };
-    document.head.appendChild(link);
+    // CSS is now loaded via import, no need for dynamic loading
+    // You can remove the dynamic link creation code
   }, []);
 
   return null;
