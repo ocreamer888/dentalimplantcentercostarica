@@ -56,7 +56,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   generateEtags: false,
   // Add performance optimizations
-  swcMinify: true,
+  // swcMinify: true, // Removed - SWC minification is now default in Next.js 15+
 };
 
 export default nextConfig;
