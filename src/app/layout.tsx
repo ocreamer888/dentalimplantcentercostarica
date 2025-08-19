@@ -6,7 +6,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-        {/* Removed invalid CSS preload that was causing 404 error */}
+        {/* Critical CSS preload */}
+        <link rel="preload" href="/_next/static/css/app/layout.css" as="style" />
         
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
