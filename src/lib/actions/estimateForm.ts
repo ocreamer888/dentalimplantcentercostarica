@@ -1,7 +1,7 @@
 // src/lib/actions/estimateForm.ts
 'use server'
 
-import { EstimateFormSchema } from '@/lib/schemas';
+import { EstimateFormSchema, EstimateFormState } from '@/lib/schemas';
 import { getSupabaseClient } from '@/lib/supabaseClient';
 import { revalidatePath } from 'next/cache';
 
@@ -29,7 +29,7 @@ export async function testSupabaseConnection() {
 }
 
 export async function submitEstimate(
-  prevState: any,
+  prevState: EstimateFormState,
   formData: FormData
 ) {
   const supabase = getSupabaseClient();
@@ -72,7 +72,7 @@ export async function submitEstimate(
             const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
             
             // Upload to Supabase Storage
-            const { data: uploadData, error: uploadError } = await supabase.storage
+            const { error: uploadError } = await supabase.storage
               .from('estimate-images')
               .upload(fileName, imageFile, {
                 cacheControl: '3600',
@@ -107,7 +107,7 @@ export async function submitEstimate(
     }
 
     // Save to database with image URLs
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('estimate_requests')
       .insert([{ 
         ...validatedData, 

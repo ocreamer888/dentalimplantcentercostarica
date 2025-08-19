@@ -1,6 +1,5 @@
 'use client';
 import React, { useRef, useState } from 'react';
-import Image from 'next/image';
 
 type ImageFile = {
   id: number;
@@ -25,35 +24,25 @@ export const ImageUpload = ({
   maxFileSize = 10 * 1024 * 1024,
   allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
 }: ImageUploadProps) => {
-  const [error, setError] = useState('');
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const addFiles = (files: File[]) => {
     if (images.length + files.length > maxImages) {
-      setError(`Max ${maxImages} permitted images.`);
       return;
     }
 
     const validFiles: File[] = [];
-    const errors: string[] = [];
 
     files.forEach(file => {
       if (!allowedTypes.includes(file.type)) {
-        errors.push(`${file.name}: Not valid format. Use JPG, PNG or WebP`);
         return;
       }
       if (file.size > maxFileSize) {
-        errors.push(`${file.name}: File is too large. Maximum 10MB`);
         return;
       }
       validFiles.push(file);
     });
-
-    if (errors.length > 0) {
-      setError(errors.join('. '));
-      return;
-    }
 
     validFiles.forEach(file => {
       const reader = new FileReader();
@@ -69,20 +58,6 @@ export const ImageUpload = ({
       };
       reader.readAsDataURL(file);
     });
-
-    setError('');
-  };
-
-  const removeImage = (imageId: number) => {
-    onImagesChange(images.filter(img => img.id !== imageId));
-  };
-
-  const formatFileSize = (bytes: number) => {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {

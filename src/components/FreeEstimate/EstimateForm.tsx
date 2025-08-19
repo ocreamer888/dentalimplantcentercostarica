@@ -51,7 +51,7 @@ const EstimateForm = () => {
       formData.append(`image-${index}`, image.file);
     });
     formData.append('imageCount', images.length.toString());
-    await submitEstimate(state, formData);
+    await dispatch(formData);
   };
 
   useEffect(() => {

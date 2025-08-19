@@ -1,7 +1,5 @@
 import { z } from 'zod';
 
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
-const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg'];
 
 export const EstimateFormSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters long.' }).max(100),

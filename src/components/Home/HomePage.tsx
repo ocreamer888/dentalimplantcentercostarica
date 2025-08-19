@@ -18,11 +18,7 @@ const Pricing = dynamic(() => import("@/components/Home/Pricing"), {
   loading: () => <LoadingSkeleton />,
 });
 
-// Lazy load below-the-fold components
-const LazyAllOnFour = dynamic(() => import("@/components/Home/AllOnFour/Index"), {
-  ssr: false, // Keep SSR disabled for heavy components
-  loading: () => <LoadingSkeleton />,
-});
+
 
 const LazyTestimonials = dynamic(() => import("@/components/Home/Testimonials"), {
   ssr: false,
@@ -66,10 +62,6 @@ export default function Home() {
       </div>
 
       <Pricing/>
-
-      <div className="bg-gradient-to-tr from-purple-100/50 via-purple-500/50 to-purple-900/50">
-        <LazyComponent component={LazyAllOnFour}/>
-      </div>
 
       <LazyComponent component={LazyTestimonials}/>
       <LazyComponent component={LazyCTA}/>
