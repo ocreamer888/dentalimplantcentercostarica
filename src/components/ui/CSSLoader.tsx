@@ -7,7 +7,7 @@ export function CSSLoader() {
     // Load non-critical CSS after page load
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = '/non-critical.css';
+    link.href = '/(site)/non-critical.css'; // Fixed path to match the actual file location
     link.media = 'print';
     link.onload = () => {
       link.media = 'all';

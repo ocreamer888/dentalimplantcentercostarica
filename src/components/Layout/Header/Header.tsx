@@ -25,7 +25,7 @@ export default function Header() {
           <Link href="/" className="flex items-center">
             <Image
               src="/images/logo/dental-implant-center-costa-rica-logo.svg"
-              alt="Dental Implant Center Costa Rica"
+              alt="Dental Implant Center Costa Rica Logo"
               width={32}
               height={32}
               className="h-8 w-8"
