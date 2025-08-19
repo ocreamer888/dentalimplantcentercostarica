@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Conditional source maps based on environment
+  productionBrowserSourceMaps: process.env.ENABLE_SOURCE_MAPS === 'true',
+  
   experimental: {
     serverActions: { bodySizeLimit: "10mb" },
     reactCompiler: true,
@@ -13,6 +16,9 @@ const nextConfig: NextConfig = {
   // Optimize webpack for better chunking
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
+      // Generate source maps but don't expose them publicly
+      config.devtool = 'hidden-source-map';
+      
       // Better chunk splitting
       config.optimization.splitChunks = {
         chunks: 'all',
