@@ -63,6 +63,34 @@ const nextConfig: NextConfig = {
   generateEtags: false,
   // Add performance optimizations
   // swcMinify: true, // Removed - SWC minification is now default in Next.js 15+
+  
+  // Add this to reduce SSL warnings
+  assetPrefix: process.env.NODE_ENV === 'development' ? '' : undefined,
+
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              "font-src 'self' https://fonts.gstatic.com",
+              "img-src 'self' data: https: blob:",
+              "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com",
+              "frame-src 'self'",
+              "object-src 'none'",
+              "base-uri 'self'",
+              "form-action 'self'"
+            ].join('; ')
+          }
+        ]
+      }
+    ];
+  },
 };
 
 export default nextConfig;

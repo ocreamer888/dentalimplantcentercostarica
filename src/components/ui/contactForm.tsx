@@ -109,32 +109,34 @@ const ContactForm: React.FC = () => {
 
                   <div className="flex flex-col gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-900 mb-2">
+                      <label htmlFor="contact-name" className="block text-sm font-medium text-gray-900 mb-2">
                         Full Name *
                       </label>
                       <input
-                        id="name"
+                        id="contact-name"
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
                         required
+                        autoComplete="name"
                         className="w-full px-4 py-3 border border-gray-500 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Your full name"
                       />
                     </div>
                     
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-900 mb-2">
+                      <label htmlFor="contact-email" className="block text-sm font-medium text-gray-900 mb-2">
                         Email
                       </label>
                       <input
-                        id="email"
+                        id="contact-email"
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
                         required
+                        autoComplete="email"
                         className="w-full px-4 py-3 border border-gray-500 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="your.email@example.com"
                       />
@@ -143,16 +145,17 @@ const ContactForm: React.FC = () => {
 
                   <div className="flex flex-col gap-6">
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-900 mb-2">
+                      <label htmlFor="contact-subject" className="block text-sm font-medium text-gray-900 mb-2">
                         Subject
                       </label>
                       <input
-                        id="subject"
+                        id="contact-subject"
                         type="text"
                         name="subject"
                         value={formData.subject}
                         onChange={handleInputChange}
                         required
+                        autoComplete="off"
                         className="w-full px-4 py-3 border border-gray-500 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Subject"
                       />
@@ -160,15 +163,16 @@ const ContactForm: React.FC = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-900 mb-2">
+                    <label htmlFor="contact-message" className="block text-sm font-medium text-gray-900 mb-2">
                       Additional Message
                     </label>
                     <textarea
-                      id="message"
+                      id="contact-message"
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={4}
+                      autoComplete="off"
                       className="w-full px-4 py-3 border border-gray-500 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Describe your current dental situation, symptoms, or any specific questions..."
                     />

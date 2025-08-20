@@ -98,7 +98,7 @@ const EstimateForm = () => {
                   <FormFields state={state} treatmentOptions={treatmentOptions} contactMethodOptions={contactMethodOptions} />
 
                   <FormTextarea
-                    id="message"
+                    id="additionalMessage"
                     name="message"
                     label="Additional Message"
                     rows={4}

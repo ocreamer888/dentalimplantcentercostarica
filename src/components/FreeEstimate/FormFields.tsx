@@ -82,7 +82,7 @@ export const FormFields = ({ state, treatmentOptions, contactMethodOptions }: Fo
     </div>
 
     <FormTextarea
-      id="message"
+      id="additionalMessage"
       name="message"
       label="Additional Message"
       rows={4}

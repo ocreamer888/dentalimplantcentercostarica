@@ -7,11 +7,22 @@ type FormTextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   name: string;
   label: string;
   errors?: string[];
+  autocomplete?: string;
 };
 
 export const FormTextarea = React.forwardRef<HTMLTextAreaElement, FormTextareaProps>(
-  ({ id, name, label, errors, required, ...props }, ref) => {
+  ({ id, name, label, errors, required, autocomplete, ...props }, ref) => {
     const errorId = errors ? `${id}-error` : undefined;
+    
+    // Auto-generate autocomplete value based on field name if not provided
+    const getAutocompleteValue = () => {
+      if (autocomplete) return autocomplete;
+      
+      const nameLower = name.toLowerCase();
+      if (nameLower.includes('message')) return 'off';
+      return 'off';
+    };
+
     return (
       <div>
         <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-2">
@@ -22,6 +33,7 @@ export const FormTextarea = React.forwardRef<HTMLTextAreaElement, FormTextareaPr
           name={name}
           ref={ref}
           required={required}
+          autoComplete={getAutocompleteValue()}
           className="w-full px-4 py-3 border border-gray-400 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           aria-describedby={errorId}
           {...props}

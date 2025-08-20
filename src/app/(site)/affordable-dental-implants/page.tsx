@@ -1,35 +1,42 @@
-import AboutIntro from '@/components/About/AboutIntro'
-import OurDocs from '@/components/About/OurDocs'
+import Treatments from '@/components/Treatments/Treatments'
 import { Metadata } from 'next'
+import { ContactInfo }  from '@/components/ui/ContactInfo'
 import EstimateForm from '@/components/FreeEstimate/EstimateForm'
 import Footer from '@/components/Layout/Footer'
 import HeroSecs from '@/components/ui/HeroSecs'
 
 
-
 export const metadata: Metadata = {
-  title: 'About Us - Dental Implant Center Costa Rica',
-  description: 'Discover who we are and what we do at Dental Implant Center Costa Rica',
+  title: 'Affordable Dental Implants - Save 70% | All-Inclusive Pricing',
+  description: 'Get affordable dental implants starting at $19,950. All-On-4 and All-On-6 procedures with transparent pricing. Free consultation and financing available.',
+  keywords: [
+    'affordable dental implants',
+    'cheap dental implants',
+    'dental implants cost',
+    'all on 4 implants',
+    'full mouth dental implants',
+    'dental implant prices'
+  ]
 }
 
-export default function AboutPage() {
+export default function TreatmentsPage() {
   return (
     <>
+   
     <HeroSecs
-        title="Welcome to our world-class dental clinic in Costa Rica!"
-        description="Learn more about us and who we are!"
+        title="Discover Our Dental Treatments"
+        description="We are verifieded dental smile confidence providers. Let's start today!"
         imageSrc=""
         imageAlt="Dental Clinic"
         linkHref="#treatments"
-        backgroundImage="/images/hero/DentalPassport7.webp"
-        backgroundColor="bg-gradient-to-tl from-purple-400/0 via-purple-500/0 to-purple-900/50"
+        backgroundImage="/images/labs/dentalimplantcentercostarica-lab4.webp"
+        backgroundColor="bg-gradient-to-tl from-purple-400/40 via-purple-500/40 to-purple-900/50"
         buttonText="Learn More"
         cardButton="true"
-        className=""
+        className="backdrop-blur-sm"
       />
-    <AboutIntro />
-    <OurDocs />
-    <div className="bg-gradient-to-tl from-purple-900/50 via-purple-500/50 to-purple-100/50 py-12 -mt-8">
+    <Treatments />
+      <div className="bg-gradient-to-tl from-purple-900/50 via-purple-500/50 to-purple-100/50 py-12 -mt-8">
                 <div className="lg:px-4">
                     <div className="text-center py-12">
                         <h2 className="text-6xl font-bold text-gray-100 mb-4">Fill the form to get a free estimate</h2>
@@ -38,11 +45,13 @@ export default function AboutPage() {
                         </p>
                     </div>
                     <div className="flex flex-col justify-center items-center w-full gap-4">
+                        <ContactInfo />
                         <EstimateForm />
                     </div>
                     <Footer />
                 </div>
-      </div>
+                </div>
+       
     </>
   )
 }

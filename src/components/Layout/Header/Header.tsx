@@ -9,10 +9,10 @@ export default function Header() {
 
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Treatments', href: '/treatments' },
-    { name: 'Our Labs', href: '/labs' },
-    { name: 'Free Estimate', href: '/free-estimate' },
+    { name: 'About', href: '/dental-implant-costs' },
+    { name: 'Treatments', href: '/affordable-dental-implants' },
+    { name: 'Our Labs', href: '/dental-implant-financing' },
+    { name: 'Free Estimate', href: '/dental-implant-free-estimate' },
   ];
 
   return (
@@ -54,7 +54,7 @@ export default function Header() {
           <div className="flex items-center space-x-4">
             {/* Contact Button */}
             <Link
-              href="/contact"
+              href="/dental-implant-consultation"
               className="hidden sm:inline-flex items-center px-8 py-2 text-sm font-medium rounded-full text-white bg-purple-700 hover:bg-purple-600 transition-colors"
             >
               Contact Us
@@ -92,7 +92,7 @@ export default function Header() {
                 </Link>
               ))}
               <Link
-                href="/contact"
+                href="/dental-implant-consultation"
                 className="text-blue-600 hover:text-blue-700 block px-3 py-2 text-base font-medium transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >

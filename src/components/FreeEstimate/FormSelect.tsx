@@ -14,11 +14,22 @@ type FormSelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
   options: SelectOption[];
   errors?: string[];
   placeholder?: string;
+  autocomplete?: string;
 };
 
 export const FormSelect = React.forwardRef<HTMLSelectElement, FormSelectProps>(
-  ({ id, name, label, options, errors, required, placeholder, ...props }, ref) => {
+  ({ id, name, label, options, errors, required, placeholder, autocomplete, ...props }, ref) => {
     const errorId = errors ? `${id}-error` : undefined;
+
+    // Auto-generate autocomplete value based on field name if not provided
+    const getAutocompleteValue = () => {
+      if (autocomplete) return autocomplete;
+      
+      const nameLower = name.toLowerCase();
+      if (nameLower.includes('treatment')) return 'off';
+      if (nameLower.includes('contact') || nameLower.includes('preferred')) return 'off';
+      return 'off';
+    };
 
     return (
       <div>
@@ -30,6 +41,7 @@ export const FormSelect = React.forwardRef<HTMLSelectElement, FormSelectProps>(
           name={name}
           ref={ref}
           required={required}
+          autoComplete={getAutocompleteValue()}
           className="w-full px-4 py-3 border border-gray-400 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           aria-describedby={errorId}
           {...props}

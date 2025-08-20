@@ -1,5 +1,4 @@
 "use client";
-
 import dynamic from "next/dynamic";
 import LoadingSkeleton from "@/components/ui/LoadingSkeleton";
 import Features from "@/components/Home/Features";
@@ -17,8 +16,6 @@ const Pricing = dynamic(() => import("@/components/Home/Pricing"), {
   ssr: true,
   loading: () => <LoadingSkeleton />,
 });
-
-
 
 const LazyTestimonials = dynamic(() => import("@/components/Home/Testimonials"), {
   ssr: false,
