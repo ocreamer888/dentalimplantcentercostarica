@@ -23,8 +23,7 @@ export default function LabPage() {
       <DentalLab />
       <Intro />
       <LabFeatures />
-      <VidSection /> 
-     <div className="bg-gradient-to-tl from-purple-900/50 via-purple-500/50 to-purple-100/50 py-12 -mt-8">
+     <div className="bg-gradient-to-tl from-purple-900/50 via-purple-500/50 to-purple-100/50 py-12">
                 <div className="lg:px-4">
                     <div className="text-center py-12">
                         <h2 className="text-6xl font-bold text-gray-100 mb-4">Fill the form to get a free estimate</h2>

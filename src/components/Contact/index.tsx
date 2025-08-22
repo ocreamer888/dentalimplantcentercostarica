@@ -27,10 +27,10 @@ export default function ContactPage() {
     <div className="relative flex flex-col gap-4 justify-center items-center bg-gradient-to-br from-purple-100/50 via-purple-500/50 to-purple-900/50 md:px-8 -mt-8 h-auto pt-28 w-full">
 
     <div className="flex flex-col justify-center items-center h-full w-full">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
 
-          <div id="contact" className="grid md:grid-cols-2 gap-8">
+          <div id="contact" className="grid lg:grid-cols-2 gap-4">
             {/* Contact Information */}
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <h2 className="text-2xl font-semibold text-purple-900 mb-6">Contact Information</h2>

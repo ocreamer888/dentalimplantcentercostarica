@@ -6,10 +6,10 @@ export default function LabFeatures() {
 
     return (
         
-        <div className="flex flex-col md:flex-row gap-4 p-20 -mt-8 h-screen bg-white">
+        <div className="flex flex-col lg:flex-row gap-4 pt-20 py-12 bg-white px-4 lg:p-20 -mt-8 h-[80vh] bg-white z-40">
             <div className="relative flex flex-col justify-end items-start text-white p-4 rounded-3xl flex-1 overflow-hidden bg-gradient-to-tr from-purple-500/70 via-purple-500/80 to-purple-600/80 backdrop-blur-2xl">
             <Image 
-                        src="/images/DentalPassport2.webp" 
+                        src="/images/labs/dental-implant-center-costa-rica-laboratory-1.webp" 
                         alt="Dental image reference #1" 
                         fill
                         sizes="200px"
@@ -29,11 +29,11 @@ export default function LabFeatures() {
                 </div>
                 <div className="relative flex flex-col justify-end items-start text-white p-4 rounded-3xl flex-1 overflow-hidden bg-gradient-to-tr from-purple-500/70 via-purple-500/80 to-purple-600/80 backdrop-blur-2xl">
             <Image 
-                        src="/images/DentalPassport2.webp" 
+                        src="/images/labs/dental-implant-center-costa-rica-laboratory-1.webp" 
                         alt="Dental image reference #1" 
                         fill
-                        sizes="200px"
-                        quality={60}
+                        sizes="800px"
+                        quality={100}
                         loading="lazy"
                         className="object-cover rounded-3xl -z-10"
                     />
@@ -49,11 +49,11 @@ export default function LabFeatures() {
                 </div>
                 <div className="relative flex flex-col justify-end items-start text-white p-4 rounded-3xl flex-1 overflow-hidden bg-gradient-to-tr from-purple-500/70 via-purple-500/80 to-purple-600/80 backdrop-blur-2xl">
             <Image 
-                        src="/images/DentalPassport2.webp" 
+                        src="/images/labs/dental-implant-center-costa-rica-laboratory-1.webp" 
                         alt="Dental image reference #1" 
                         fill
-                        sizes="200px"
-                        quality={60}
+                        sizes="800px"
+                        quality={100}
                         loading="lazy"
                         className="object-cover rounded-3xl -z-10"
                     />
