@@ -28,7 +28,7 @@ const ContactForm: React.FC = () => {
 
     // Basic validation
     if (!formData.name || !formData.email || !formData.subject) {
-      setError('Por favor complete todos los campos requeridos.');
+      setError('Please fill in all required fields.');
       setIsSubmitting(false);
       return;
     }
@@ -47,7 +47,7 @@ const ContactForm: React.FC = () => {
       }
     } catch (err) {
       console.error('Error submitting form:', err);
-      setError('Hubo un error al enviar su solicitud. Por favor intente nuevamente.');
+      setError('There was an error submitting your request. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
