@@ -56,7 +56,7 @@ export default function ContactPage() {
                   <span className="text-purple-600 mt-1 mr-3">📞</span>
                   <div>
                     <p className="font-medium text-gray-800">Phone</p>
-                    <p className="text-gray-600">+1 (809) 829-0000</p>
+                    <p className="text-gray-600">+1 (702) 595-3955</p>
                   </div>
                 </div>
                 
