@@ -134,8 +134,8 @@ const CardContent: React.FC<{
   const visibilityClasses = visibility ? getResponsiveVisibilityClasses(visibility) : '';
   
   return (
-    <div className={`absolute md:relative z-10 rounded-3xl w-full h-auto flex flex-col text-balance justify-start items-center md:items-start pt-40 md:pt-0 md:pb-0 gap-4 md:pl-16 lg:pl-24 ${visibilityClasses}`}>
-      <h2 id="card-title" className="text-center md:text-start text-balance font-semibold text-4xl lg:text-7xl">{title}</h2>
+    <div className={`absolute md:relative z-10 rounded-3xl w-full h-auto flex flex-col text-balance justify-start items-center md:items-start gap-4 md:pl-16 lg:pl-24 ${visibilityClasses}`}>
+      <h2 id="card-title" className="text-center md:text-start text-balance font-semibold text-4xl md:text-7xl px-2 md:px-0">{title}</h2>
       <p className="text-xl text-center md:text-start">{description}</p>
       <a href={linkHref} className="hidden md:block relative bg-purple-100 cursor-pointer hover:bg-purple-200 text-purple-900 font-bold px-8 py-4 rounded-full">{buttonText}</a>
     </div>
@@ -157,8 +157,8 @@ const CardButton: React.FC<{
   const visibilityClasses = visibility ? getResponsiveVisibilityClasses(visibility) : '';
   
   return (
-    <div className={`absolute md:relative z-10 rounded-3xl w-full h-auto flex flex-col text-balance justify-end items-center md:items-start px-8 pb-8 ${visibilityClasses}`}>
-      <a href={linkHref} className="md:hidden bg-purple-100 hover:bg-purple-200 text-purple-900 font-bold px-28 py-2 rounded-full">{buttonText}</a>
+    <div className={`absolute md:relative z-10 w-full h-auto flex flex-col text-balance justify-end items-center md:items-start px-8 pb-8 ${visibilityClasses}`}>
+      <a href={linkHref} className="md:hidden bg-yellow-500 hover:bg-purple-200 text-purple-900 uppercase font-bold px-6 py-4 rounded-full">{buttonText}</a>
     </div>
   );
 };

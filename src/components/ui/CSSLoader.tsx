@@ -1,12 +1,11 @@
 'use client';
 
 import { useEffect } from 'react';
-import '../../app/(site)/non-critical.css'; // Correct relative path
 
 export function CSSLoader() {
   useEffect(() => {
-    // CSS is now loaded via import, no need for dynamic loading
-    // You can remove the dynamic link creation code
+    // CSS is now handled by Next.js 15's built-in CSS bundling
+    // No need for manual CSS loading
   }, []);
 
   return null;

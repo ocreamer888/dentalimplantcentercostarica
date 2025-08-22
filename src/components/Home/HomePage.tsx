@@ -5,6 +5,7 @@ import Features from "@/components/Home/Features";
 import Footer from "@/components/Layout/Footer";
 import HeroSecs from "@/components/ui/HeroSecs";
 import React from "react";
+import LogoRow from "../ui/LogoRow";
 
 // Optimize dynamic imports with better loading strategies
 const Bento = dynamic(() => import("@/components/ui/Bento"), {
@@ -36,7 +37,7 @@ export default function Home() {
   return (
     <>
       <HeroSecs
-        title="Expert All-On 4 Implants from $19,950"
+        title="Expert All-On 4 Zirconia Dental Implants - $19,950"
         description="Enjoy a new smile with our All-inclusive packages and a relaxing trip to Costa Rica, all for a fraction of the cost back home."
         imageSrc="/images/Layer 1.webp"
         imageVisibility={{hideOnMobile: true}}
@@ -44,12 +45,14 @@ export default function Home() {
         linkHref="#form"
         backgroundImage="/images/hero/DentalOffice1.webp"
         backgroundVisibility={{hideOnMobile: true}}
-        backgroundColor="bg-gradient-to-tl from-purple-400/70 via-purple-600/60 to-purple-900/50"
+        backgroundColor="bg-gradient-to-tl from-purple-900/90 via-purple-400/90 to-purple-400/80 md:bg-gradient-to-tl from-purple-300/90 via-purple-500/50 to-purple-400/80"
         buttonText="Free Estimate"
         cardButton="true"
         className="backdrop-blur-sm"
       />
-
+      <div className="bg-gradient-to-tr from-purple-100/50 via-purple-500/50 to-purple-900/50">
+      <LogoRow/>
+      </div>
       <div className="bg-gradient-to-br from-purple-100/50 via-purple-500/50 to-purple-900/50">
         <Features/>
       </div>
@@ -63,9 +66,9 @@ export default function Home() {
       <LazyComponent component={LazyTestimonials}/>
       <LazyComponent component={LazyCTA}/>
 
-      <div className="bg-gradient-to-tl from-purple-900/50 via-purple-500/50 to-purple-100/50 py-12">
+      <div className="bg-gradient-to-tr from-purple-900/50 via-purple-500/50 to-purple-100/50 py-12">
         <div className="lg:px-4">
-          <div id="form" className="text-center py-12">
+          <div id="form" className="text-center px-4 py-12">
             <h2 className="text-6xl font-bold text-gray-100 mb-4">Fill the form to get a free estimate</h2>
             <p className="text-xl text-balance text-gray-100 max-w-3xl mx-auto">
               Get a personalized evaluation of our state-of-the-art dental treatments. Our team of specialists will provide you with a detailed and transparent treatment plan.

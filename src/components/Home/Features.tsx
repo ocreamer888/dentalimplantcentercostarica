@@ -1,7 +1,5 @@
 import React from "react";
 import { Clock, Users, Award } from "lucide-react";
-import Container from "@/components/ui/Container";
-import SectionTitle from "@/components/SectionTitle";
 import Image from "next/image";
 
 interface Feature {
@@ -39,28 +37,24 @@ const features: Feature[] = [
 
   
   return (
-    <section className="pt-24 -mt-12">
-      
-      <Container>
-        <div className="text-center mb-16">
-          <SectionTitle>
-            <h2>Why Choose Dental Implant Center Costa Rica</h2>
-          </SectionTitle>
-          <p className="mt-6 text-xl text-gray-100 max-w-3xl mx-auto">
+    <section className="flex flex-col justify-center items-center pt-24">
+      <div className="flex flex-col justify-center items-center p-4 md:p-8 lg:p-12 lg:pl-20 pt-40 w-full bg-white/10 backdrop-blur-2xl rounded-3xl">
+        <div className="flex flex-col md:flex-row text-start justify-around items-end  gap-4">
+          <h2 className="text-5xl md:text-6xl text-balance font-bold text-gray-100 w-full lg:w-4/5">Why Choose <span className="font-thin">Dental Implant Center Costa Rica</span></h2>
+          <p className="text-xl text-gray-100 max-w-3xl mx-auto">
             Experience world-class dental implant treatment with significant cost savings and exceptional care
           </p>
         </div>
-        <div className="flex flex-col max-w-7xl h-5/6 justify-center gap-4 my-16 md:my-8">
+        <div className="flex flex-col w-full md:max-w-7xl h-5/6 justify-center gap-4 my-16 md:my-8">
             {/* Top row */}
             <div className="flex flex-col md:flex-row gap-4 h-3/5">
                 <div className="relative flex flex-col justify-between items-start text-white p-4 rounded-3xl flex-1 overflow-hidden bg-gradient-to-tr from-pink-200/70 via-pink-300/80 to-purple-200/80 backdrop-blur-2xl">
                 <Image 
-                        src="/images/dentalimages/allonsix1.webp" 
+                        src="/images/dentalimages/dentalimplant3.webp" 
                         alt="Dental image reference #1" 
-                        width={400}
-                        height={400}
+                        fill
                         sizes="400px"
-                        quality={60}
+                        quality={100}
                         loading="lazy"
                         className="absolute top-0 right-4 md:top-4 lg:right-20 object-cover rounded-3xl"
                     />
@@ -147,7 +141,7 @@ const features: Feature[] = [
             </div>
           ))}
         </div>
-        <div className="relative flex flex-col justify-between items-start text-white p-4 mt-8 rounded-3xl flex-1 overflow-hidden bg-gradient-to-tr from-pink-200/70 via-pink-300/80 to-purple-200/80 backdrop-blur-2xl">
+        <div className="relative flex flex-col justify-between w-full items-start text-white p-4 mt-8 rounded-3xl flex-1 overflow-hidden bg-gradient-to-tr from-pink-200/70 via-pink-300/80 to-purple-200/80 backdrop-blur-2xl">
                     <Image 
                         src="/images/vacations-all-on-4-dental-implants.webp" 
                         alt="Dental image reference #1" 
@@ -208,7 +202,7 @@ const features: Feature[] = [
             </div>
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

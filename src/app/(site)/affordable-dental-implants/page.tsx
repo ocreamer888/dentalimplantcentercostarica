@@ -1,9 +1,9 @@
-import Treatments from '@/components/Treatments/Treatments'
 import { Metadata } from 'next'
 import { ContactInfo }  from '@/components/ui/ContactInfo'
 import EstimateForm from '@/components/FreeEstimate/EstimateForm'
 import Footer from '@/components/Layout/Footer'
 import HeroSecs from '@/components/ui/HeroSecs'
+import TreatmentsD from '@/components/Treatments/TreatmentsD'
 
 
 export const metadata: Metadata = {
@@ -35,8 +35,8 @@ export default function TreatmentsPage() {
         cardButton="true"
         className="backdrop-blur-sm"
       />
-    <Treatments />
       <div className="bg-gradient-to-tl from-purple-900/50 via-purple-500/50 to-purple-100/50 py-12 -mt-8">
+      <TreatmentsD />
                 <div className="lg:px-4">
                     <div className="text-center py-12">
                         <h2 className="text-6xl font-bold text-gray-100 mb-4">Fill the form to get a free estimate</h2>

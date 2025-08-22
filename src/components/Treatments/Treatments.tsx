@@ -21,6 +21,7 @@ export default function Treatments() {
                         <h2 className="font-semibold text-4xl lg:text-6xl">
                         Dental Implants
                         </h2>
+                        <Image src="/images/treatments/DentalImplants.webp" alt="Dental Implants" width={1000} height={1000} />
                         <p className="text-xl pb-8">
                         Dental implants are the premier solution for replacing missing teeth. This effective and aesthetic treatment uses a titanium post, acting as a new root, to securely support a crown or bridge. At OG Center, our completely digital placement process ensures unmatched precision and safety, delivering a permanent and natural-looking smile with confidence.
                         </p>

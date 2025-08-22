@@ -84,18 +84,18 @@ export default function Bento({
     >
       {/* Preload critical images */}
       
-      <div className="flex flex-col justify-center items-center p-12 lg:pl-20 py-40">
+      <div className="flex flex-col justify-center items-center p-12 lg:pl-20 pt-40 max-w-4xl">
         <h3 className="text-6xl text-balance text-pretty font-semibold pb-8">
-          Specializing in All-On-X <span className="font-thin">Dental Implants & Full Mouth Restorations</span>
+          Specializing in All-On-4 <span className="font-thin">Dental Implants & Full Mouth Restorations</span>
         </h3>
       </div>
       
       <div className="flex justify-center w-full mx-auto px-4">
         {/* Hero Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-7xl mb-12">
-          <div className="flex flex-col justify-center space-y-6 bg-white/10 p-4 rounded-3xl">
-            <div>
-              <span className="block pb-8 text-8xl text-white font-bold">Before & After</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl md:max-w-7xl mb-12 w-full">
+          <div className="flex flex-col w-full justify-center space-y-6 bg-white/10 p-4 rounded-3xl">
+            <div className="w-full h-full">
+              <span className="block pb-8 w-full text-center md:text-left text-5xl lg:text-7xl text-white font-bold">Before & After</span>
               
               {/* Primary comparison - loads immediately with priority */}
               <div className="mb-6">

@@ -106,6 +106,7 @@ const EstimateForm = () => {
                   />
 
                   <div>
+                    <h2 className="text-2xl font-bold text-gray-900">Sample Images</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 my-8">
                       <div className="relative rounded-lg h-40 overflow-hidden">
                         <Image

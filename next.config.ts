@@ -7,12 +7,13 @@ const nextConfig: NextConfig = {
   experimental: {
     serverActions: { bodySizeLimit: "10mb" },
     reactCompiler: true,
-    optimizeCss: true,
-    optimizePackageImports: ['tailwindcss', 'tw-animate-css', 'lucide-react'],
+    // Remove this line as it conflicts with Tailwind v4
+    // optimizePackageImports: ['tailwindcss', 'tw-animate-css', 'lucide-react'],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
+  
   // Optimize webpack for better chunking
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
@@ -29,7 +30,6 @@ const nextConfig: NextConfig = {
             chunks: 'all',
             priority: 10,
           },
-          // Remove framer-motion specific chunk since we're replacing it
           common: {
             name: 'common',
             minChunks: 2,
@@ -45,6 +45,7 @@ const nextConfig: NextConfig = {
     }
     return config;
   },
+  
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [360, 414, 640, 768, 1024, 1280, 1536],
@@ -57,15 +58,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  
   // Add compression
   compress: true,
   poweredByHeader: false,
   generateEtags: false,
-  // Add performance optimizations
-  // swcMinify: true, // Removed - SWC minification is now default in Next.js 15+
   
-  // Add this to reduce SSL warnings
-  assetPrefix: process.env.NODE_ENV === 'development' ? '' : undefined,
+  // Remove assetPrefix as it can cause issues
+  // assetPrefix: process.env.NODE_ENV === 'development' ? '' : undefined,
 
   async headers() {
     return [

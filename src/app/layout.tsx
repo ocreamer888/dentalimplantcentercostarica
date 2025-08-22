@@ -1,6 +1,5 @@
 import './globals.css';
 import { StrictMode } from 'react';
-import { CSSLoader } from '@/components/ui/CSSLoader';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,6 +10,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        
+        {/* Ensure CSS is loaded with proper priority */}
+        <link rel="preload" href="/_next/static/css/app/globals.css" as="style" />
         
         {/* Critical CSS inline - keep this */}
         <style dangerouslySetInnerHTML={{
@@ -26,7 +28,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="antialiased">
         <StrictMode>
           {children}
-          <CSSLoader />
         </StrictMode>
       </body>
     </html>

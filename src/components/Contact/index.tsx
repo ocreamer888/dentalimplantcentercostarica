@@ -2,6 +2,7 @@
 import { Metadata } from 'next';
 import ContactForm from '../ui/contactForm';
 import HeroSecs from '../ui/HeroSecs';
+import Footer from '../Layout/Footer';
 
 export const metadata: Metadata = {
   title: 'Contact Us - Implant Center Costa Rica',
@@ -46,8 +47,8 @@ export default function ContactPage() {
                 <div className="flex items-start">
                   <span className="text-purple-600 mt-1 mr-3">⏰</span>
                   <div>
-                    <p className="font-medium text-gray-800">Hours</p>
-                    <p className="text-gray-600">Monday - Friday: 8:30 AM - 5:30 PM<br />Saturday - Sunday: Closed</p>
+                    <p className="font-medium text-gray-800">24/7</p>
+                    <p className="text-gray-600">We are here for you</p>
                   </div>
                 </div>
                 
@@ -55,7 +56,7 @@ export default function ContactPage() {
                   <span className="text-purple-600 mt-1 mr-3">📞</span>
                   <div>
                     <p className="font-medium text-gray-800">Phone</p>
-                    <p className="text-gray-600">+506 2000-0000</p>
+                    <p className="text-gray-600">+1 (809) 829-0000</p>
                   </div>
                 </div>
                 
@@ -63,16 +64,18 @@ export default function ContactPage() {
                   <span className="text-purple-600 mt-1 mr-3">✉️</span>
                   <div>
                     <p className="font-medium text-gray-800">Email</p>
-                    <p className="text-gray-600">info@ogcenter.cr</p>
+                    <p className="text-gray-600">ivan@dentalimplantcentercostarica.com</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <ContactForm />
+            
            
           </div>
         </div>
+        <Footer />
       </div>
     </div>
     </div>

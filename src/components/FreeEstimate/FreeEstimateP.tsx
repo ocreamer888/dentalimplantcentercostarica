@@ -7,21 +7,23 @@ export default function FreeEstimateP() {
     return (
         <div className="flex flex-col w-full h-full">
         
-         <HeroSecs
-        title="Free Dental Estimate!"
-        description="We will be back to you within 24 hours!"
-        imageSrc=""
+        <HeroSecs
+        title="Get a Free Estimate Now!"
+        description="Enjoy a new smile with our All-inclusive packages and a relaxing trip to Costa Rica, all for a fraction of the cost back home."
+        imageSrc="/images/hero/ivan-dental-implant-center-costa-rica.webp"
+        imageVisibility={{hideOnMobile: true}}
         imageAlt="Dental Clinic"
         linkHref="#form"
-        backgroundImage="/images/hero/DentalPassport1.webp"
-        backgroundColor=""
-        buttonText="Learn More"
+        backgroundImage=""
+        backgroundVisibility={{hideOnMobile: true}}
+        backgroundColor="bg-gradient-to-tl from-purple-400 via-purple-400/80 to-purple-400"
+        buttonText="Free Estimate"
         cardButton="true"
-        className=""
+        className="backdrop-blur-sm"
       />
          <div className="bg-gradient-to-tl from-purple-900/50 via-purple-500/50 to-purple-100/50 py-12 -mt-8">
                 <div className="lg:px-4">
-                    <div id="form" className="text-center py-12">
+                    <div id="form" className="text-center px-8 py-12">
                         <h2 className="text-6xl font-bold text-gray-100 mb-4">Fill the form to get a free estimate</h2>
                         <p className="text-xl text-balance text-gray-100 max-w-3xl mx-auto">
                         Get a personalized evaluation of our state-of-the-art dental treatments. Our team of specialists will provide you with a detailed and transparent treatment plan.

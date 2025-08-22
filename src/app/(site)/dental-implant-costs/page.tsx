@@ -27,7 +27,7 @@ export default function AboutPage() {
         description="Learn more about us and who we are!"
         imageSrc=""
         imageAlt="Dental Clinic"
-        linkHref="#treatments"
+        linkHref="#1"
         backgroundImage="/images/hero/DentalPassport7.webp"
         backgroundColor="bg-gradient-to-tl from-purple-400/0 via-purple-500/0 to-purple-900/50"
         buttonText="Learn More"
