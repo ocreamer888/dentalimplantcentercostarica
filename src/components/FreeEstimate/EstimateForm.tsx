@@ -9,7 +9,6 @@ import { SubmissionSuccess } from './SubmissionSuccess';
 import { ImageUpload } from './ImageUpload';
 import { FormFields } from './FormFields';
 import { FormTextarea } from './FormTextarea';
-import { compressImage } from '@/utils/imageCompression';
 
 type ImageFile = {
   id: number;

@@ -93,7 +93,7 @@ const ContactForm: React.FC = () => {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-700 to-purple-50">
+      <div className="min-h-screen">
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl p-8 text-center">
             <svg
@@ -156,7 +156,7 @@ const ContactForm: React.FC = () => {
                         onChange={handleInputChange}
                         required
                         autoComplete="name"
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                        className={`w-full px-4 py-3 border text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                           fieldErrors.name 
                             ? 'border-red-500 focus:ring-red-500' 
                             : 'border-gray-500'
@@ -180,7 +180,7 @@ const ContactForm: React.FC = () => {
                         onChange={handleInputChange}
                         required
                         autoComplete="email"
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                        className={`w-full px-4 py-3 border text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                           fieldErrors.email 
                             ? 'border-red-500 focus:ring-red-500' 
                             : 'border-gray-500'
@@ -206,7 +206,7 @@ const ContactForm: React.FC = () => {
                         onChange={handleInputChange}
                         required
                         autoComplete="off"
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                        className={`w-full px-4 py-3 border text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                           fieldErrors.subject 
                             ? 'border-red-500 focus:ring-red-500' 
                             : 'border-gray-500'
@@ -230,7 +230,7 @@ const ContactForm: React.FC = () => {
                       onChange={handleInputChange}
                       rows={4}
                       autoComplete="off"
-                      className="w-full px-4 py-3 border border-gray-500 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-500 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                       placeholder="Describe your current dental situation, symptoms, or any specific questions..."
                     />
                   </div>
