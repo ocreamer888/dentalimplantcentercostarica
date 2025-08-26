@@ -6,7 +6,9 @@ const nextConfig: NextConfig = {
   productionBrowserSourceMaps: process.env.ENABLE_SOURCE_MAPS === 'true',
   
   experimental: {
-    serverActions: { bodySizeLimit: "50mb" }, // Increase from 10mb to 50mb
+    serverActions: { 
+      bodySizeLimit: process.env.NODE_ENV === 'production' ? "10mb" : "50mb" 
+    },
     reactCompiler: true,
     // Remove this line as it conflicts with Tailwind v4
     // optimizePackageImports: ['tailwindcss', 'tw-animate-css', 'lucide-react'],

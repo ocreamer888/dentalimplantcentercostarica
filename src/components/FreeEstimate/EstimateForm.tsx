@@ -9,6 +9,7 @@ import { SubmissionSuccess } from './SubmissionSuccess';
 import { ImageUpload } from './ImageUpload';
 import { FormFields } from './FormFields';
 import { FormTextarea } from './FormTextarea';
+import { compressImage } from '@/utils/imageCompression';
 
 type ImageFile = {
   id: number;
@@ -47,6 +48,26 @@ const EstimateForm = () => {
   ];
 
   const handleSubmit = async (formData: FormData) => {
+    // Calculate total payload size
+    let totalSize = 0;
+    const textFields = ['name', 'email', 'phone', 'country', 'treatment', 'message', 'preferredContact', 'visitDate'];
+    
+    textFields.forEach(field => {
+      const value = formData.get(field);
+      if (value) totalSize += value.toString().length;
+    });
+    
+    // Add image sizes
+    images.forEach(image => {
+      totalSize += image.size;
+    });
+    
+    // Check if total size exceeds 8MB (safe limit for most hosting providers)
+    if (totalSize > 8 * 1024 * 1024) {
+      setError('Total form data is too large. Please reduce image sizes or remove some images.');
+      return;
+    }
+    
     images.forEach((image, index) => {
       formData.append(`image-${index}`, image.file);
     });

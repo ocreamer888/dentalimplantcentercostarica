@@ -1,5 +1,6 @@
 'use client';
 import React, { useRef, useState } from 'react';
+import { compressImage } from '@/utils/imageCompression';
 
 type ImageFile = {
   id: number;
@@ -21,28 +22,41 @@ export const ImageUpload = ({
   images, 
   onImagesChange, 
   maxImages = 5, 
-  maxFileSize = 10 * 1024 * 1024,
+  maxFileSize = 2 * 1024 * 1024, // Reduce from 10MB to 2MB
   allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
 }: ImageUploadProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const addFiles = (files: File[]) => {
+  const addFiles = async (files: File[]) => {
     if (images.length + files.length > maxImages) {
       return;
     }
 
     const validFiles: File[] = [];
 
-    files.forEach(file => {
+    for (const file of files) {
       if (!allowedTypes.includes(file.type)) {
-        return;
+        continue;
       }
       if (file.size > maxFileSize) {
-        return;
+        // Compress the image if it's too large
+        try {
+          const compressedFile = await compressImage(file, {
+            maxWidth: 1200,
+            maxHeight: 1200,
+            quality: 0.8,
+            maxSize: maxFileSize
+          });
+          validFiles.push(compressedFile);
+        } catch (error) {
+          console.error('Image compression failed:', error);
+          continue;
+        }
+      } else {
+        validFiles.push(file);
       }
-      validFiles.push(file);
-    });
+    }
 
     validFiles.forEach(file => {
       const reader = new FileReader();
@@ -102,7 +116,7 @@ export const ImageUpload = ({
             <span className="text-xl text-gray-900">Drag and drop</span> images here, or <span className="text-xl text-blue-700 underline">browse</span>
           </div>
           <p className="text-sm text-gray-700">
-            Up to {maxImages} images, max 10MB each (JPG, PNG, WebP).
+            Up to {maxImages} images, max 2MB each (JPG, PNG, WebP).
           </p>
         </div>
       </div>
