@@ -1,7 +1,6 @@
 import React from 'react';
 import type { EstimateFormState } from '@/lib/schemas';
 import { FormInput } from './FormInput';
-import { FormTextarea } from './FormTextarea';
 import { FormSelect } from './FormSelect';
 
 interface FormFieldsProps {
@@ -80,13 +79,5 @@ export const FormFields = ({ state, treatmentOptions, contactMethodOptions }: Fo
         defaultValue="email"
       />
     </div>
-
-    <FormTextarea
-      id="additionalMessage"
-      name="message"
-      label="Additional Message"
-      rows={4}
-      placeholder="Describe your current dental situation, symptoms, or any specific questions..."
-    />
   </>
 );

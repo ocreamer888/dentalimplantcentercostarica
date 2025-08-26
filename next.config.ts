@@ -1,11 +1,12 @@
 import type { NextConfig } from "next";
 
+/** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   // Conditional source maps based on environment
   productionBrowserSourceMaps: process.env.ENABLE_SOURCE_MAPS === 'true',
   
   experimental: {
-    serverActions: { bodySizeLimit: "10mb" },
+    serverActions: { bodySizeLimit: "50mb" }, // Increase from 10mb to 50mb
     reactCompiler: true,
     // Remove this line as it conflicts with Tailwind v4
     // optimizePackageImports: ['tailwindcss', 'tw-animate-css', 'lucide-react'],
@@ -67,6 +68,7 @@ const nextConfig: NextConfig = {
   // Remove assetPrefix as it can cause issues
   // assetPrefix: process.env.NODE_ENV === 'development' ? '' : undefined,
 
+  // Add CSP headers for development
   async headers() {
     return [
       {
@@ -74,21 +76,12 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: [
-              "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
-              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              "font-src 'self' https://fonts.gstatic.com",
-              "img-src 'self' data: https: blob:",
-              "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com",
-              "frame-src 'self'",
-              "object-src 'none'",
-              "base-uri 'self'",
-              "form-action 'self'"
-            ].join('; ')
+            value: process.env.NODE_ENV === 'development' 
+              ? "script-src 'self' 'unsafe-eval' 'unsafe-inline';" 
+              : "script-src 'self';"
           }
-        ]
-      }
+        ],
+      },
     ];
   },
 };

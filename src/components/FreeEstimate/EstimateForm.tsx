@@ -6,9 +6,9 @@ import { submitEstimate } from '@/lib/actions/estimateForm';
 import Image from 'next/image';
 import type { EstimateFormState } from '@/lib/schemas';
 import { SubmissionSuccess } from './SubmissionSuccess';
-import { FormTextarea } from '@/components/FreeEstimate/FormTextarea';
 import { ImageUpload } from './ImageUpload';
 import { FormFields } from './FormFields';
+import { FormTextarea } from './FormTextarea';
 
 type ImageFile = {
   id: number;
@@ -112,55 +112,66 @@ const EstimateForm = () => {
                         <Image
                           src="/images/dentalimages/dentalside2.webp"
                           alt="Dental implant procedure"
-                          fill
+                          width={112}
+                          height={112}
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                           className="object-cover"
                           quality={85}
                           loading="lazy"
+                          style={{ width: 'auto', height: 'auto' }}
                         />
                       </div>
                       <div className="relative rounded-lg h-40 overflow-hidden">
                         <Image
                           src="/images/dentalimages/dentalsmile.webp"
                           alt="Dental implant close-up"
-                          fill
+                          width={112}
+                          height={112}
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                           className="object-cover"
                           quality={85}
                           loading="lazy"
+                          style={{ width: 'auto', height: 'auto' }}
                         />
                       </div>
                       <div className="relative rounded-lg h-40 overflow-hidden">
                         <Image
                           src="/images/dentalimages/frontdental.webp"
                           alt="Dental implant surgery"
-                          fill
+                          width={112}
+                          height={112}
+
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                           className="object-cover"
                           quality={85}
                           loading="lazy"
+                          style={{ width: 'auto', height: 'auto' }}
                         />
                       </div>
                       <div className="relative rounded-lg h-40 overflow-hidden">
                         <Image
                           src="/images/dentalimages/dentaltop.webp"
                           alt="Dental implant result"
-                          fill
+                          width={112}
+                          height={112}
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                           className="object-cover"
                           quality={85}
                           loading="lazy"
+                          style={{ width: 'auto', height: 'auto' }}
                         />
                       </div>
                        <div className="relative rounded-lg h-40 overflow-hidden">
                         <Image
                           src="/images/dentalimages/dentalside1.webp"
                           alt="Dental implant result"
-                          fill
+                          width={112}
+                          height={112}
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                           className="object-cover"
                           quality={85}
                           loading="lazy"
+                          style={{ width: 'auto', height: 'auto' }}
                         />
                       </div>
                     </div>

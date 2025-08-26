@@ -261,7 +261,7 @@ const CardContent: React.FC<{
   customColors?: CustomColors;
   animations?: Animations;
   effects?: Effects;
-}> = ({ title, description, buttonText, linkHref, visibility, contentAlignment, buttonStyle, customColors, animations, effects }) => {
+}> = ({ title, description, buttonText, linkHref, visibility, contentAlignment, buttonStyle, customColors, animations }) => {
   const visibilityClasses = visibility ? getResponsiveVisibilityClasses(visibility) : '';
   
   // Apply content alignment

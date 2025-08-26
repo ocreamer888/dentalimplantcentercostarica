@@ -13,6 +13,33 @@ const ContactForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateForm = () => {
+    const errors: Record<string, string> = {};
+    
+    if (!formData.name.trim()) {
+      errors.name = 'Name is required';
+    }
+    
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required';
+    } else if (!validateEmail(formData.email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+    
+    if (!formData.subject.trim()) {
+      errors.subject = 'Subject is required';
+    }
+    
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -20,28 +47,39 @@ const ContactForm: React.FC = () => {
       ...prev,
       [name]: value
     }));
+    
+    // Clear field error when user starts typing
+    if (fieldErrors[name]) {
+      setFieldErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
   
   const handleSubmit = async () => {
-    setIsSubmitting(true);
     setError('');
-
-    // Basic validation
-    if (!formData.name || !formData.email || !formData.subject) {
-      setError('Please fill in all required fields.');
-      setIsSubmitting(false);
+    
+    if (!validateForm()) {
       return;
     }
+
+    setIsSubmitting(true);
 
     try {
       const result = await submitContact({
         ...formData,
       });
+      
       if (result.success) {
         setSubmitted(true);
         setFormData({
-          name: '', email: '', subject: '', message: ''
+          name: '', 
+          email: '', 
+          subject: '', 
+          message: ''
         });
+        setFieldErrors({});
       } else {
         setError(result.message || 'Error submitting form');
       }
@@ -72,15 +110,15 @@ const ContactForm: React.FC = () => {
               <circle cx="12" cy="12" r="10" />
               <path d="M9 12l2 2l4-4" />
             </svg>
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Your request has been sent successfully!</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Your message has been sent successfully!</h2>
             <p className="text-gray-600 mb-6">
-              Thank you for your interest in our dental services. Our team will contact you within the next 24 hours to provide you with your free estimate.
+              Thank you for contacting us. Our team will get back to you within the next 24 hours.
             </p>
             <button
               onClick={() => setSubmitted(false)}
               className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
             >
-              Send Another Request
+              Send Another Message
             </button>
           </div>
         </div>
@@ -90,8 +128,6 @@ const ContactForm: React.FC = () => {
 
   return (
     <div id="estimate-form" className="flex flex-col justify-center items-center min-h-screen">
-      
-      
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col gap-8">
@@ -120,14 +156,21 @@ const ContactForm: React.FC = () => {
                         onChange={handleInputChange}
                         required
                         autoComplete="name"
-                        className="w-full px-4 py-3 border border-gray-500 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                          fieldErrors.name 
+                            ? 'border-red-500 focus:ring-red-500' 
+                            : 'border-gray-500'
+                        }`}
                         placeholder="Your full name"
                       />
+                      {fieldErrors.name && (
+                        <p className="mt-1 text-sm text-red-600">{fieldErrors.name}</p>
+                      )}
                     </div>
                     
                     <div>
                       <label htmlFor="contact-email" className="block text-sm font-medium text-gray-900 mb-2">
-                        Email
+                        Email *
                       </label>
                       <input
                         id="contact-email"
@@ -137,16 +180,23 @@ const ContactForm: React.FC = () => {
                         onChange={handleInputChange}
                         required
                         autoComplete="email"
-                        className="w-full px-4 py-3 border border-gray-500 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                          fieldErrors.email 
+                            ? 'border-red-500 focus:ring-red-500' 
+                            : 'border-gray-500'
+                        }`}
                         placeholder="your.email@example.com"
                       />
+                      {fieldErrors.email && (
+                        <p className="mt-1 text-sm text-red-600">{fieldErrors.email}</p>
+                      )}
                     </div>
                   </div>
 
                   <div className="flex flex-col gap-6">
                     <div>
                       <label htmlFor="contact-subject" className="block text-sm font-medium text-gray-900 mb-2">
-                        Subject
+                        Subject *
                       </label>
                       <input
                         id="contact-subject"
@@ -156,9 +206,16 @@ const ContactForm: React.FC = () => {
                         onChange={handleInputChange}
                         required
                         autoComplete="off"
-                        className="w-full px-4 py-3 border border-gray-500 text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                          fieldErrors.subject 
+                            ? 'border-red-500 focus:ring-red-500' 
+                            : 'border-gray-500'
+                        }`}
                         placeholder="Subject"
                       />
+                      {fieldErrors.subject && (
+                        <p className="mt-1 text-sm text-red-600">{fieldErrors.subject}</p>
+                      )}
                     </div>
                   </div>
 

@@ -4,29 +4,7 @@
 import { EstimateFormSchema, EstimateFormState } from '@/lib/schemas';
 import { getSupabaseClient } from '@/lib/supabaseClient';
 import { revalidatePath } from 'next/cache';
-
-// Test function to check Supabase connection
-export async function testSupabaseConnection() {
-  try {
-    const supabase = getSupabaseClient()
-    
-    // Try a simple query to test the connection
-    const { error } = await supabase
-      .from('estimate_requests')
-      .select('count')
-      .limit(1)
-    
-    if (error) {
-      console.error('Supabase connection test failed:', error)
-      return { success: false, error: error.message }
-    }
-    
-    return { success: true, message: 'Supabase connection successful' }
-  } catch (error) {
-    console.error('Supabase connection test error:', error)
-    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' }
-  }
-}
+import { sendEstimateEmail } from '@/lib/email';
 
 export async function submitEstimate(
   prevState: EstimateFormState,
@@ -35,7 +13,7 @@ export async function submitEstimate(
   const supabase = getSupabaseClient();
 
   try {
-    // Extract text fields
+    // Extract and validate text fields
     const validatedFields = EstimateFormSchema.safeParse({
       name: formData.get('name'),
       email: formData.get('email'),
@@ -59,7 +37,14 @@ export async function submitEstimate(
 
     // Handle image uploads
     const imageCount = parseInt(formData.get('imageCount') as string) || 0;
-    const uploadedImageUrls: string[] = [];
+    const uploadedImages: Array<{
+      file_name: string;
+      original_name: string;
+      file_size: number;
+      mime_type: string;
+      storage_path: string;
+      public_url: string;
+    }> = [];
 
     if (imageCount > 0) {
       for (let i = 0; i < imageCount; i++) {
@@ -93,7 +78,14 @@ export async function submitEstimate(
               .from('estimate-images')
               .getPublicUrl(fileName);
 
-            uploadedImageUrls.push(urlData.publicUrl);
+            uploadedImages.push({
+              file_name: fileName,
+              original_name: imageFile.name,
+              file_size: imageFile.size,
+              mime_type: imageFile.type,
+              storage_path: `estimate-images/${fileName}`,
+              public_url: urlData.publicUrl
+            });
           } catch (uploadError) {
             console.error('Image upload error:', uploadError);
             return { 
@@ -106,24 +98,77 @@ export async function submitEstimate(
       }
     }
 
-    // Save to database with image URLs
-    const { error } = await supabase
+    // Save estimate request to database
+    const { data: estimateData, error: estimateError } = await supabase
       .from('estimate_requests')
       .insert([{ 
-        ...validatedData, 
-        visit_date: validatedData.visitDate, 
+        name: validatedData.name,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        country: validatedData.country || null,
+        treatment: validatedData.treatment,
+        visit_date: validatedData.visitDate || null,
         preferred_contact: validatedData.preferredContact,
-        image_urls: uploadedImageUrls.length > 0 ? uploadedImageUrls : null
+        message: validatedData.message || null,
+        status: 'pending',
+        priority: 'normal'
       }])
-      .select();
+      .select()
+      .single();
 
-    if (error) {
-      console.error('Supabase error:', error);
+    if (estimateError) {
+      console.error('Estimate request error details:', {
+        error: estimateError,
+        data: validatedData,
+        table: 'estimate_requests'
+      });
       return { 
         success: false, 
-        message: `Database error: Could not save the estimate.`, 
+        message: `Database error: ${estimateError.message}`, 
         errors: {} 
       };
+    }
+
+    // Save image metadata if images were uploaded
+    if (uploadedImages.length > 0) {
+      const imageRecords = uploadedImages.map(img => ({
+        estimate_id: estimateData.id,
+        ...img
+      }));
+
+      const { error: imageError } = await supabase
+        .from('estimate_images')
+        .insert(imageRecords);
+
+      if (imageError) {
+        console.error('Image metadata error:', imageError);
+        // Note: We don't fail here since the estimate was saved
+        // Just log the error for debugging
+      }
+    }
+
+    // Send email notification with all the data
+    try {
+      await sendEstimateEmail({
+        name: validatedData.name,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        country: validatedData.country || undefined,
+        treatment: validatedData.treatment,
+        message: validatedData.message || undefined,
+        preferredContact: validatedData.preferredContact,
+        visitDate: validatedData.visitDate || undefined,
+        images: uploadedImages.map(img => ({
+          original_name: img.original_name,
+          public_url: img.public_url,
+          file_size: img.file_size,
+          mime_type: img.mime_type,
+        })),
+      });
+    } catch (emailError) {
+      console.error('Failed to send email notification:', emailError);
+      // Don't fail the form submission if email fails
+      // The data is already saved to the database
     }
 
     // Revalidate the page to show updated data
@@ -131,7 +176,7 @@ export async function submitEstimate(
 
     return { 
       success: true, 
-      message: 'Estimate request submitted successfully!', 
+      message: 'Estimate request submitted successfully! You will receive a confirmation email shortly.', 
       errors: {} 
     };
   } catch (error) {
@@ -141,5 +186,28 @@ export async function submitEstimate(
       message: 'An unexpected server error occurred.', 
       errors: {} 
     };
+  }
+}
+
+// Test function to check Supabase connection
+export async function testSupabaseConnection() {
+  try {
+    const supabase = getSupabaseClient()
+    
+    // Try a simple query to test the connection
+    const { error } = await supabase
+      .from('estimate_requests')
+      .select('count')
+      .limit(1)
+    
+    if (error) {
+      console.error('Supabase connection test failed:', error)
+      return { success: false, error: error.message }
+    }
+    
+    return { success: true, message: 'Supabase connection successful' }
+  } catch (error) {
+    console.error('Supabase connection test error:', error)
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' }
   }
 }
