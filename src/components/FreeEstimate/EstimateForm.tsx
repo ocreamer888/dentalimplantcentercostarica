@@ -62,9 +62,11 @@ const EstimateForm = () => {
       totalSize += image.size;
     });
     
-    // Check if total size exceeds 8MB (safe limit for most hosting providers)
-    if (totalSize > 8 * 1024 * 1024) {
-      setError('Total form data is too large. Please reduce image sizes or remove some images.');
+    // Vercel free tier limit is 4.5MB, use 4MB to be safe
+    const VERCEL_LIMIT = 4 * 1024 * 1024; // 4MB
+    
+    if (totalSize > VERCEL_LIMIT) {
+      setError(`Total form data (${(totalSize / 1024 / 1024).toFixed(1)}MB) exceeds the 4MB limit. Please reduce image sizes or remove some images.`);
       return;
     }
     

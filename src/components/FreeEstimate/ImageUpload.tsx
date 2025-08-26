@@ -1,6 +1,5 @@
 'use client';
 import React, { useRef, useState } from 'react';
-import { compressImage } from '@/utils/imageCompression';
 
 type ImageFile = {
   id: number;
@@ -21,42 +20,29 @@ interface ImageUploadProps {
 export const ImageUpload = ({ 
   images, 
   onImagesChange, 
-  maxImages = 5, 
-  maxFileSize = 2 * 1024 * 1024, // Reduce from 10MB to 2MB
+  maxImages = 4, // 4 images
+  maxFileSize = 1 * 1024 * 1024, // 1MB each
   allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
 }: ImageUploadProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const addFiles = async (files: File[]) => {
+  const addFiles = (files: File[]) => {
     if (images.length + files.length > maxImages) {
       return;
     }
 
     const validFiles: File[] = [];
 
-    for (const file of files) {
+    files.forEach(file => {
       if (!allowedTypes.includes(file.type)) {
-        continue;
+        return;
       }
       if (file.size > maxFileSize) {
-        // Compress the image if it's too large
-        try {
-          const compressedFile = await compressImage(file, {
-            maxWidth: 1200,
-            maxHeight: 1200,
-            quality: 0.8,
-            maxSize: maxFileSize
-          });
-          validFiles.push(compressedFile);
-        } catch (error) {
-          console.error('Image compression failed:', error);
-          continue;
-        }
-      } else {
-        validFiles.push(file);
+        return;
       }
-    }
+      validFiles.push(file);
+    });
 
     validFiles.forEach(file => {
       const reader = new FileReader();
@@ -116,7 +102,7 @@ export const ImageUpload = ({
             <span className="text-xl text-gray-900">Drag and drop</span> images here, or <span className="text-xl text-blue-700 underline">browse</span>
           </div>
           <p className="text-sm text-gray-700">
-            Up to {maxImages} images, max 2MB each (JPG, PNG, WebP).
+            Up to {maxImages} images, max 1MB each (JPG, PNG, WebP).
           </p>
         </div>
       </div>
