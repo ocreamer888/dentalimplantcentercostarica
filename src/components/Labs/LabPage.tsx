@@ -11,13 +11,21 @@ export default function LabPage() {
         title="Discover Our Dental Laboratory"
         description="Your Smile will Thank You for Choosing a Quality Dental Laboratory"
         imageSrc=""
+        imageSize={{
+          mobile: "w-4/5 h-4/5",
+          tablet: "w-3/5 h-3/5",
+          desktop: "w-2/5 h-2/5"
+        }}
+        imageVisibility={{hideOnMobile: true}}
+        backgroundVisibility={{hideOnMobile: true}}
         imageAlt="Dental Clinic"
         linkHref="#dental"
         backgroundImage="/images/labs/dentalimplantcentercostarica-laboratory.webp"
         backgroundColor="bg-gradient-to-tl from-purple-400/40 via-purple-500/40 to-purple-900/50"
         buttonText="Learn More"
         cardButton="true"
-        className=""
+        className="backdrop-blur-sm justify-center items-center h-full"
+        CardContentClassName="md:h-1/2 flex flex-col justify-center items-center px-4 md:ml-12"
       />
       <DentalLab />
       <Intro />

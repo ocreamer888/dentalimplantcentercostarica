@@ -11,6 +11,11 @@ export default function FreeEstimateP() {
         title="Get a Free Estimate Now!"
         description="Enjoy a new smile with our All-inclusive packages and a relaxing trip to Costa Rica, all for a fraction of the cost back home."
         imageSrc="/images/hero/ivan-dental-implant-center-costa-rica.webp"
+        imageSize={{
+          mobile: "w-full h-full",
+          tablet: "w-full h-full",
+          desktop: "w-full h-full"
+        }}
         imageVisibility={{hideOnMobile: true}}
         imageAlt="Dental Clinic"
         linkHref="#form"
@@ -19,7 +24,8 @@ export default function FreeEstimateP() {
         backgroundColor="bg-gradient-to-tl from-purple-400 via-purple-400/80 to-purple-400"
         buttonText="Free Estimate"
         cardButton="true"
-        className="backdrop-blur-sm"
+        className="backdrop-blur-sm justify-center items-center h-full"
+        CardContentClassName="md:h-1/2 flex flex-col justify-center items-center px-4 md:ml-12"
       />
          <div className="bg-gradient-to-tl from-purple-900/50 via-purple-500/50 to-purple-100/50 py-12 -mt-8">
                 <div className="lg:px-4">

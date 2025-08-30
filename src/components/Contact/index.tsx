@@ -5,7 +5,7 @@ import HeroSecs from '../ui/HeroSecs';
 import Footer from '../Layout/Footer';
 
 export const metadata: Metadata = {
-  title: 'Contact Us - Implant Center Costa Rica',
+  title: 'Contact Us - DentalImplant Center Costa Rica',
   description: 'Get in touch with our dental specialists for consultations and appointments.',
 };
 
@@ -14,15 +14,16 @@ export default function ContactPage() {
     <>
      <HeroSecs
         title="Contact Dental Implant Center Costa Rica"
-        description="We are verifieded dental smile confidence providers. Let's start today!"
+        description="Ready for a new smile? Don't monkey around! Reach out to Ivan at Dental Implant Center Costa Rica"
         imageSrc=""
         imageAlt="Dental Clinic"
         linkHref="#contact"
-        backgroundImage="/images/all-on-4-dental-vacations.webp"
-        backgroundColor="bg-gradient-to-tl from-purple-400/10 via-purple-500/0 to-purple-900/10"
+        backgroundImage="/images/hero/monkey-dental-implant-center-costa-rica.webp"
+        backgroundColor=""
         buttonText="Learn More"
         cardButton="true"
-        className=""
+        className="justify-center items-center h-full"
+        CardContentClassName="md:h-auto flex flex-col bg-black/80 backdrop-blur-sm justify-center items-center p-4 md:ml-12"
       />
     <div className="relative flex flex-col gap-4 justify-center items-center bg-gradient-to-br from-purple-100/50 via-purple-500/50 to-purple-900/50 md:px-8 -mt-8 h-auto pt-28 w-full">
 

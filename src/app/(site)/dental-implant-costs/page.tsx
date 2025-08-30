@@ -32,7 +32,8 @@ export default function AboutPage() {
         backgroundColor="bg-gradient-to-tl from-purple-400/0 via-purple-500/0 to-purple-900/50"
         buttonText="Learn More"
         cardButton="true"
-        className=""
+        className=" justify-center items-center h-full"
+        CardContentClassName="md:h-1/2 flex flex-col justify-center items-center px-4 md:ml-12"
       />
     <AboutIntro />
     <OurDocs />

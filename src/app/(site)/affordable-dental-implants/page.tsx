@@ -33,7 +33,8 @@ export default function TreatmentsPage() {
         backgroundColor="bg-gradient-to-tl from-purple-400/40 via-purple-500/40 to-purple-900/50"
         buttonText="Learn More"
         cardButton="true"
-        className="backdrop-blur-sm"
+        className="backdrop-blur-sm justify-center items-center h-full"
+        CardContentClassName="md:h-1/2 flex flex-col justify-center items-center px-4 md:ml-12"
       />
       <div className=" bg-white mx-auto px-4 -mt-8">
       <TreatmentsD />

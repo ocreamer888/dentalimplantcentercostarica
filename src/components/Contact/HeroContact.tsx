@@ -11,7 +11,7 @@ export default function HeroContact() {
       {/* Background image */}
       <div className="absolute inset-0 -z-20">
         <Image
-          src="/images/DentalPassport2.webp"
+          src="/images/hero/monkey-dental-implant-center-costa-rica.webp"
           alt="Background"
           fill
           className="object-cover object-left md:object-right opacity-100"

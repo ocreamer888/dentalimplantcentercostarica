@@ -16,6 +16,13 @@ interface HeroSecsProps {
   cardButton?: string;
   backDropBlur?: string;
   className?: string;
+  CardContentClassName?: string;
+  // Add the imageSize prop to the main interface
+  imageSize?: {
+    mobile?: string;    // e.g., "w-4/5 h-4/5"
+    tablet?: string;    // e.g., "w-3/5 h-3/5"
+    desktop?: string;   // e.g., "w-2/5 h-2/5"
+  };
   
   // Individual visibility controls for each component
   imageVisibility?: {
@@ -95,22 +102,43 @@ const CardImage: React.FC<{
     showOnTablet?: boolean;
     showOnDesktop?: boolean;
   };
-}> = ({ src, alt, visibility }) => {
+  // Add dynamic sizing props
+  imageSize?: {
+    mobile?: string;    // e.g., "w-4/5 h-4/5"
+    tablet?: string;    // e.g., "w-3/5 h-3/5" (will add md: prefix)
+    desktop?: string;   // e.g., "w-2/5 h-2/5" (will add lg: prefix)
+  };
+}> = ({ src, alt, visibility, imageSize }) => {
   const visibilityClasses = visibility ? getResponsiveVisibilityClasses(visibility) : '';
   
+  // Build dynamic sizes with proper responsive prefixes
+  const buildDynamicSizes = () => {
+    if (!imageSize) {
+      return "w-4/5 h-4/5 md:w-3/5 md:h-3/5 lg:w-2/5 lg:h-2/5";
+    }
+    
+    const mobile = imageSize.mobile || "w-4/5 h-4/5";
+    const tablet = imageSize.tablet ? imageSize.tablet.replace(/\b(w-|h-)/g, 'md:$1') : "";
+    const desktop = imageSize.desktop ? imageSize.desktop.replace(/\b(w-|h-)/g, 'lg:$1') : "";
+    
+    return [mobile, tablet, desktop].filter(Boolean).join(' ');
+  };
+  
+  const dynamicSizes = buildDynamicSizes();
+  
   return (
-    <div className={`flex flex-col w-full md:pb-4 md:px-8 h-auto items-center justify-end ${visibilityClasses}`}>
-      <div className='flex flex-col items-end justify-end w-full'>
+    <div className={`relative flex flex-col w-full z-10 h-full items-center justify-center ${visibilityClasses}`}>
+      <div className='flex flex-col items-center justify-center w-full h-full p-8'>
         <Image
           src={src}
           alt={alt}
-          height={200}
-          width={200}
-          sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 50vw"
+          height={400}
+          width={400}
+          sizes="(max-width: 768px) 80vw, (max-width: 1200px) 80vw, 80vw"
           quality={100}
           priority
           fetchPriority='high'
-          className="object-cover object-top flex w-full md:w-[80vw] md:h-[90vh] h-full md:bg-gradient-to-t from-yellow-600 via-yellow-400/20 to-yellow-200/0 md:pt-12 md:rounded-full"
+          className={`object-cover object-top ${dynamicSizes} md:bg-gradient-to-t from-yellow-600 via-yellow-400/20 to-yellow-200/0 md:pt-12 md:rounded-full`}
         />
       </div>
     </div>
@@ -122,6 +150,7 @@ const CardContent: React.FC<{
   description: string; 
   buttonText: string; 
   linkHref: string;
+  CardContentClassName?: string;
   visibility?: {
     hideOnMobile?: boolean;
     hideOnTablet?: boolean;
@@ -130,14 +159,14 @@ const CardContent: React.FC<{
     showOnTablet?: boolean;
     showOnDesktop?: boolean;
   };
-}> = ({ title, description, buttonText, linkHref, visibility }) => {
+}> = ({ title, description, buttonText, linkHref, visibility, CardContentClassName }) => {
   const visibilityClasses = visibility ? getResponsiveVisibilityClasses(visibility) : '';
   
   return (
-    <div className={`absolute md:relative z-10 rounded-3xl w-full h-auto flex flex-col text-balance justify-start items-center md:items-start gap-4 md:pl-16 lg:pl-24 ${visibilityClasses}`}>
-      <h2 id="card-title" className="text-center md:text-start text-balance font-semibold text-4xl md:text-7xl px-2 md:px-0">{title}</h2>
-      <p className="text-xl text-center md:text-start">{description}</p>
-      <a href={linkHref} className="hidden md:block relative bg-purple-100 cursor-pointer hover:bg-purple-200 text-purple-900 font-bold px-8 py-4 rounded-full">{buttonText}</a>
+    <div className={`z-20 rounded-3xl flex flex-col justify-center items-center md:items-start gap-4 ${visibilityClasses} ${CardContentClassName}`}>
+      <h2 id="card-title" className="text-center md:text-start text-balance font-semibold text-4xl md:text-7xl px-2 md:px-0 text-white">{title}</h2>
+      <p className="text-xl text-center md:text-start text-white">{description}</p>
+      <a href={linkHref} className="hidden md:block relative bg-purple-100 cursor-pointer hover:bg-purple-200 text-purple-900 font-bold px-8 py-4 rounded-full transition-colors duration-200">{buttonText}</a>
     </div>
   );
 };
@@ -187,6 +216,7 @@ class HeroSecs extends React.Component<HeroSecsProps> {
       buttonText, 
       cardButton, 
       className,
+      CardContentClassName,
       // Individual visibility controls
       imageVisibility,
       contentVisibility,
@@ -231,24 +261,26 @@ class HeroSecs extends React.Component<HeroSecsProps> {
           />
         )}
         <Header />
-        <div className={`relative flex flex-col md:flex-row h-screen w-full justify-end items-center text-white rounded-b-3xl flex-1 overflow-hidden ${className} ${backDropBlur} ${backgroundColor}`} role="region" aria-labelledby="card-title">      
-          <div className='relative flex flex-col flex-1 w-full h-screen justify-around md:justify-center items-center'>
-            {title && description && linkHref && buttonText && (
+        <div className={`relative flex flex-col md:flex-row overflow-hidden justify-center items-center ${className} ${backDropBlur} ${backgroundColor}`} role="region" aria-labelledby="card-title">      
+          <div className='absolute md:relative flex flex-col flex-1 h-screen justify-around md:justify-center items-center'>
+            {title && description && linkHref && buttonText && CardContentClassName && (
               <CardContent 
                 title={title} 
                 description={description} 
                 buttonText={buttonText} 
                 linkHref={linkHref}
                 visibility={finalContentVisibility}
+                CardContentClassName={CardContentClassName}
               />
             )}
           </div>
-          <div className='flex flex-col w-full md:flex-1 md:pt-20 justify-end items-center'>
+          <div className='relative flex flex-col w-full md:flex-1 md:pt-20 justify-center items-center'>
             {imageSrc && imageAlt && (
               <CardImage 
                 src={imageSrc} 
                 alt={imageAlt}
                 visibility={finalImageVisibility}
+                imageSize={this.props.imageSize}
               />
             )}
           </div>

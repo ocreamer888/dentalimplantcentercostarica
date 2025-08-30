@@ -40,6 +40,11 @@ export default function Home() {
         title="Expert All-On 4 Zirconia Dental Implants - $19,950"
         description="Enjoy a new smile with our All-inclusive packages and a relaxing trip to Costa Rica, all for a fraction of the cost back home."
         imageSrc="/images/Layer 1.webp"
+        imageSize={{
+          mobile: "w-4/5 h-4/5",
+          tablet: "w-full h-full",
+          desktop: "w-full h-full"
+        }}
         imageVisibility={{hideOnMobile: true}}
         imageAlt="Dental Clinic"
         linkHref="#form"
@@ -48,7 +53,8 @@ export default function Home() {
         backgroundColor="bg-gradient-to-tl from-purple-900/90 via-purple-400/90 to-purple-400/80 md:bg-gradient-to-tl from-purple-300/90 via-purple-500/50 to-purple-400/80"
         buttonText="Free Estimate"
         cardButton="true"
-        className="backdrop-blur-sm"
+        className="backdrop-blur-sm justify-center items-center h-full"
+        CardContentClassName="md:h-1/2 flex flex-col justify-center items-center px-4 md:ml-12"
       />
       <div className="bg-gradient-to-tr from-purple-100/50 via-purple-500/50 to-purple-900/50">
       <LogoRow/>
