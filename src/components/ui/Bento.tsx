@@ -52,8 +52,8 @@ const imageData = [
   },
   {
     id: "quaternary-comparison",
-    beforeImage: "/images/dentalimages/dental_implants_done.webp",
-    afterImage: "/images/dentalimages/need-dental-implants.webp",
+    beforeImage: "/images/dentalimages/need-dental-implants.webp.webp",
+    afterImage: "/images/dentalimages/dental_implants_done.webp",
     priority: false,
     alt: {
       before: "Completed dental implant procedure",
