@@ -1,5 +1,5 @@
 'use client';
-import CardTwo from "../ui/CardTwo";
+import CardThree from "../ui/CardThree";
 
 export default function OurDocs() {
   
@@ -17,7 +17,7 @@ export default function OurDocs() {
                     </div>
                 </div>
               
-                <CardTwo
+                <CardThree
                   title="Dr. Oscar Guzmán"
                   description="Board-Certified Implant Specialist with 15+ years of experience."
                   imageSrc="/images/hero/Layer 1.webp"

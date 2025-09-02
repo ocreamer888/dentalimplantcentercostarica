@@ -1,7 +1,7 @@
 'use client';
 import Image from "next/image";
 
-interface CardTwoProps {
+interface CardThreeProps {
   title: string;
   description: string;
   imageSrc: string;
@@ -15,7 +15,7 @@ interface CardTwoProps {
 }
 
 const CardImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => (
-  <div className="relative flex flex-col items-center justify-bottom w-full h-auto">
+  <div className="relative flex flex-col items-center justify-bottom w-full lg:h-[50vh]">
     <Image
       src={src}
       alt={alt}
@@ -32,13 +32,13 @@ const CardImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => (
 );
 
 const CardContent: React.FC<{ title: string; description: string }> = ({ title, description }) => (
-  <div className="relative  rounded-3xl w-full h-auto flex flex-col justify-end">
+  <div className="relative  rounded-3xl w-full h-full flex flex-col justify-end">
     <h2 id="card-title" className="font-semibold text-4xl lg:text-5xl">{title}</h2>
     <p className="text-lg">{description}</p>
   </div>
 );
 
-const CardTwo: React.FC<CardTwoProps> = ({
+const CardThree: React.FC<CardThreeProps> = ({
   title = "Default Title",
   description = "Default Description",
   imageSrc = "/default-image.webp",
@@ -53,4 +53,4 @@ const CardTwo: React.FC<CardTwoProps> = ({
   );
 };
 
-export default CardTwo;
+export default CardThree;

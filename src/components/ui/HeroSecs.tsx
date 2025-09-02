@@ -248,7 +248,7 @@ class HeroSecs extends React.Component<HeroSecsProps> {
     const finalBackgroundVisibility = backgroundVisibility || legacyVisibility;
 
     return (
-      <div className='relative flex flex-col h-screen w-full rounded-b-3xl z-50'>
+      <div className='relative flex flex-col h-screen w-full rounded-b-3xl z-30'>
         {backgroundImage && (
           <Image 
             src={backgroundImage}
