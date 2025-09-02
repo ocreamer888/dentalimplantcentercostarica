@@ -83,7 +83,7 @@ export default function Testimonials() {
   return (
     <section className="py-24 bg-gradient-to-bl from-purple-900/50 via-purple-500/50 to-purple-900/50">
       <Container>
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 text-white">
           <SectionTitle>
             <h2>What Our Patients Say</h2>
           </SectionTitle>

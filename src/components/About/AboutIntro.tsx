@@ -4,7 +4,7 @@
 export default function AboutIntro() {
 
   return (
-    <div id="1" className="relative overflow-hidden h-full md:h-[96vh] bg-white flex items-center -mt-8 p-4 pt-20 md:p-12 rounded-b-3xl justify-center z-40">
+    <div id="1" className="relative overflow-hidden h-full md:h-[96vh] bg-white flex items-center p-4 pt-20 md:p-12 rounded-b-3xl justify-center z-40">
      
       <div className="flex flex-col relative isolate px-8 w-full">
         <div className="backdrop-blur gap-8 rounded-3xl justify-center items-center mx-auto w-full h-full">

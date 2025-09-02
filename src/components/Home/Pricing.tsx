@@ -85,7 +85,7 @@ export default function Pricing() {
   return (
     <section className="py-24 bg-gradient-to-br from-purple-100/50 via-purple-500/50 to-purple-900/50">
       <Container>
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 text-white">
           <SectionTitle>
             <h2>Transparent Pricing</h2>
           </SectionTitle>
@@ -152,7 +152,7 @@ export default function Pricing() {
         </div>
 
         <div className="mt-16 text-center">
-          <div className="bg-white/20 rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
+          <div className="bg-white/20 text-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold mb-4">What&apos;s Included in All Packages</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
               <div className="flex items-center space-x-3">

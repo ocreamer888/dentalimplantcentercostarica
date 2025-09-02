@@ -22,8 +22,8 @@ interface BentoProps {
 const imageData = [
   {
     id: "primary-comparison",
-    beforeImage: "/images/dentalimages/ao4-before.webp",
-    afterImage: "/images/dentalimages/ao4-completed.webp",
+    beforeImage: "/images/dentalimages/ao4-completed.webp",
+    afterImage: "/images/dentalimages/ao4-before.webp",
     priority: true, // Only first image gets priority
     alt: {
       before: "Patient's teeth before All-On-4 dental implant treatment",
@@ -32,8 +32,8 @@ const imageData = [
   },
   {
     id: "secondary-comparison",
-    beforeImage: "/images/dentalimages/need-implants-all-on-four.webp",
-    afterImage: "/images/dentalimages/all-on-four-completed.webp",
+    beforeImage: "/images/dentalimages/all-on-four-completed.webp",
+    afterImage: "/images/dentalimages/need-implants-all-on-four.webp",
     priority: false,
     alt: {
       before: "Patient needing All-On-4 dental implants",
@@ -42,8 +42,8 @@ const imageData = [
   },
   {
     id: "tertiary-comparison",
-    beforeImage: "/images/dentalimages/need-implants-replace-all-teeth.webp",
-    afterImage: "/images/dentalimages/all-teeth-replaced-ao4.webp",
+    beforeImage: "/images/dentalimages/all-teeth-replaced-ao4.webp",
+    afterImage: "/images/dentalimages/need-implants-replace-all-teeth.webp",
     priority: false,
     alt: {
       before: "Patient needing full mouth dental implant replacement",
@@ -52,8 +52,8 @@ const imageData = [
   },
   {
     id: "quaternary-comparison",
-    beforeImage: "/images/dentalimages/need-dental-implants.webp.webp",
-    afterImage: "/images/dentalimages/dental_implants_done.webp",
+    beforeImage: "/images/dentalimages/dental_implants_done.webp",
+    afterImage: "/images/dentalimages/need-dental-implants.webp",
     priority: false,
     alt: {
       before: "Completed dental implant procedure",
@@ -85,7 +85,7 @@ export default function Bento({
       {/* Preload critical images */}
       
       <div className="flex flex-col justify-center items-center p-12 lg:pl-20 pt-40 max-w-4xl">
-        <h3 className="text-6xl text-balance text-pretty font-semibold pb-8">
+        <h3 className="text-6xl text-white text-balance text-pretty font-semibold pb-8">
           Specializing in All-On-4 <span className="font-thin">Dental Implants & Full Mouth Restorations</span>
         </h3>
       </div>

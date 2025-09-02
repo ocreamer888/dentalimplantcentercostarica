@@ -19,7 +19,7 @@ export default function FreeEstimateP() {
         imageVisibility={{hideOnMobile: true}}
         imageAlt="Dental Clinic"
         linkHref="#form"
-        backgroundImage=""
+        backgroundImage="/images/hero/DentalOffice1.webp"
         backgroundVisibility={{hideOnMobile: true}}
         backgroundColor="bg-gradient-to-tl from-purple-400 via-purple-400/80 to-purple-400"
         buttonText="Free Estimate"

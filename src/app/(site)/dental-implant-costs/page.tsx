@@ -25,11 +25,18 @@ export default function AboutPage() {
     <HeroSecs
         title="Welcome to our world-class dental clinic in Costa Rica!"
         description="Learn more about us and who we are!"
-        imageSrc=""
+        imageSrc="/images/hero/nurse-dental-implant-center-costa-rica.webp"
         imageAlt="Dental Clinic"
+        imageSize={{
+          mobile: "w-4/5 h-4/5",
+          tablet: "w-full h-full",
+          desktop: "w-full h-full"
+        }}
+        imageVisibility={{hideOnMobile: true}}
+        backgroundVisibility={{hideOnMobile: true}}
         linkHref="#1"
-        backgroundImage="/images/hero/DentalPassport7.webp"
-        backgroundColor="bg-gradient-to-tl from-purple-400/0 via-purple-500/0 to-purple-900/50"
+        backgroundImage=""
+        backgroundColor="bg-gradient-to-tl from-purple-400/80 via-purple-500/50 to-purple-900/50"
         buttonText="Learn More"
         cardButton="true"
         className=" justify-center items-center h-full"
@@ -37,7 +44,7 @@ export default function AboutPage() {
       />
     <AboutIntro />
     <OurDocs />
-    <div className="bg-gradient-to-tl from-purple-900/50 via-purple-500/50 to-purple-100/50 py-12 -mt-8">
+    <div className="bg-gradient-to-tl from-purple-900/50 via-purple-500/80 to-purple-100/50 py-12 -mt-8">
                 <div className="lg:px-4">
                     <div className="text-center py-12">
                         <h2 className="text-6xl font-bold text-gray-100 mb-4">Fill the form to get a free estimate</h2>

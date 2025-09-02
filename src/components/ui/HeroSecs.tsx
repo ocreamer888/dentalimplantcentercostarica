@@ -128,7 +128,7 @@ const CardImage: React.FC<{
   
   return (
     <div className={`relative flex flex-col w-full z-10 h-full items-center justify-center ${visibilityClasses}`}>
-      <div className='flex flex-col items-center justify-center w-full h-full p-8'>
+           <div className='flex flex-col items-center justify-center w-full h-full p-2 lg:p-8'>
         <Image
           src={src}
           alt={alt}
@@ -138,7 +138,7 @@ const CardImage: React.FC<{
           quality={100}
           priority
           fetchPriority='high'
-          className={`object-cover object-top ${dynamicSizes} md:bg-gradient-to-t from-yellow-600 via-yellow-400/20 to-yellow-200/0 md:pt-12 md:rounded-full`}
+          className={`object-cover object-top ${dynamicSizes} w-full h-full sm:landscape:w-4/5 sm:landscape:h-auto md:bg-gradient-to-t from-yellow-600 via-yellow-400/20 to-yellow-200/0 md:pt-12 md:rounded-full`}
         />
       </div>
     </div>
@@ -164,7 +164,7 @@ const CardContent: React.FC<{
   
   return (
     <div className={`z-20 rounded-3xl flex flex-col justify-center items-center md:items-start gap-4 ${visibilityClasses} ${CardContentClassName}`}>
-      <h2 id="card-title" className="text-center md:text-start text-balance font-semibold text-4xl md:text-7xl px-2 md:px-0 text-white">{title}</h2>
+      <h2 id="card-title" className="text-center md:text-start text-balance font-semibold text-5xl lg:text-7xl px-2 md:px-0 text-white">{title}</h2>
       <p className="text-xl text-center md:text-start text-white">{description}</p>
       <a href={linkHref} className="hidden md:block relative bg-purple-100 cursor-pointer hover:bg-purple-200 text-purple-900 font-bold px-8 py-4 rounded-full transition-colors duration-200">{buttonText}</a>
     </div>
@@ -186,7 +186,7 @@ const CardButton: React.FC<{
   const visibilityClasses = visibility ? getResponsiveVisibilityClasses(visibility) : '';
   
   return (
-    <div className={`absolute md:relative z-10 w-full h-auto flex flex-col text-balance justify-end items-center md:items-start px-8 pb-8 ${visibilityClasses}`}>
+    <div className={`absolute md:relative z-50 w-full h-auto flex flex-col text-balance justify-end items-center md:items-start px-8 pb-8 ${visibilityClasses}`}>
       <a href={linkHref} className="md:hidden bg-yellow-500 hover:bg-purple-200 text-purple-900 uppercase font-bold px-6 py-4 rounded-full">{buttonText}</a>
     </div>
   );
@@ -261,8 +261,8 @@ class HeroSecs extends React.Component<HeroSecsProps> {
           />
         )}
         <Header />
-        <div className={`relative flex flex-col md:flex-row overflow-hidden justify-center items-center ${className} ${backDropBlur} ${backgroundColor}`} role="region" aria-labelledby="card-title">      
-          <div className='absolute md:relative flex flex-col flex-1 h-screen justify-around md:justify-center items-center'>
+        <div className={`relative flex flex-col sm:landscape:flex-row md:flex-row overflow-hidden justify-center items-center ${className} ${backDropBlur} ${backgroundColor}`} role="region" aria-labelledby="card-title">      
+        <div className='absolute sm:landscape:relative md:relative flex flex-col flex-1 h-screen sm:landscape:h-auto sm:landscape:py-8 justify-around md:justify-center items-center'>
             {title && description && linkHref && buttonText && CardContentClassName && (
               <CardContent 
                 title={title} 
@@ -274,7 +274,7 @@ class HeroSecs extends React.Component<HeroSecsProps> {
               />
             )}
           </div>
-          <div className='relative flex flex-col w-full md:flex-1 md:pt-20 justify-center items-center'>
+          <div className='relative flex flex-col w-full sm:hidden md:block sm:landscape:flex-1 md:flex-1 sm:landscape:pt-8 sm:landscape:h-auto justify-center items-center'>
             {imageSrc && imageAlt && (
               <CardImage 
                 src={imageSrc} 
@@ -285,7 +285,7 @@ class HeroSecs extends React.Component<HeroSecsProps> {
             )}
           </div>
         </div>
-        <div className="absolute md:hidden flex flex-col md:flex-row h-screen w-full justify-end items-center">
+        <div className="absolute z-50 sm:landscape:hidden flex flex-col md:flex-row h-screen w-full justify-end items-center">
           {cardButton && linkHref && buttonText && (
             <CardButton 
               buttonText={buttonText} 

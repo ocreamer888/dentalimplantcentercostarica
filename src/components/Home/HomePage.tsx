@@ -49,12 +49,12 @@ export default function Home() {
         imageAlt="Dental Clinic"
         linkHref="#form"
         backgroundImage="/images/hero/DentalOffice1.webp"
-        backgroundVisibility={{hideOnMobile: true}}
+        backgroundVisibility={{hideOnMobile: false}}
         backgroundColor="bg-gradient-to-tl from-purple-900/90 via-purple-400/90 to-purple-400/80 md:bg-gradient-to-tl from-purple-300/90 via-purple-500/50 to-purple-400/80"
         buttonText="Free Estimate"
         cardButton="true"
-        className="backdrop-blur-sm justify-center items-center h-full"
-        CardContentClassName="md:h-1/2 flex flex-col justify-center items-center px-4 md:ml-12"
+        className="backdrop-blur-sm h-full"
+        CardContentClassName="md:h-1/2 flex flex-col justify-center items-center px-4 lg:ml-12"
       />
       <div className="bg-gradient-to-tr from-purple-100/50 via-purple-500/50 to-purple-900/50">
       <LogoRow/>
