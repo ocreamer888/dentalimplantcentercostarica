@@ -129,8 +129,8 @@ const CardImage: React.FC<{
   const dynamicSizes = buildDynamicSizes();
   
   return (
-    <div className={`relative flex flex-col w-full z-10 h-full items-center justify-center ${visibilityClasses}`}>
-           <div className='flex flex-col items-center justify-center w-full h-full p-2 lg:p-8'>
+    <div className={`relative flex flex-col w-full z-10 h-full items-center p-2 lg:p-8 justify-center ${visibilityClasses}`}>
+           <div className='flex flex-col items-center justify-center w-full h-full md:bg-gradient-to-t from-yellow-600 via-yellow-400/20 to-yellow-200/0 md:pt-12 overflow-hidden rounded-full'>
         <Image
           src={src}
           alt={alt}
@@ -140,7 +140,7 @@ const CardImage: React.FC<{
           quality={100}
           priority
           fetchPriority='high'
-          className={`object-contain object-top ${dynamicSizes} ${CardImageClassName} w-full h-auto sm:landscape:w-4/5 sm:landscape:h-auto md:bg-gradient-to-t from-yellow-600 via-yellow-400/20 to-yellow-200/0 md:pt-12 md:rounded-full`}
+          className={`object-contain object-bottom ${dynamicSizes} ${CardImageClassName} w-full h-auto sm:landscape:w-4/5 sm:landscape:h-auto`}
         />
       </div>
     </div>
