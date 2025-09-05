@@ -19,16 +19,14 @@ const CardImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => (
     <Image
       src={src}
       alt={alt}
-      height={600}
-      width={600}
-      sizes="600px"
+      height={300}
+      width={300}
+      sizes="300px"
       quality={100}
       loading="lazy"
       className="object-cover flex flex-col items-center justify-bottom"
     />
   </div>
-  
-  
 );
 
 const CardContent: React.FC<{ title: string; description: string }> = ({ title, description }) => (

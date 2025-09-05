@@ -17,6 +17,7 @@ interface HeroSecsProps {
   backDropBlur?: string;
   className?: string;
   CardContentClassName?: string;
+  CardImageClassName?: string;
   // Add the imageSize prop to the main interface
   imageSize?: {
     mobile?: string;    // e.g., "w-4/5 h-4/5"
@@ -102,13 +103,14 @@ const CardImage: React.FC<{
     showOnTablet?: boolean;
     showOnDesktop?: boolean;
   };
+  CardImageClassName?: string;
   // Add dynamic sizing props
   imageSize?: {
     mobile?: string;    // e.g., "w-4/5 h-4/5"
     tablet?: string;    // e.g., "w-3/5 h-3/5" (will add md: prefix)
     desktop?: string;   // e.g., "w-2/5 h-2/5" (will add lg: prefix)
   };
-}> = ({ src, alt, visibility, imageSize }) => {
+}> = ({ src, alt, visibility, imageSize, CardImageClassName }) => {
   const visibilityClasses = visibility ? getResponsiveVisibilityClasses(visibility) : '';
   
   // Build dynamic sizes with proper responsive prefixes
@@ -134,11 +136,11 @@ const CardImage: React.FC<{
           alt={alt}
           height={400}
           width={400}
-          sizes="(max-width: 768px) 80vw, (max-width: 1200px) 80vw, 80vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
           quality={100}
           priority
           fetchPriority='high'
-          className={`object-cover object-top ${dynamicSizes} w-full h-full sm:landscape:w-4/5 sm:landscape:h-auto md:bg-gradient-to-t from-yellow-600 via-yellow-400/20 to-yellow-200/0 md:pt-12 md:rounded-full`}
+          className={`object-contain object-top ${dynamicSizes} ${CardImageClassName} w-full h-auto sm:landscape:w-4/5 sm:landscape:h-auto md:bg-gradient-to-t from-yellow-600 via-yellow-400/20 to-yellow-200/0 md:pt-12 md:rounded-full`}
         />
       </div>
     </div>
@@ -217,6 +219,7 @@ class HeroSecs extends React.Component<HeroSecsProps> {
       cardButton, 
       className,
       CardContentClassName,
+      CardImageClassName,
       // Individual visibility controls
       imageVisibility,
       contentVisibility,
@@ -281,6 +284,7 @@ class HeroSecs extends React.Component<HeroSecsProps> {
                 alt={imageAlt}
                 visibility={finalImageVisibility}
                 imageSize={this.props.imageSize}
+                CardImageClassName={CardImageClassName}
               />
             )}
           </div>

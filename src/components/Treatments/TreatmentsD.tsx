@@ -8,7 +8,7 @@ export default function TreatmentsD() {
     <div className='flex flex-col md:flex-row gap-4'>
     <CardTwo
         title="Dental Implants"
-        description="Dental implants are the premier solution for replacing missing teeth. This effective and aesthetic treatment uses a titanium post, acting as a new root, to securely support a crown or bridge. At OG Center, our completely digital placement process ensures unmatched precision and safety, delivering a permanent and natural-looking smile with confidence."
+        description="Dental implants are the premier solution for replacing missing teeth. This effective and aesthetic treatment uses a titanium post, acting as a new root, to securely support a crown or bridge. At Dental Implant Center Costa Rica, our completely digital placement process ensures unmatched precision and safety, delivering a permanent and natural-looking smile with confidence."
         imageSrc="/images/icons/icon_treatment_1-1.webp"
         imageAlt="Dental Clinic"
         backgroundColor="bg-gradient-to-tl from-purple-900/90 via-purple-400/90 to-purple-400/80 md:bg-gradient-to-tl from-purple-300/90 via-purple-500/50 to-purple-400/80"

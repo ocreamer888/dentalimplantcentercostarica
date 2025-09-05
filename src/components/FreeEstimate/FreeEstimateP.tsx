@@ -10,7 +10,8 @@ export default function FreeEstimateP() {
         <HeroSecs
         title="Get a Free Estimate Now!"
         description="Enjoy a new smile with our All-inclusive packages and a relaxing trip to Costa Rica, all for a fraction of the cost back home."
-        imageSrc="/images/hero/ivan-dental-implant-center-costa-rica.webp"
+        imageSrc="/images/hero/ivan-dental-implant-center-costa-rica-4.webp"
+        CardImageClassName="h-[80vh]! object-bottom!"
         imageSize={{
           mobile: "w-full h-full",
           tablet: "w-full h-full",

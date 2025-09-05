@@ -25,7 +25,7 @@ export default function TreatmentsPage() {
    
     <HeroSecs
         title="Discover Our Dental Treatments"
-        description="We are verifieded dental smile confidence providers. Let's start today!"
+        description="World-class dental care at a fraction of the USA price. Let's start today!"
         imageSrc=""
         imageAlt="Dental Clinic"
         linkHref="#treatments"
