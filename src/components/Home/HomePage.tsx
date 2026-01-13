@@ -1,4 +1,3 @@
-"use client";
 import dynamic from "next/dynamic";
 import LoadingSkeleton from "@/components/ui/LoadingSkeleton";
 import Features from "@/components/Home/Features";
@@ -7,29 +6,24 @@ import React from "react";
 import LogoRow from "../ui/LogoRow";
 import { HeroSection } from "@/components/ui/HeroSection";
 
-// Optimize dynamic imports with better loading strategies
+// Dynamic imports for interactive components (below-the-fold)
 const Bento = dynamic(() => import("@/components/ui/Bento"), {
-  ssr: true, // Enable SSR for better initial paint
   loading: () => <LoadingSkeleton />,
 });
 
 const Pricing = dynamic(() => import("@/components/Home/Pricing"), {
-  ssr: true,
   loading: () => <LoadingSkeleton />,
 });
 
 const LazyTestimonials = dynamic(() => import("@/components/Home/Testimonials"), {
-  ssr: false,
   loading: () => <LoadingSkeleton />,
 });
 
 const LazyCTA = dynamic(() => import("@/components/Home/CTA"), {
-  ssr: false,
   loading: () => <LoadingSkeleton />,
 });
 
 const LazyEstimateForm = dynamic(() => import("@/components/FreeEstimate/EstimateForm"), {
-  ssr: false,
   loading: () => <LoadingSkeleton />,
 });
 
@@ -58,8 +52,8 @@ export default function HomePage() {
 
       <Pricing/>
 
-      <LazyComponent component={LazyTestimonials}/>
-      <LazyComponent component={LazyCTA}/>
+      <LazyTestimonials />
+      <LazyCTA />
 
       <div className="bg-gradient-to-tr from-purple-900/50 via-purple-500/50 to-purple-100/50 py-12">
         <div className="lg:px-4">
@@ -70,7 +64,7 @@ export default function HomePage() {
             </p>
           </div>
           <div className="flex flex-col justify-center items-center w-full gap-4">
-            <LazyComponent component={LazyEstimateForm} />
+            <LazyEstimateForm />
           </div>
           <Footer />
         </div>
@@ -78,39 +72,3 @@ export default function HomePage() {
     </>
   );
 }
-
-// Intersection Observer wrapper - moved outside the Home component
-const LazyComponent = ({
-  component: Component,
-  ...props
-}: {
-  component: React.ComponentType<Record<string, unknown>>;
-  [key: string]: unknown;
-}) => {
-  const [isVisible, setIsVisible] = React.useState(false);
-  const ref = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div ref={ref}>
-      {isVisible ? <Component {...props} /> : <LoadingSkeleton />}
-    </div>
-  );
-};

@@ -1,6 +1,7 @@
 import './globals.css';
 import { StrictMode } from 'react';
 import { Metadata } from 'next';
+import { getOrganizationSchema, getMedicalBusinessSchema, renderJsonLd } from '@/lib/structured-data';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://dentalimplantcentercostarica.com'),
@@ -81,9 +82,23 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const organizationSchema = getOrganizationSchema();
+  const medicalBusinessSchema = getMedicalBusinessSchema();
+
   return (
     <html lang="en">
       <head>
+        {/* Structured Data - Organization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={renderJsonLd(organizationSchema)}
+        />
+        {/* Structured Data - Medical Business */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={renderJsonLd(medicalBusinessSchema)}
+        />
+        
         {/* Preconnect to external domains for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

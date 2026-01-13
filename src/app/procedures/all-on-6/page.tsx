@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import { generateMetadata } from '@/lib/metadata';
 import Breadcrumbs from '@/components/SEO/Breadcrumbs';
-import StructuredData from '@/components/SEO/StructuredData';
 import SEOOptimizedImage from '@/components/SEO/SEOOptimizedImage';
 import { breadcrumbConfigs } from '@/components/SEO/Breadcrumbs';
-import { dentalProcedureSchemas } from '@/components/SEO/StructuredData';
+import { getAllOn6ProcedureSchema, getBreadcrumbSchema, getFAQSchema, renderJsonLd } from '@/lib/structured-data';
 
 export const metadata: Metadata = generateMetadata({
   title: 'All-on-6 Dental Implants Costa Rica - Premium Stability from $24,950',
@@ -41,11 +40,42 @@ export const metadata: Metadata = generateMetadata({
 });
 
 export default function AllOn6Page() {
+  // Structured Data Schemas
+  const procedureSchema = getAllOn6ProcedureSchema();
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Home', url: 'https://dentalimplantcentercostarica.com' },
+    { name: 'Procedures', url: 'https://dentalimplantcentercostarica.com/procedures' },
+    { name: 'All-on-6 Dental Implants', url: 'https://dentalimplantcentercostarica.com/procedures/all-on-6' }
+  ]);
+  const faqSchema = getFAQSchema([
+    {
+      question: 'What is the difference between All-on-4 and All-on-6?',
+      answer: 'All-on-6 uses 6 implants instead of 4, providing superior stability and support. This option is ideal for patients with better bone density who want maximum strength and longevity.'
+    },
+    {
+      question: 'How much do All-on-6 implants cost in Costa Rica?',
+      answer: 'All-on-6 dental implants in Costa Rica cost $24,950, representing a savings of over $40,000 compared to US prices of $65,000+. This includes the complete all-inclusive package.'
+    },
+    {
+      question: 'Who is a good candidate for All-on-6 implants?',
+      answer: 'Ideal candidates have good bone density, want maximum stability, and prefer the premium option. All-on-6 is perfect for patients who want the strongest possible foundation for their new smile.'
+    }
+  ]);
+
   return (
     <>
-      {/* Structured Data for All-on-6 */}
-      <StructuredData 
-        data={dentalProcedureSchemas.allOn6} 
+      {/* Structured Data for Rich Snippets */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={renderJsonLd(procedureSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={renderJsonLd(breadcrumbSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={renderJsonLd(faqSchema)}
       />
       
       {/* Breadcrumb Navigation */}

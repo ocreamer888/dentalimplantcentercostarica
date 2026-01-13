@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { generateMetadata } from '@/lib/metadata';
 import Breadcrumbs from '@/components/SEO/Breadcrumbs';
-import StructuredData from '@/components/SEO/StructuredData';
 import SEOOptimizedImage from '@/components/SEO/SEOOptimizedImage';
+import { getSingleToothImplantSchema, getBreadcrumbSchema, getFAQSchema, renderJsonLd } from '@/lib/structured-data';
 
 export const metadata: Metadata = generateMetadata({
   title: 'Single Tooth Implant Costa Rica - Natural Results from $1,850',
@@ -39,32 +39,42 @@ export const metadata: Metadata = generateMetadata({
 });
 
 export default function SingleToothPage() {
+  // Structured Data Schemas
+  const procedureSchema = getSingleToothImplantSchema();
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Home', url: 'https://dentalimplantcentercostarica.com' },
+    { name: 'Procedures', url: 'https://dentalimplantcentercostarica.com/procedures' },
+    { name: 'Single Tooth Implant', url: 'https://dentalimplantcentercostarica.com/procedures/single-tooth' }
+  ]);
+  const faqSchema = getFAQSchema([
+    {
+      question: 'How much does a single tooth implant cost in Costa Rica?',
+      answer: 'Single tooth implants in Costa Rica start at $1,850, which is 60% less than the $4,500+ cost in the United States. This includes the complete procedure and premium materials.'
+    },
+    {
+      question: 'How long does a single tooth implant take?',
+      answer: 'The single tooth implant procedure takes 1-2 hours, with the implant placed in one appointment. You\'ll receive a temporary crown immediately, with the permanent crown placed after 3-4 months of healing.'
+    },
+    {
+      question: 'Are single tooth implants permanent?',
+      answer: 'Yes, single tooth implants are designed to last a lifetime with proper care. The titanium implant fuses with your jawbone, providing permanent stability for your replacement tooth.'
+    }
+  ]);
+
   return (
     <>
-      {/* Structured Data for Single Tooth Implant */}
-      <StructuredData 
-        data={{
-          '@context': 'https://schema.org',
-          '@type': 'MedicalProcedure',
-          name: 'Single Tooth Implant',
-          description: 'Individual tooth replacement with titanium implant and natural-looking crown',
-          code: {
-            '@type': 'MedicalCode',
-            codeValue: 'D6010',
-            codingSystem: 'ADA'
-          },
-          bodyLocation: 'Mouth',
-          preparation: 'Consultation, X-rays, treatment planning',
-          followup: 'Regular check-ups, oral hygiene maintenance',
-          howPerformed: 'Surgical placement of titanium implant followed by crown attachment',
-          possibleComplication: 'Infection, implant failure, nerve damage',
-          expectedPrognosis: 'High success rate with proper care',
-          availableService: {
-            '@type': 'MedicalService',
-            name: 'Single Tooth Implant Costa Rica',
-            description: 'Premium single tooth replacement with natural results'
-          }
-        }} 
+      {/* Structured Data for Rich Snippets */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={renderJsonLd(procedureSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={renderJsonLd(breadcrumbSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={renderJsonLd(faqSchema)}
       />
       
       {/* Breadcrumb Navigation */}

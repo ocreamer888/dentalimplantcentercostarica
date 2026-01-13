@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import { generateMetadata } from '@/lib/metadata';
 import Breadcrumbs from '@/components/SEO/Breadcrumbs';
-import StructuredData from '@/components/SEO/StructuredData';
 import SEOOptimizedImage from '@/components/SEO/SEOOptimizedImage';
 import { breadcrumbConfigs } from '@/components/SEO/Breadcrumbs';
-import { dentalProcedureSchemas } from '@/components/SEO/StructuredData';
+import { getAllOn4ProcedureSchema, getAllOn4ServiceSchema, getBreadcrumbSchema, getFAQSchema, renderJsonLd } from '@/lib/structured-data';
 
 export const metadata: Metadata = generateMetadata({
   title: 'All-on-4 Dental Implants Costa Rica - Save $30K+ | Same Day Teeth',
@@ -49,11 +48,55 @@ export const metadata: Metadata = generateMetadata({
 });
 
 export default function AllOn4Page() {
+  // Structured Data Schemas
+  const procedureSchema = getAllOn4ProcedureSchema();
+  const serviceSchema = getAllOn4ServiceSchema();
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Home', url: 'https://dentalimplantcentercostarica.com' },
+    { name: 'Procedures', url: 'https://dentalimplantcentercostarica.com/procedures' },
+    { name: 'All-on-4 Dental Implants', url: 'https://dentalimplantcentercostarica.com/procedures/all-on-4' }
+  ]);
+  const faqSchema = getFAQSchema([
+    {
+      question: 'What are All-on-4 dental implants?',
+      answer: 'All-on-4 dental implants are a revolutionary technique that uses just 4 strategically placed implants to support a full arch of prosthetic teeth, providing immediate function and natural appearance.'
+    },
+    {
+      question: 'How much do All-on-4 implants cost in Costa Rica?',
+      answer: 'All-on-4 dental implants in Costa Rica start at $19,950, which is 60% less than the $50,000+ cost in the United States, including all-inclusive packages with luxury accommodations.'
+    },
+    {
+      question: 'How long does the All-on-4 procedure take?',
+      answer: 'The All-on-4 procedure typically takes 2-3 hours per arch, with patients receiving temporary teeth the same day. Full recovery and permanent teeth placement occurs within 3-6 months.'
+    },
+    {
+      question: 'Are All-on-4 implants permanent?',
+      answer: 'Yes, All-on-4 implants are designed to last a lifetime with proper care. The titanium implants fuse with your jawbone, providing permanent stability for your prosthetic teeth.'
+    },
+    {
+      question: 'What is the success rate of All-on-4 implants?',
+      answer: 'All-on-4 dental implants have a 98% success rate when performed by experienced surgeons. Our Costa Rica clinic maintains this high success rate through advanced technology and skilled professionals.'
+    }
+  ]);
+
   return (
     <>
       {/* Structured Data for Rich Snippets */}
-      <StructuredData 
-        data={dentalProcedureSchemas.allOn4} 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={renderJsonLd(procedureSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={renderJsonLd(serviceSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={renderJsonLd(breadcrumbSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={renderJsonLd(faqSchema)}
       />
       
       {/* Breadcrumb Navigation */}

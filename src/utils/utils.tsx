@@ -1,30 +1,30 @@
-import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaThreads, FaTwitter, FaXTwitter, FaYoutube } from "react-icons/fa6";
+import { Facebook, Github, Instagram, Linkedin, MessageCircle, Twitter, Youtube } from "lucide-react";
 
 export const getPlatformIconByName = (platformName: string): React.ReactNode | null => {
     switch (platformName) {
         case 'facebook': {
-            return <FaFacebook size={24} className='min-w-fit' />;
+            return <Facebook size={24} className='min-w-fit' />;
         }
         case 'github': {
-            return <FaGithub size={24} className='min-w-fit' />;
+            return <Github size={24} className='min-w-fit' />;
         }
         case 'instagram': {
-            return <FaInstagram size={24} className='min-w-fit' />;
+            return <Instagram size={24} className='min-w-fit' />;
         }
         case 'linkedin': {
-            return <FaLinkedin size={24} className='min-w-fit' />;
+            return <Linkedin size={24} className='min-w-fit' />;
         }
         case 'threads': {
-            return <FaThreads size={24} className='min-w-fit' />;
+            return <MessageCircle size={24} className='min-w-fit' />;
         }
         case 'twitter': {
-            return <FaTwitter size={24} className='min-w-fit' />;
+            return <Twitter size={24} className='min-w-fit' />;
         } 
         case 'youtube': {
-            return <FaYoutube size={24} className='min-w-fit' />;
+            return <Youtube size={24} className='min-w-fit' />;
         }
         case 'x': {
-            return <FaXTwitter size={24} className='min-w-fit' />;
+            return <Twitter size={24} className='min-w-fit' />;
         }
         default:
             console.log('Platform name not supported, no icon is returned:', platformName);

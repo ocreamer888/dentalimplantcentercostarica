@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { BsFillCheckCircleFill } from "react-icons/bs";
+import { CheckCircle2 } from "lucide-react";
 
 import { IPricing } from "@/types/types";
 
@@ -31,7 +31,7 @@ const PricingColumn: React.FC<Props> = ({ tier, highlight }: Props) => {
                 <ul className="space-y-4 mb-8">
                     {features.map((feature, index) => (
                         <li key={index} className="flex items-center">
-                            <BsFillCheckCircleFill className="h-5 w-5 text-secondary mr-2" />
+                            <CheckCircle2 className="h-5 w-5 text-secondary mr-2 fill-current" />
                             <span className="text-foreground-accent">{feature}</span>
                         </li>
                     ))}

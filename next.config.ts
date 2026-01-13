@@ -83,17 +83,55 @@ const nextConfig: NextConfig = {
   // Remove assetPrefix as it can cause issues
   // assetPrefix: process.env.NODE_ENV === 'development' ? '' : undefined,
 
-  // Add CSP headers for development
+  // Add comprehensive security headers
   async headers() {
+    const isDev = process.env.NODE_ENV === 'development';
+    
     return [
       {
-        source: '/(.*)',
+        source: '/:path*',
         headers: [
+          // Content Security Policy
           {
             key: 'Content-Security-Policy',
-            value: process.env.NODE_ENV === 'development' 
-              ? "script-src 'self' 'unsafe-eval' 'unsafe-inline';" 
-              : "script-src 'self';"
+            value: isDev 
+              ? "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com;" 
+              : "default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-ancestors 'none';"
+          },
+          // X-Frame-Options
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY'
+          },
+          // X-Content-Type-Options
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff'
+          },
+          // Referrer-Policy
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin'
+          },
+          // Permissions-Policy
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()'
+          },
+          // Strict-Transport-Security (only in production)
+          ...(!isDev ? [{
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains; preload'
+          }] : []),
+          // X-XSS-Protection
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block'
+          },
+          // X-DNS-Prefetch-Control
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on'
           }
         ],
       },

@@ -1,5 +1,4 @@
 import React from "react";
-await new Promise((resolve) => setTimeout(resolve, 1000));
 
 export default function Loading() {
   return (
