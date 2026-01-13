@@ -5,17 +5,23 @@ const nextConfig: NextConfig = {
   // Conditional source maps based on environment
   productionBrowserSourceMaps: process.env.ENABLE_SOURCE_MAPS === 'true',
   
+  // React Compiler (moved from experimental in Next.js 16)
+  reactCompiler: true,
+  
   experimental: {
     serverActions: { 
       bodySizeLimit: process.env.NODE_ENV === 'production' ? "10mb" : "50mb" 
     },
-    reactCompiler: true,
     // Remove this line as it conflicts with Tailwind v4
     // optimizePackageImports: ['tailwindcss', 'tw-animate-css', 'lucide-react'],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
+  
+  // Acknowledge Turbopack as default bundler (Next.js 16+)
+  // This allows webpack config below to coexist
+  turbopack: {},
   
   // Optimize webpack for better chunking
   webpack: (config, { dev, isServer }) => {
@@ -58,6 +64,13 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'dentalimplantcentercostarica.com',
+      },
+    ],
+    // Allow query strings on local images (Next.js 16+)
+    localPatterns: [
+      {
+        pathname: '/images/**',
+        search: '',
       },
     ],
   },
