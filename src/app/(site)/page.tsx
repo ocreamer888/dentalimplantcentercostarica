@@ -1,4 +1,4 @@
-import HomePageP from "@/components/Home/HomePage";
+import HomePage from "@/components/Home/HomePage";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <HomePageP/>
+      <HomePage/>
     </>
     );
 }

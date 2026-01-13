@@ -3,9 +3,9 @@ import dynamic from "next/dynamic";
 import LoadingSkeleton from "@/components/ui/LoadingSkeleton";
 import Features from "@/components/Home/Features";
 import Footer from "@/components/Layout/Footer";
-import HeroSecs from "@/components/ui/HeroSecs";
 import React from "react";
 import LogoRow from "../ui/LogoRow";
+import { HeroSection } from "@/components/ui/HeroSection";
 
 // Optimize dynamic imports with better loading strategies
 const Bento = dynamic(() => import("@/components/ui/Bento"), {
@@ -33,29 +33,18 @@ const LazyEstimateForm = dynamic(() => import("@/components/FreeEstimate/Estimat
   loading: () => <LoadingSkeleton />,
 });
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
-      <HeroSecs
-        title="Expert All-On 4 Zirconia Dental Implants - $19,950"
-        description="Enjoy a new smile with our All-inclusive packages and a relaxing trip to Costa Rica, all for a fraction of the cost back home."
-        imageSrc="/images/Layer 1.webp"
-        imageSize={{
-          mobile: "w-4/5 h-4/5",
-          tablet: "w-full h-full",
-          desktop: "w-full h-full"
-        }}
-        imageVisibility={{hideOnMobile: true}}
-        imageAlt="Dental Clinic"
-        linkHref="#form"
-        backgroundImage="/images/hero/DentalOffice1.webp"
-        backgroundVisibility={{hideOnMobile: false}}
-        backgroundColor="bg-gradient-to-tl from-purple-900/90 via-purple-400/90 to-purple-400/80 md:bg-gradient-to-tl from-purple-300/90 via-purple-500/50 to-purple-400/80"
-        buttonText="Free Estimate"
-        cardButton="true"
-        className="backdrop-blur-sm h-full"
-        CardContentClassName="md:h-1/2 flex flex-col justify-center items-center px-4 lg:ml-12"
-      />
+      <HeroSection
+      title="Expert All-On 4 Zirconia Dental Implants - $19,950"
+      description="Enjoy a new smile with our All-inclusive packages and a relaxing trip to Costa Rica, all for a fraction of the cost back home."
+      buttonText="Free Estimate"
+      buttonHref="/free-estimate"
+      imageSrc="/images/Layer 1.webp"
+      imageAlt="Professional dentist"
+    />
+     
       <div className="bg-gradient-to-tr from-purple-100/50 via-purple-500/50 to-purple-900/50">
       <LogoRow/>
       </div>

@@ -194,114 +194,101 @@ const CardButton: React.FC<{
   );
 };
 
-class HeroSecs extends React.Component<HeroSecsProps> {
-  static defaultProps = {
-    title: "Default Title",
-    description: "Default Description",
-    imageSrc: "/default-image.webp",
-    imageAlt: "Default Image",
-    linkHref: "#",
-    backgroundColor: "#f8f8f8",
-    CardButton: "true",
+const HeroSecs: React.FC<HeroSecsProps> = ({ 
+  title = "Default Title",
+  description = "Default Description",
+  imageSrc = "/default-image.webp",
+  imageAlt = "Default Image",
+  linkHref = "#",
+  backgroundColor = "#f8f8f8",
+  buttonText,
+  backgroundImage,
+  backDropBlur,
+  cardButton = "true",
+  className,
+  CardContentClassName,
+  CardImageClassName,
+  imageSize,
+  // Individual visibility controls
+  imageVisibility,
+  contentVisibility,
+  buttonVisibility,
+  backgroundVisibility,
+  // Legacy props for backward compatibility
+  hideOnMobile,
+  hideOnTablet,
+  hideOnDesktop,
+  showOnMobile,
+  showOnTablet,
+  showOnDesktop
+}) => {
+  // Legacy visibility props (apply to all if no individual controls are set)
+  const legacyVisibility = {
+    hideOnMobile,
+    hideOnTablet,
+    hideOnDesktop,
+    showOnMobile,
+    showOnTablet,
+    showOnDesktop
   };
 
-  render() {
-    const { 
-      title, 
-      description, 
-      imageSrc, 
-      imageAlt, 
-      linkHref, 
-      backgroundImage, 
-      backgroundColor, 
-      backDropBlur, 
-      buttonText, 
-      cardButton, 
-      className,
-      CardContentClassName,
-      CardImageClassName,
-      // Individual visibility controls
-      imageVisibility,
-      contentVisibility,
-      buttonVisibility,
-      backgroundVisibility,
-      // Legacy props for backward compatibility
-      hideOnMobile,
-      hideOnTablet,
-      hideOnDesktop,
-      showOnMobile,
-      showOnTablet,
-      showOnDesktop
-    } = this.props;
+  // Use individual visibility props if provided, otherwise fall back to legacy props
+  const finalImageVisibility = imageVisibility || legacyVisibility;
+  const finalContentVisibility = contentVisibility || legacyVisibility;
+  const finalButtonVisibility = buttonVisibility || legacyVisibility;
+  const finalBackgroundVisibility = backgroundVisibility || legacyVisibility;
 
-    // Legacy visibility props (apply to all if no individual controls are set)
-    const legacyVisibility = {
-      hideOnMobile,
-      hideOnTablet,
-      hideOnDesktop,
-      showOnMobile,
-      showOnTablet,
-      showOnDesktop
-    };
-
-    // Use individual visibility props if provided, otherwise fall back to legacy props
-    const finalImageVisibility = imageVisibility || legacyVisibility;
-    const finalContentVisibility = contentVisibility || legacyVisibility;
-    const finalButtonVisibility = buttonVisibility || legacyVisibility;
-    const finalBackgroundVisibility = backgroundVisibility || legacyVisibility;
-
-    return (
-      <div className='relative flex flex-col h-screen w-full rounded-b-3xl z-30'>
-        {backgroundImage && (
-          <Image 
-            src={backgroundImage}
-            alt="Background image"
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            quality={80}
-            loading="lazy"
-            className={`relative object-top object-cover rounded-b-3xl backdrop-blur ${getResponsiveVisibilityClasses(finalBackgroundVisibility)}`}
-          />
-        )}
-        <Header />
-        <div className={`relative flex flex-col sm:landscape:flex-row md:flex-row overflow-hidden justify-center items-center ${className} ${backDropBlur} ${backgroundColor}`} role="region" aria-labelledby="card-title">      
-        <div className='absolute sm:landscape:relative md:relative flex flex-col flex-1 h-screen sm:landscape:h-auto sm:landscape:py-8 justify-around md:justify-center items-center'>
-            {title && description && linkHref && buttonText && CardContentClassName && (
-              <CardContent 
-                title={title} 
-                description={description} 
-                buttonText={buttonText} 
-                linkHref={linkHref}
-                visibility={finalContentVisibility}
-                CardContentClassName={CardContentClassName}
-              />
-            )}
-          </div>
-          <div className='relative flex flex-col w-full sm:hidden md:block sm:landscape:flex-1 md:flex-1 sm:landscape:pt-8 sm:landscape:h-auto justify-center items-center'>
-            {imageSrc && imageAlt && (
-              <CardImage 
-                src={imageSrc} 
-                alt={imageAlt}
-                visibility={finalImageVisibility}
-                imageSize={this.props.imageSize}
-                CardImageClassName={CardImageClassName}
-              />
-            )}
-          </div>
-        </div>
-        <div className="absolute z-50 sm:landscape:hidden flex flex-col md:flex-row h-screen w-full justify-end items-center">
-          {cardButton && linkHref && buttonText && (
-            <CardButton 
+  return (
+    <div className='relative flex flex-col h-screen w-full rounded-b-3xl z-30'>
+      {backgroundImage && (
+        <Image 
+          src={backgroundImage}
+          alt="Background image"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          quality={80}
+          loading="lazy"
+          className={`relative object-top object-cover rounded-b-3xl backdrop-blur ${getResponsiveVisibilityClasses(finalBackgroundVisibility)}`}
+        />
+      )}
+      <Header />
+      <div className={`relative flex flex-col sm:landscape:flex-row md:flex-row overflow-hidden justify-center items-center ${className} ${backDropBlur} ${backgroundColor}`} role="region" aria-labelledby="card-title">      
+      <div className='absolute sm:landscape:relative md:relative flex flex-col flex-1 h-screen sm:landscape:h-auto sm:landscape:py-8 justify-around md:justify-center items-center'>
+          {title && description && linkHref && buttonText && CardContent && (
+            <CardContent 
+              title={title} 
+              description={description} 
               buttonText={buttonText} 
               linkHref={linkHref}
-              visibility={finalButtonVisibility}
+              visibility={finalContentVisibility}
+              CardContentClassName={CardContentClassName}
+            />
+          )}
+        </div>
+        <div className='relative flex flex-col w-full h-full max-h-[800px] sm:hidden md:block sm:landscape:flex-1 md:flex-1 sm:landscape:pt-8 sm:landscape:h-auto justify-center items-center'>
+          {imageSrc && imageAlt && (
+            <CardImage 
+              src={imageSrc} 
+              alt={imageAlt}
+              visibility={finalImageVisibility}
+              imageSize={imageSize}
+              CardImageClassName={CardImageClassName}
             />
           )}
         </div>
       </div>
-    );
-  }
-}
+      <div className="absolute z-50 sm:landscape:hidden flex flex-col md:flex-row h-screen w-full justify-end items-center">
+        {cardButton && linkHref && buttonText && (
+          <CardButton 
+            buttonText={buttonText} 
+            linkHref={linkHref}
+            visibility={finalButtonVisibility}
+          />
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default HeroSecs;
 

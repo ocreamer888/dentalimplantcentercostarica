@@ -3,9 +3,7 @@ import OurDocs from '@/components/About/OurDocs'
 import { Metadata } from 'next'
 import EstimateForm from '@/components/FreeEstimate/EstimateForm'
 import Footer from '@/components/Layout/Footer'
-import HeroSecs from '@/components/ui/HeroSecs'
-
-
+import { HeroSection } from '@/components/ui/HeroSection'
 
 export const metadata: Metadata = {
   title: 'Dental Implant Costs - Complete Pricing Guide | Save Thousands',
@@ -22,26 +20,15 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-    <HeroSecs
-        title="Welcome to our world-class dental clinic in Costa Rica!"
-        description="Learn more about us and who we are!"
-        imageSrc="/images/hero/nurse-dental-implant-center-costa-rica.webp"
-        imageAlt="Dental Clinic"
-        imageSize={{
-          mobile: "w-4/5 h-4/5",
-          tablet: "w-full h-full",
-          desktop: "w-full h-full"
-        }}
-        imageVisibility={{hideOnMobile: true}}
-        backgroundVisibility={{hideOnMobile: true}}
-        linkHref="#1"
-        backgroundImage=""
-        backgroundColor="bg-gradient-to-tl from-purple-400/80 via-purple-500/50 to-purple-900/50"
-        buttonText="Learn More"
-        cardButton="true"
-        className=" justify-center items-center h-full"
-        CardContentClassName="md:h-1/2 flex flex-col justify-center items-center px-4 md:ml-12"
-      />
+    <HeroSection
+      title="Welcome to our world-class dental clinic in Costa Rica!"
+      description="Learn more about us and who we are!"
+      buttonText="Learn More"
+      buttonHref="#1"
+      imageSrc="/images/hero/nurse-dental-implant-center-costa-rica.webp"
+      imageAlt="Nurse Dental Implant Center Costa Rica"
+    />
+    
     <AboutIntro />
     <OurDocs />
     <div className="bg-gradient-to-tl from-purple-900/50 via-purple-500/80 to-purple-100/50 py-12 -mt-8">

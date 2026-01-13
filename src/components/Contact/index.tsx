@@ -1,85 +1,125 @@
-'use client'
-import { Metadata } from 'next';
+'use client';
+import React from 'react';
 import ContactForm from '../ui/contactForm';
-import HeroSecs from '../ui/HeroSecs';
 import Footer from '../Layout/Footer';
+import Header from '../Layout/Header/Header';
 
-export const metadata: Metadata = {
-  title: 'Contact Us - DentalImplant Center Costa Rica',
-  description: 'Get in touch with our dental specialists for consultations and appointments.',
-};
+interface ContactPageProps {
+  title?: string;
+  description?: string;
+  heroImage?: string;
+  gradientFrom?: string;
+  gradientVia?: string;
+  gradientTo?: string;
+  className?: string;
+}
 
-export default function ContactPage() {
+export function ContactPage({
+  title = 'Contact Us!',
+  description = "Ready for a new smile? Don't monkey around! Reach out to Ivan at Dental Implant Center Costa Rica",
+  heroImage = '/images/hero/monkey-dental-implant-center-costa-rica.webp',
+  gradientFrom = 'from-purple-100/50',
+  gradientVia = 'via-purple-500/50',
+  gradientTo = 'to-purple-900/50',
+  className = '',
+}: ContactPageProps) {
   return (
-    <>
-     <HeroSecs
-        title="Contact Dental Implant Center Costa Rica"
-        description="Ready for a new smile? Don't monkey around! Reach out to Ivan at Dental Implant Center Costa Rica"
-        imageSrc=""
-        imageAlt="Dental Clinic"
-        linkHref="#contact"
-        backgroundImage="/images/hero/monkey-dental-implant-center-costa-rica.webp"
-        backgroundColor=""
-        buttonText="Learn More"
-        cardButton="true"
-        className="justify-center items-center h-full"
-        CardContentClassName="md:h-auto flex flex-col bg-black/80 backdrop-blur-sm justify-center items-center p-4 md:ml-12"
-      />
-    <div className="relative flex flex-col gap-4 justify-center items-center bg-gradient-to-br from-purple-100/50 via-purple-500/50 to-purple-900/50 md:px-8 -mt-8 h-auto pt-28 w-full">
+    <section
+      className={`relative w-full min-h-screen ${className}`}
+      aria-labelledby="contact-title"
+    >
+      <Header />
+      
+      {/* Hero Section with Background Image */}
+      <div
+        className="relative w-full h-[60vh] min-h-[400px] bg-cover bg-top bg-no-repeat"
+        style={{ backgroundImage: `url(${heroImage})` }}
+      >
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-full">
+          <div className="flex flex-col justify-center items-center h-full relative z-20 text-center text-white">
+            <h1
+              id="contact-title"
+              className="text-4xl lg:text-6xl xl:text-7xl font-bold leading-tight text-balance mb-6"
+            >
+              {title}
+            </h1>
+            <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-white/90 max-w-3xl">
+              {description}
+            </p>
+          </div>
+        </div>
+      </div>
 
-    <div className="flex flex-col justify-center items-center h-full w-full">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-
-          <div id="contact" className="grid lg:grid-cols-2 gap-4">
-            {/* Contact Information */}
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="text-2xl font-semibold text-purple-900 mb-6">Contact Information</h2>
+      {/* Contact Content Section */}
+      <div className={`relative w-full bg-gradient-to-br ${gradientFrom} ${gradientVia} ${gradientTo} py-16 lg:py-24`}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <div id="contact" className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
               
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <span className="text-purple-600 mt-1 mr-3">📍</span>
-                  <div>
-                    <p className="font-medium text-gray-800">Address</p>
-                    <p className="text-gray-600">Curridabat, 200m Sur de Pops<br />San José, Costa Rica</p>
-                  </div>
-                </div>
+              {/* Contact Information */}
+              <div className="bg-white rounded-2xl shadow-lg p-8 lg:p-10">
+                <h2 className="text-2xl lg:text-3xl font-semibold text-purple-900 mb-6">
+                  Contact Information
+                </h2>
                 
-                <div className="flex items-start">
-                  <span className="text-purple-600 mt-1 mr-3">⏰</span>
-                  <div>
-                    <p className="font-medium text-gray-800">24/7</p>
-                    <p className="text-gray-600">We are here for you</p>
+                <div className="space-y-6">
+                  <div className="flex items-start">
+                    <span className="text-purple-600 text-2xl mt-1 mr-3" aria-hidden="true">📍</span>
+                    <div>
+                      <p className="font-medium text-gray-800 mb-1">Address</p>
+                      <p className="text-gray-600">
+                        Curridabat, 200m Sur de Pops<br />
+                        San José, Costa Rica
+                      </p>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <span className="text-purple-600 mt-1 mr-3">📞</span>
-                  <div>
-                    <p className="font-medium text-gray-800">Phone</p>
-                    <p className="text-gray-600">+1 (702) 595-3955</p>
+                  
+                  <div className="flex items-start">
+                    <span className="text-purple-600 text-2xl mt-1 mr-3" aria-hidden="true">⏰</span>
+                    <div>
+                      <p className="font-medium text-gray-800 mb-1">24/7</p>
+                      <p className="text-gray-600">We are here for you</p>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <span className="text-purple-600 mt-1 mr-3">✉️</span>
-                  <div>
-                    <p className="font-medium text-gray-800">Email</p>
-                    <p className="text-gray-600">ivan@dentalimplantcentercostarica.com</p>
+                  
+                  <div className="flex items-start">
+                    <span className="text-purple-600 text-2xl mt-1 mr-3" aria-hidden="true">📞</span>
+                    <div>
+                      <p className="font-medium text-gray-800 mb-1">Phone</p>
+                      <a
+                        href="tel:+17025953955"
+                        className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
+                      >
+                        +1 (702) 595-3955
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start">
+                    <span className="text-purple-600 text-2xl mt-1 mr-3" aria-hidden="true">✉️</span>
+                    <div>
+                      <p className="font-medium text-gray-800 mb-1">Email</p>
+                      <a
+                        href="mailto:ivan@dentalimplantcentercostarica.com"
+                        className="text-gray-600 hover:text-purple-600 transition-colors duration-200 break-all"
+                      >
+                        ivan@dentalimplantcentercostarica.com
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <ContactForm />
-            
-           
+              {/* Contact Form */}
+              <ContactForm />
+            </div>
           </div>
         </div>
-        <Footer />
       </div>
-    </div>
-    </div>
-    </>
+
+      {/* Footer */}
+      <Footer />
+    </section>
   );
 }

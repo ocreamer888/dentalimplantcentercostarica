@@ -11,10 +11,10 @@ export default function OurDocs() {
   
     return (
         
-        <section aria-labelledby="our-main-specialist-heading" className="relative flex flex-col md:flex-row gap-4 p-4 pt-12 md:p-12 -mt-8 w-full h-full bg-white rounded-b-3xl z-20">
-                 <div className="relative flex flex-col w-full justify-end items-center text-white p-4 rounded-3xl flex-1 overflow-hidden">
+        <section aria-labelledby="our-main-specialist-heading" className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center justify-center min-h-[600px] h-auto pb-24 bg-white relative w-full min-w-full">
+                 <div className="relative flex flex-col w-full h-auto justify-center items-center p-4 flex-1 overflow-hidden">
          
-                    <div className="relative z-10 rounded-3xl w-full h-full flex flex-col justify-center text-black">
+                    <div className="relative z-10 w-full max-w-4/5 h-auto flex flex-col justify-center text-black">
                         <h2 id="our-main-specialist-heading" className="font-semibold pb-4 text-5xl text-center md:text-left text-gray-800 lg:text-6xl">
                         Our Main Specialist
                         </h2>
@@ -23,14 +23,14 @@ export default function OurDocs() {
                         </p>
                     </div>
                 </div>
-              
+              <div className="flex flex-col items-center justify-center">
                 <CardThree
                   title="Dr. Oscar Guzmán"
                   description="Board-Certified Implant Specialist with 15+ years of experience."
                   imageSrc="/images/hero/Layer 1.webp"
                   imageAlt="Dr. Oscar Guzmán"
                 />
-         
+                </div>
                    
         </section>
             
